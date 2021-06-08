@@ -1,6 +1,5 @@
 
 *.log
-Pictures/.DS_Store
 *.xml
 *.gz
 *.toc
@@ -9,3 +8,4 @@ Pictures/.DS_Store
 *.pdf
 *.bcf
 *.aux
+*.DS_Store
