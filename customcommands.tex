@@ -1,0 +1,88 @@
+%----------------------------------------------------------------------------------------
+% User created custom commands
+%----------------------------------------------------------------------------------------
+
+%\usepackage{float}
+% 'OneFIGure' erzeugt eine Figure mit einem Bild darin. 
+% Nutzung: \ofig{caption}{image_filename (ohne Dateiendung)}{image_width}
+\newcommand{\ofig}[3]{
+	\begin{figure}[h]
+		\centering\includegraphics[width=#3]{#2}
+		\caption{#1}
+		\label{fig:#2}
+	\end{figure}
+}
+
+
+
+
+% 'PlaceholderFIGure' erzeugt Figure mit dem Platzhalterbild darin. 
+% Nutzung: \pfig{string caption}
+\newcommand{\pfig}[1]{
+	\ofig{#1}{placeholder}{\linewidth}
+}
+
+
+
+
+
+% 'Create TikZ Titlepage' creates the Title Page and changes the colour scheme corresponding to the faculty
+% Nutzung: \createTikZTitlePage{Text: Faculty}{Text: Title}{Text: Authors}
+\newcommand{\createTikZTitlePage}[3]{
+	\begingroup
+	\thispagestyle{empty} % Suppress headers and footers on the title page
+	\begin{tikzpicture}[remember picture,overlay]
+
+	%%% node coordinates A4 %%%
+		% specify absolute placement on page, figures will be drawn relative to those
+		\coordinate (UoAS) at ($ (current page.north west) + (2,-2) $);
+		\coordinate (Faculty) at ($ (UoAS) + (0,-2) $);
+		\coordinate (Title) at ($ (current page.north west) + (2,-11.5) $);
+		\coordinate (Authors) at ($ (current page.south west) + (2,1.5) $);
+		\coordinate (BackgroundPic) at ($ (current page.south) + (0,3) $);
+		\coordinate (ColorBlock) at (0,-16);
+		\coordinate (H) at ($ (current page.north east) + (8,-0.8) $);
+		\coordinate (K) at ($ (H) + (0,-18) $);
+		\coordinate (A) at ($ (K) + (0,-8.6) $);
+		
+	%%% Background Picture %%%
+		\node[above, inner sep=0pt] (Hinterlegbild) at (BackgroundPic)
+		% upper picture boundary needs to be at 3/5 of Page, which is 17.82cm. It starts 3cm from bottom so: 14.82cm
+		{\includegraphics[height=14.82cm]{../Pictures/iStock/HKA_EIT_Digitaltechnik_4.jpg}}; 
+		
+	%%% Colored, 3cm high, Box under Picture %%%
+		\path[fill=ThemeColor] (current page.south west) rectangle ($ (current page.south east) + (0,3) $);
+		
+	%%% Text Blocks %%%
+		% HKA, University of Applied Science
+		\node[text width = 10cm, ThemeColor, below right] at (UoAS) {\textbf{Hochschule Karlsruhe}\\University of\\Applied Science};
+		% Faculty
+		\node[text width = 10cm, ThemeColor, below right] at (Faculty) {Fakultät für\\ \textbf{#1}};
+		% Title and Subtitle 
+		\node[text width = 10cm, ThemeColor, above right] at (Title) {#2};
+		% Authors
+		\node[text width = 10cm, white, right] at (Authors) {{\large #3}};
+		
+	%%% +| KA %%%
+		% overlay HKA picture to draw the nodes CAUTION!!! TikzEdt has for whatever reason no permission to edit files unter windows in ...\Program Files\ directory. 
+		% If the picture is not loading, try moving .text and .png file in another directory, e.g. \Downloads\
+		% ++ refers to the Node last mentioned before. + does the same thing, without setting the current node as new "last mentiones node"
+		\path (H) [fill=ThemeColor, scale = 0.45, rounded corners = 3] +(0,-2.95)  -- +(3,-2.95) -- +(3,0) -- +(4.2,0)  -- +(4.2,-2.95) -- +(7.2,-2.95) -- +(7.2,-3.95) -- +(4.2,-3.95) -- +(4.2,-6.9) -- +(3,-6.9) -- +(3,-3.95) -- +(0,-3.95) -- cycle;
+		\path (H) [fill=ThemeColor, scale = 0.45, rounded corners = 3] +(7.8,0)  -- +(9,0) -- +(9,-6.9) -- +(7.8,-6.9) -- cycle;
+		\path (K) [fill=ThemeColor, scale = 0.45, rounded corners = 3] +(3, 0) -- +(4.2,0) -- +(4.2,-2.8) -- +(9,0) -- +(9,-1.3) -- +(5.2,-3.45) -- +(9,-5.6) -- +(9,-6.9) -- +(4.2,-4.1) -- +(4.2,-6.9) -- +(3,-6.9) -- cycle;
+		\path (A) [fill=ThemeColor, scale = 0.45, rounded corners = 3] +(6, 0) -- +(6.65,0) -- +(10.05,-6.9) -- +(8.75,-6.9) -- +(6,-1.3) -- +(4.8,-3.7) -- +(7.52,-3.7) -- +(8.85,-4.8) -- +(4.3,-4.8) -- +(3.25,-6.9) -- +(1.95,-6.9) -- +(5.35,0) -- cycle;
+		
+		
+	%%% might be usefull later: %%%
+		% custom font
+		% \node[text width = 10cm, green, below right] (v1) at (0,3) {\fontfamily{uncl}\selectfont{\textbf{Hochschule Karlsruhe}\\University of\\Applied Science}};
+		%\path (4,5) [fill=black, scale = 1, rounded corners = 3] +(0, 0) -- +(4,0) -- +(4,-4) -- +(0,-4) -- cycle;
+		
+		%\def \scl_factor_ttp {1};
+		% ($ (\scale_factor *2,0) + (Title) $)
+		
+	\end{tikzpicture}
+	\vfill
+	\endgroup
+}
+
