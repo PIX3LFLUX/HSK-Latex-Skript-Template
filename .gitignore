@@ -10,3 +10,5 @@
 *.aux
 *.DS_Store
 *.ptc
+00_main.bbl
+00_main.blg
