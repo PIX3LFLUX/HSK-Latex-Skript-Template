@@ -63,12 +63,12 @@
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
 \usepackage[utf8]{inputenc} % Required for including letters with accents
 
-%\usepackage{avant} % Use the Avantgarde font for headings
-%\usepackage{times} % Use the Times font for headings
-\usepackage{plex-serif}
+\usepackage{avant} % Use the Avantgarde font for headings
+\newcommand*{\avantstyle}{\fontfamily{pag}\selectfont}
+\DeclareTextFontCommand{\avantfont}{\avantstyle}
+
 \usepackage{plex-sans}
-\usepackage{plex-mono}
-%\usepackage{lmodern} % sonst PDFLaTeX error (font expansion): auto expansion is only possible with scalable font. Nicht noetig fuer XeLaTex.
+
 \renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
 %\usepackage{mathptmx} % Use the Adobe Times Roman as the default text font together with math symbols from the Sym­bol, Chancery and Com­puter Modern fonts
 
@@ -165,7 +165,7 @@
 % Section text styling
 \titlecontents{lsection}
 	[0em] % Left indentation
-	{\sffamily\small} % Spacing and font options for sections
+	{\color{white}\sffamily\small} % Spacing and font options for sections
 	{\contentslabel[\thecontentslabel]{1.25cm}} % Section number
 	{}
 	{}
@@ -173,7 +173,7 @@
 % Subsection text styling (note these aren't shown by default, display them by searchings this file for tocdepth and reading the commented text)
 \titlecontents{lsubsection}
 	[.5em] % Left indentation
-	{\sffamily\footnotesize} % Spacing and font options for subsections
+	{\color{white}\sffamily\footnotesize} % Spacing and font options for subsections
 	{\contentslabel[\thecontentslabel]{1.25cm}}
 	{}
 	{}
@@ -500,8 +500,7 @@ innerbottommargin=5pt]{cBox}
 \node at (current page.north west)
 {\begin{tikzpicture}[remember picture,overlay]
 \node[anchor=north west,inner sep=0pt] at (0,0) {\ifusechapterimage\includegraphics[width=\paperwidth]{\thechapterimage}\fi};
-\draw[anchor=west] (\Gm@lmargin,-9cm) node [line width=2pt,rounded corners=15pt,draw=ThemeColor,fill=white,fill opacity=0.5,inner sep=15pt]{\strut\makebox[22cm]{}};
-\draw[anchor=west] (\Gm@lmargin+.3cm,-9cm) node {\huge\sffamily\bfseries\color{black}\thechapter\autodot~#1\strut};
+\draw[anchor=west] (\Gm@lmargin+.3cm,-9cm) node [line width=0pt,rounded corners=0pt,draw=white,fill=white,fill opacity=1,inner sep=7.5pt] {\huge\sffamily\bfseries\color{black}\thechapter\autodot~#1\strut};
 \end{tikzpicture}};
 \end{tikzpicture}
 \else
@@ -509,8 +508,7 @@ innerbottommargin=5pt]{cBox}
 \node at (current page.north west)
 {\begin{tikzpicture}[remember picture,overlay]
 \node[anchor=north west,inner sep=0pt] at (0,0) {\ifusechapterimage\includegraphics[width=\paperwidth]{\thechapterimage}\fi};
-\draw[anchor=west] (\Gm@lmargin,-9cm) node [line width=2pt,rounded corners=15pt,draw=ThemeColor,fill=white,fill opacity=0.5,inner sep=15pt]{\strut\makebox[22cm]{}};
-\draw[anchor=west] (\Gm@lmargin+.3cm,-9cm) node {\huge\sffamily\bfseries\color{black}#1\strut};
+\draw[anchor=west] (\Gm@lmargin+.3cm,-9cm) node [line width=0pt,rounded corners=0pt,draw=white,fill=white,fill opacity=1,inner sep=7.5pt] {\huge\sffamily\bfseries\color{black}#1\strut};
 \end{tikzpicture}};
 \end{tikzpicture}
 \fi\fi\par\vspace*{270\p@}}}
@@ -522,8 +520,7 @@ innerbottommargin=5pt]{cBox}
 \node at (current page.north west)
 {\begin{tikzpicture}[remember picture,overlay]
 \node[anchor=north west,inner sep=0pt] at (0,0) {\ifusechapterimage\includegraphics[width=\paperwidth]{\thechapterimage}\fi};
-\draw[anchor=west] (\Gm@lmargin,-9cm) node [line width=2pt,rounded corners=15pt,draw=ThemeColor,fill=white,fill opacity=0.5,inner sep=15pt]{\strut\makebox[22cm]{}};
-\draw[anchor=west] (\Gm@lmargin+.3cm,-9cm) node {\huge\sffamily\bfseries\color{black}#1\strut};
+\draw[anchor=west] (\Gm@lmargin+.3cm,-9cm) node [line width=0pt,rounded corners=0pt,draw=white,fill=white,fill opacity=1,inner sep=7.5pt] {\huge\sffamily\bfseries\color{black}#1\strut};
 \end{tikzpicture}};
 \end{tikzpicture}
 \par\vspace*{270\p@}}
