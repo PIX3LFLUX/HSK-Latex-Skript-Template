@@ -16,30 +16,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %----------------------------------------------------------------------------------------
-%	VARIOUS REQUIRED PACKAGES AND CONFIGURATIONS
-%----------------------------------------------------------------------------------------
-
-\usepackage{graphicx} % Required for including pictures
-\graphicspath{{Pictures/}} % Specifies the directory where pictures are stored
-
-\usepackage{lipsum} % Inserts dummy text
-
-\usepackage{tikz} % Required for drawing custom shapes
-
-\usepackage[german]{babel} % german language/hyphenation
-
-\usepackage{enumitem} % Customize lists
-\setlist{nolistsep} % Reduce spacing between bullet points and numbered lists
-
-\usepackage{booktabs} % Required for nicer horizontal rules in tables
-
-\usepackage{xcolor} % Required for specifying colors by name
-%\definecolor{ThemeColor}{RGB}{ThemeColor} % is done in main, as it depends on faculty
-
-%TODO wollen wir das so haben? Finde ich persönlich besser - Marcel
-\usepackage[section]{placeins} % Graphics and tables are forced to be set before the beginning of a new section. Althoug this does not work with subsections. But you can use \FloatBarrier before a subsection to prevent this.
-
-%----------------------------------------------------------------------------------------
 %	MARGINS
 %----------------------------------------------------------------------------------------
 
@@ -493,37 +469,40 @@ innerbottommargin=5pt]{cBox}
 \newcommand{\chapterimage}[1]{\ifusechapterimage\renewcommand{\thechapterimage}{#1}\fi}%
 \newcommand{\autodot}{.}
 \def\@makechapterhead#1{%
-{\parindent \z@ \raggedright \normalfont
-\ifnum \c@secnumdepth >\m@ne
-\if@mainmatter
-\begin{tikzpicture}[remember picture,overlay]
-\node at (current page.north west)
-{\begin{tikzpicture}[remember picture,overlay]
-\node[anchor=north west,inner sep=0pt] at (0,0) {\ifusechapterimage\includegraphics[width=\paperwidth]{\thechapterimage}\fi};
-\draw[anchor=west] (\Gm@lmargin-1cm,-9cm) node [line width=0pt,rounded corners=0pt,draw=white,fill=white,fill opacity=1,inner sep=7.5pt] {\huge\sffamily\bfseries\color{black}\thechapter\autodot~#1\strut};
-\end{tikzpicture}};
-\end{tikzpicture}
-\else
-\begin{tikzpicture}[remember picture,overlay]
-\node at (current page.north west)
-{\begin{tikzpicture}[remember picture,overlay]
-\node[anchor=north west,inner sep=0pt] at (0,0) {\ifusechapterimage\includegraphics[width=\paperwidth]{\thechapterimage}\fi};
-\draw[anchor=west] (\Gm@lmargin-1cm,-9cm) node [line width=0pt,rounded corners=0pt,draw=white,fill=white,fill opacity=1,inner sep=7.5pt] {\huge\sffamily\bfseries\color{black}#1\strut};
-\end{tikzpicture}};
-\end{tikzpicture}
-\fi\fi\par\vspace*{270\p@}}}
+	{\parindent \z@ \raggedright \normalfont
+		\ifnum \c@secnumdepth >\m@ne
+		\if@mainmatter
+		\begin{tikzpicture}[remember picture,overlay]
+			\node at (current page.north west)
+			{\begin{tikzpicture}[remember picture,overlay]
+					\node[anchor=north west,inner sep=0pt] at (0,0) {\ifusechapterimage\includegraphics[width=\paperwidth]{\thechapterimage}\fi};
+					\draw[anchor=west] (\Gm@lmargin-0cm,-9cm) node [minimum height=2cm, line width=0pt,rounded corners=0pt,draw=white,fill=white,fill opacity=1,inner sep=10pt] {\huge\bfseries\color{ThemeColor}\thechapter\autodot ~#1 \strut};
+					\draw[anchor=east] (\Gm@lmargin-0cm,-9cm) node [minimum width=1cm, minimum height=2cm, line width=0pt,rounded corners=0pt, draw=ThemeColor,fill=ThemeColor,fill opacity=1] {};
+			\end{tikzpicture}};
+		\end{tikzpicture}
+		\else
+		\begin{tikzpicture}[remember picture,overlay]
+			\node at (current page.north west)
+			{\begin{tikzpicture}[remember picture,overlay]
+					\node[anchor=north west,inner sep=0pt] at (0,0) {\ifusechapterimage\includegraphics[width=\paperwidth]{\thechapterimage}\fi};
+					\draw[anchor=west] (\Gm@lmargin-0cm,-9cm) node [minimum height=2cm, line width=0pt,rounded corners=0pt,draw=white,fill=white,fill opacity=1,inner sep=10pt] {\huge\bfseries\color{ThemeColor} #1 \strut};
+					\draw[anchor=east] (\Gm@lmargin-0cm,-9cm) node [minimum width=1cm, minimum height=2cm, line width=0pt,rounded corners=0pt,draw=ThemeColor,fill=ThemeColor,fill opacity=1] {};
+			\end{tikzpicture}};
+		\end{tikzpicture}
+		\fi\fi\par\vspace*{270\p@}}}
 
 %-------------------------------------------
 
 \def\@makeschapterhead#1{%
-\begin{tikzpicture}[remember picture,overlay]
-\node at (current page.north west)
-{\begin{tikzpicture}[remember picture,overlay]
-\node[anchor=north west,inner sep=0pt] at (0,0) {\ifusechapterimage\includegraphics[width=\paperwidth]{\thechapterimage}\fi};
-\draw[anchor=west] (\Gm@lmargin-1cm,-9cm) node [line width=0pt,rounded corners=0pt,draw=white,fill=white,fill opacity=1,inner sep=7.5pt] {\huge\sffamily\bfseries\color{black}#1\strut};
-\end{tikzpicture}};
-\end{tikzpicture}
-\par\vspace*{270\p@}}
+	\begin{tikzpicture}[remember picture,overlay]
+		\node at (current page.north west)
+		{\begin{tikzpicture}[remember picture,overlay]
+				\node[anchor=north west,inner sep=0pt] at (0,0) {\ifusechapterimage\includegraphics[width=\paperwidth]{\thechapterimage}\fi};
+				\draw[anchor=west] (\Gm@lmargin-0cm,-9cm) node [minimum height=2cm, line width=0pt,rounded corners=0pt,draw=white,fill=white,fill opacity=1,inner sep=10pt] {\huge\bfseries\color{ThemeColor} #1 \strut};
+				\draw[anchor=east] (\Gm@lmargin-0cm,-9cm) node [minimum width=1cm, minimum height=2cm, line width=0pt,rounded corners=0pt,draw=ThemeColor,fill=ThemeColor,fill opacity=1] {};
+		\end{tikzpicture}};
+	\end{tikzpicture}
+	\par\vspace*{270\p@}}
 \makeatother
 
 %----------------------------------------------------------------------------------------
