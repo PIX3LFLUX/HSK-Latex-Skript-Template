@@ -2,14 +2,13 @@
 
 <!-- PROJECT LOGO -->
 <br />
-<div align="center">
+<div>
     <img src="https://www.h-ka.de/typo3conf/ext/in2template/Resources/Public/Images/Icons/Favicons/favicon-256x256.png" alt="Logo" width="180" height="180">
 
-  <h3 align="center">H-KA Latex Template</h3>
+  <h3>H-KA Latex Template</h3>
 
-  <p align="center">
-    An awesome Latex template to jumpstart your e.g. your documentation of projects, thesis or to write skripts for lectures!
-  </p>
+  <p> An awesome Latex template to jumpstart your e.g. your documentation of projects, thesis or to write skripts for lectures!</p>
+  <p> **Checked and approved** by the Press and Communications department of HKA. </p>
 </div>
 
 <!-- TABLE OF CONTENTS -->
