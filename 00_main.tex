@@ -103,6 +103,25 @@ Das originale Template (the Legrand Orange Book Template) kann hier heruntergela
 
 \section{Table}\index{Table}
 
+\begin{table}[h]
+\centering
+\begin{tabular}{l l l}
+\toprule
+\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
+\midrule
+Treatment 1 & 0.0003262 & 0.562 \\
+Treatment 2 & 0.0015681 & 0.910 \\
+Treatment 3 & 0.0009271 & 0.296 \\
+\bottomrule
+\end{tabular}
+\caption{Table caption}
+\label{tab:example} % Unique label used for referencing the table in-text
+%\addcontentsline{toc}{table}{Table \ref{tab:example}} % Uncomment to add the table to the table of contents
+\end{table}
+
+Referencing Table \ref{tab:example} in-text automatically.
+
+
 %------------------------------------------------
 
 \section{Citation}\index{Citation}
@@ -280,23 +299,6 @@ Define a word to improve a students' vocabulary.
 Definition of word.
 \end{vocabulary}
 
-\begin{table}[h]
-\centering
-\begin{tabular}{l l l}
-\toprule
-\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-\midrule
-Treatment 1 & 0.0003262 & 0.562 \\
-Treatment 2 & 0.0015681 & 0.910 \\
-Treatment 3 & 0.0009271 & 0.296 \\
-\bottomrule
-\end{tabular}
-\caption{Table caption}
-\label{tab:example} % Unique label used for referencing the table in-text
-%\addcontentsline{toc}{table}{Table \ref{tab:example}} % Uncomment to add the table to the table of contents
-\end{table}
-
-Referencing Table \ref{tab:example} in-text automatically.
 
 %------------------------------------------------
 
