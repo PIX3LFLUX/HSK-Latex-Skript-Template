@@ -1,0 +1,1 @@
+{"rule":"DE_CASE","sentence":"^\\QDes Weiteren sollte erreicht Bisheriger Stand.\\E$"}
