@@ -11,11 +11,38 @@ Webassembly ist ein vom W3C festgelegter Standard, der einen Bytecode definiert,
 Die Version 1.0 wurde im März 2017 veröffentlicht und wird seitdem von allen gängigen Browser Engines unterstützt. \\
 Unterstützt wird Webassembly in Chrome seit Chrome 57, in Firefox seit Firefox 52, in Edge seit Edge 16 und in Safari seit Safari 11. \\
 \paragraph*{Vorteile}
-
+\begin{itemize}
+    \item   Multi Language Support - Webassembly unterstützt mehrere Sprachen. Es ist möglich WebAssembly als Kompilierziel für verschiedene Sprachen zu haben. \\
+            Die Webassembly Entwickler unterstützen aktuell die Möglichkeit von C/C++ nach WebAssembly zu kompilieren. Des Weiteren gibt es einige kommerzielle und nicht kommerzielle
+            Projekte, welche das Kompilieren von Rust, C\# und .NET, Ruby, Go, Java (sobald das Garbage Collection Proposal reif ist), PHP, Python, Haskell, Zig und Perl bereits ermöglichen.\\
+            Die ermöglicht es Programmierern komplexe Funktionalität im Browser umzusetzen, ohne viel JavaScript zu nutzen. \\
+            Außerdem ermöglicht es die Wiederverwendung von bereits bestehenden Implementationen.
+    \item   Kompaktheit - Ein Webassembly File, welches die gleiche Funktionalität umsetzt wie ein JavaScript File kann bis zu 10 Mal kleiner sein und damit deutlich schneller bereitgestellt werden.
+    \item   Portable - Webassembly ist sowohl zur Build-time als auch zur runtime von der Hardware unabhängig. Gebaut werden kann auf Windows, MacOS und Linux und die Webassembly PACKAGES
+            können auf jedem Zielsystem ausgeführt werden, solange das Zielsystem die Webassembly Virtuelle Maschine unterstützt. Hier sei gesagt, dass zahlreiche Laufzeitumgebungen existieren, um 
+            Webassembly auf einem diversen Feld verschiedener Hardwarearchitekturen lauffähig zu machen. 
+    \item   Low Level Optimierungen - Das Webassembly Package kann mittels WAT (WebAssembly Text Format) dahingehend optimiert werden, dass die Low Level Instructions einzelner Funktioninen
+            direkt manipulierbar und optimierbar sind. Dadruch ist eine größere Kontrolle über Ausführung, Performanz, Timing sowie die granulären Instruktionen möglich.
+    \item   Bewährte Technologie(mit kleinen Abstrichen) - Sämtliche gängigen Browser unterstützen WebAssembly und es gibt schon einige beeindruckende und spannende Umsetzungen von Projekten in Webassembly
+            welche bereits live eingesetzt werden und im Browser laufen. Als Beispiele für erfolgreiche Portierungen bzw. erfolgreiche Neuentwicklungen mit Webassembly dienen die Webapps von
+            Adobe Photoshop sowie die Portierung des ComputerAidedDesign Tools AutoCAD der Firma Autodesk. Hier wurde WebAssembly genutzt um den hohen Leistungsbedarf sachgerecht im Browser abzubilden.
+            Außerdem konnten sich die Firmen hier, insbesondere Autodesk, einen Teil der sonst nötigen Reimplementierung von Funktionalitäten sparen und den vorhandenen C bzw. C++ Code der Desktopversion
+            von AutoCAD nutzen um die in C geschriebenen Programme mit deutlich geringerem Aufwand als einer Neuentwicklung in den Browser zu integrieren. Ein weiteres Produkt welches Webassembly
+        	mit Erfolg eingesetzt hat und desses Lösung deutlich weniger performant gewesen wäre, ist das Entwurfswerkzeug für Benutzeroberflächen Figma. Hier wurde mittels C++ und React der hochperformante Teil der Funktionalität
+            in WebAssembly implementiert.
+    \item   Sicherheit - Die Webassembly virtuelle Maschine validiert WebAssembly Code bevor das Packet ausgeführt wird. Außerdem wird der Webassembly Code dann in einer speichersicheren Sandbox ausgeführt.
+            Das bedeutet, dass Webassembly Code, welcher vom Internet abgerufen wird und im Browser ausgeführt wird von vorneherein stark beschränkt ist was den Zugang zu Hardware und Software
+            Ressourcen auf dem ausführenden System angeht. Falls man den Code jedoch in einem Docker Container laufen lässt besteht die Möglichkeit vollen Netzwerkzugriff sowie den vollen Zugriff auf das Dateisystem zu nutzen.
+    \item   
+\end{itemize}
 \paragraph*{Nachteile}
 \begin{itemize}
+    \item   Aktuell sind noch keine eigenständigen Manipulationen der DOM verfügbar. Um komplexere Dinge zu ändern, muss das Webassembly → JavaScript Interface angesprochen werden
+            und die DOM wird dann direkt von JavaScript manipuliert.
     \item   Aktuell maximal 4 Gibibytes Speicher adressierbar, es gibt ein Proposal, welches aktuell in Entwicklung ist, das zu beheben und dem
             Webassembly Module die Möglichkeit zu geben 32-Bit oder 64-Bit Speicher Indizes zu nutzen.
+    \item   Der Anspruch JavaScript abzulösen den das Projekt zu Anfang hatte, wird aktuell definitv nicht erfüllt. Vor allem da beim aktuellen Stand sogenannter "Glue Code" in JavaScript benötigt 
+            wird um das Webassembly Modul zu laden und vor allem um die Document Object Model (DOM) zu manipulieren.
 \end{itemize}
 \paragraph*{Analyse der Technologie}
 

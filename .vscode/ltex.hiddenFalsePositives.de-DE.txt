@@ -1,1 +1,2 @@
 {"rule":"DE_CASE","sentence":"^\\QDes Weiteren sollte erreicht Bisheriger Stand.\\E$"}
+{"rule":"DE_CASE","sentence":"^\\QKompaktheit - Ein Webassembly File, welches die gleiche Funktionalität umsetzt wie ein JavaScript File kann bis zu 10 mal kleiner sein und damit deutlich schneller bereitgestellt werden.\\E$"}
