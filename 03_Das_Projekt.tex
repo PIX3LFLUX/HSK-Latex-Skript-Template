@@ -5,7 +5,14 @@
 Erarbeitung einer Möglichkeit die Daten nativ auf dem Linux Gerät, als auch im Webbrowser graphisch aufzubereiten, wobei die Konformität an Stilrichtlinien gegeben sein muss.
 Des Weiteren sollte erreicht 
 \subsection{Bisheriger Stand}
+In den Geräten der W (für Wireless) und M (für Mobile) aus der SCALANCE Produktlinie gibt es aktuell eine Schnittstelle in der im WBM (engl. für Web Based Management) wichtige Kenndaten zur Signalqualität des Wireless Lan bzw. Mobilfunk(LTE - Long Term Evolution bzw. 4G sowie 5G) Signals grafisch aufbereitet werden. \\
+Dies dient zum einen zur generellen Einschätzung der aktuellen Signalparameter sowie zur vereinfachung von Problemen im Netzwerk beziehungsweise in der Verbindung. Diese generierten Daten 
+können einerseits über eine auf dem Gerät generierte PDF beziehungsweise CSV Datei weitergegeben werden als auch direkt im WBM zum aktuellen Zeitpunkt angezeigt werden. Hierzu stellt das Gerät 
+in einem definierten Standard die vom Modem weitergegebenen Daten intern über eine bestimmte URL zum Abruf bereit und die Daten werden kompakt formatiert im JSON Format übertragen. \\
+Diese Daten werden dann auf Client Seite im Webbrowser über JavaScript Funktionen aufbereitet und so formatiert, dass sie angezeigt werden können. Dann Erfolgt die Generierung einer graphischen Oberfläche
+mit JavaScript. Hier werden auch neben der Signalstärke andere Paramter, wie zum Beispiel die Anzahle der Neusendungen eines Frames 
 \subsection{Recherche möglicher Lösungen}
+\subsubsection{JavaScript embedded?}
 \subsubsection{WebAssembly - Was ist das?}
 Webassembly ist ein vom W3C festgelegter Standard, der einen Bytecode definiert, der in Webbrowsern aber auch außerhalb ausgeführt werden kann. \\
 Die Version 1.0 wurde im März 2017 veröffentlicht und wird seitdem von allen gängigen Browser Engines unterstützt. \\
@@ -43,6 +50,7 @@ Unterstützt wird Webassembly in Chrome seit Chrome 57, in Firefox seit Firefox 
             Webassembly Module die Möglichkeit zu geben 32-Bit oder 64-Bit Speicher Indizes zu nutzen.
     \item   Der Anspruch JavaScript abzulösen den das Projekt zu Anfang hatte, wird aktuell definitv nicht erfüllt. Vor allem da beim aktuellen Stand sogenannter "Glue Code" in JavaScript benötigt 
             wird um das Webassembly Modul zu laden und vor allem um die Document Object Model (DOM) zu manipulieren.
+    \item 
 \end{itemize}
 \paragraph*{Analyse der Technologie}
 
