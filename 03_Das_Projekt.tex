@@ -55,9 +55,18 @@ Unterstützt wird Webassembly in Chrome seit Chrome 57, in Firefox seit Firefox 
 \paragraph*{Analyse der Technologie}
 
 \subsubsection{Tooling : Emscripten}
+Emscripten ist ein Open-Source-Compiler-Tool, das C- und C++-Code in WebAssembly (WASM) und JavaScript konvertiert. Es wurde ursprünglich von Alon Zakai entwickelt und wird derzeit von der Mozilla Foundation gepflegt. \\
+WebAssembly ist wie bereits erwähnt ein neuerer Webstandard, der eine virtuelle Maschine für die Ausführung von kompiliertem Code im Webbrowser bereitstellt. Mit Emscripten können Entwickler vorhandenen C- oder C++-Code in WebAssembly-Code umwandeln, wodurch sie in der Lage sind, performante Anwendungen für das Web zu erstellen, die auf einer ähnlichen Geschwindigkeitsebene wie nativ kompilierte Anwendungen laufen können. \\
+Der Compiler kann auch dazu verwendet werden, vorhandenen Code aus anderen Sprachen wie Rust, Fortran und anderen zu kompilieren. Die Ausgabe von Emscripten kann in verschiedenen Formaten erfolgen, wie zum Beispiel als reinem WebAssembly-Code oder als Kombination aus WebAssembly- und JavaScript-Code. Letzteres ist nützlich, wenn der Code auf älteren Browsern laufen muss, die noch keine vollständige WebAssembly-Unterstützung bieten. \\
+Emscripten hat viele Anwendungsfälle, einschließlich der Erstellung von performanten Webanwendungen, die auf verschiedenen Geräten und Betriebssystemen laufen können, ohne dass dafür separate Anwendungen für jedes Betriebssystem erstellt werden müssen. Es kann auch für die Portierung von vorhandenem Code auf das Web verwendet werden, ohne dass der Code komplett neu geschrieben werden muss. Diese Eigenschaft wird ebenfalls in diesem Projekt genutzt. \\
+Insgesamt ist Emscripten ein leistungsstarkes Werkzeug, das Entwicklern die Möglichkeit gibt, vorhandenen Code in das Web zu bringen und die Vorteile von WebAssembly zu nutzen, um performante Anwendungen im Browser auszuführen. Mit seiner flexiblen Ausgabeformatierung, seiner umfangreichen Bibliotheksunterstützung und seiner Unterstützung für Assembler-Code ist Emscripten eine wertvolle Ergänzung für jedes Entwicklungsprojekt, das darauf abzielt, performante Anwendungen im Web zu erstellen. \\
+
 \subsubsection{Tooling : Bibliothek : SDL}
 \subsection{Durchführung}
 \subsubsection{Aufbau des Buildsystems}
+\paragraph*{Buildsystem in Windows}
+\paragraph*{Buildsystem unter Linux}
+\paragraph*{Einbinden in die vorhandene Buildumgebung}
 \subsection{Gewünschte Funktionen}
 \subsection{Interaktion mit Legacy Code}
 \subsection{Wesentlicher Code}
@@ -66,10 +75,58 @@ Unterstützt wird Webassembly in Chrome seit Chrome 57, in Firefox seit Firefox 
 \section{Dauertestanlage}
 \subsection{Aufgabenstellung}
 \subsubsection{Integrationstest - Was ist das?}
-Ein Integrationstest ist ein bestimmter Vorgang in der Softwareentwicklung oder in der Firmware Entwicklung wie jetzt in dem vorliegenden Fall und dort wird in regelmäßigen Abständen die aktuellste Änderung der Programmfunktionalität geprüft und ob durch die Änderungen bestehende Funktionalitäten gestört werden. Dazu wird in regelmäßigen Abständen, häufig sogenannte Nightly Builds,  ein bestimmter stand des Programmcodes und dessen Funktionalität kompiliert und automatisiert getestet. Bei diesen Tests wird im Gegensatz zum Systemtest nicht die komplette Programmfunktionalität mit allen Eventualitäten geprüft sondern lediglich die Grundfunktionalität der einzelnen Features verifiziert und automatisiert ein Bericht erstellt. hierdurch können neue eingefügte Fehler in der Programmierung, sogenannte Bugs, zeitnah gefunden werden und bevor die Fehlersuche zu aufwendig und unübersichtlich wird diese Fehler behoben werden. man prüft hier nicht die vollständige Funktionalität ab weil das ab einer bestimmten Produktgröße schlicht nicht möglich ist. der so entstandene Bericht wird im Team be- und verarbeitet und am Ende des nächsten Arbeitstages werden die eingecheckten Änderungen am Programmcode erneut automatisiert überprüft.
-
+Ein Integrationstest ist ein bestimmter Vorgang in der Softwareentwicklung oder in der Firmware Entwicklung wie jetzt in dem vorliegenden Fall und dort wird in regelmäßigen Abständen die aktuellste Änderung der Programmfunktionalität geprüft und ob durch die Änderungen bestehende Funktionalitäten gestört werden.  \\ 
+Dazu wird in regelmäßigen Abständen, häufig sogenannte Nightly Builds,  ein bestimmter stand des Programmcodes und dessen Funktionalität kompiliert und automatisiert getestet. \\ 
+Bei diesen Tests wird im Gegensatz zum Systemtest nicht die komplette Programmfunktionalität mit allen Eventualitäten geprüft sondern lediglich die Grundfunktionalität der einzelnen Features verifiziert und automatisiert ein Bericht erstellt. hierdurch können neue eingefügte Fehler in der Programmierung, sogenannte Bugs, zeitnah gefunden werden und bevor die Fehlersuche zu aufwendig und unübersichtlich wird diese Fehler behoben werden. man prüft hier nicht die vollständige Funktionalität ab weil das ab einer bestimmten Produktgröße schlicht nicht möglich ist. der so entstandene Bericht wird im Team be- und verarbeitet und am Ende des nächsten Arbeitstages werden die eingecheckten Änderungen am Programmcode erneut automatisiert überprüft.
+ \\ Es gibt verschiedene Vorteile von Integrationstests. Zum einen können sie dazu beitragen, Probleme frühzeitig im Entwicklungsprozess zu erkennen und zu beheben. Wenn ein Problem während eines Integrationstests auftritt, kann es in der Regel einfacher behoben werden, da die Ursache des Problems schnell identifiziert werden kann.
+\\
+Ein weiterer Vorteil von Integrationstests besteht darin, dass sie dazu beitragen können, die Qualität des Produkts insgesamt zu verbessern. Durch das Testen der verschiedenen Komponenten einer Anwendung wird sichergestellt, dass sie korrekt funktionieren und dass alle Probleme behoben werden, bevor das Produkt an Kunden ausgeliefert wird.
+\\
+Zu meinem Eintritt in der Abteilung gab es drei  integrationstestanlagen für die verschiedenen Mobilgeräte, sowie drei Testanlagen für die industrial WLAN-Geräte.
+ in diesem Testanlagen hängen diverse Geräte mit unterschiedlichen Funktionen beispielsweise Mobilfunkrouter der letzten sowie aktuellen Generation, DSL Router, so wie Ethernetrouter  welche auch Profinet unterstützen und als letztes Glied in der Nachrichtenkette vor der industriellen Anlage stehen.
+ \\
+ In diesen Integrationstestanlagen werden gezielt eng definierte Funktionen der Router auf  Hardware-Versionen getestet welche entweder nah bei oder auf dem Stand verkaufsfähiger Produkte sind.  \\
+\\
+Es gab schon einige vorhandene Testfälle sowie ein intern entwickeltes Tool, welches die Automatisierung und Auswertung der Testfälle vereinfacht ermöglicht. 
+Wenn eine neue Funktionalität für eines der Produkte entwickelt wird, wird nach der ersten Fertigstellung eines Prototypen der Funktionalität ein neuer Testfall entwickelt und in die Integrations-Testanlage eingebaut.  \\
+Hierzu wird zunächst genau abgesteckt, welches Ergebnis die Funktionalität haben soll, mit welchen Parametern gearbeitet wird, welche Zwischenzustände im Gerät notwendig sind, um die Funktionalität zu ermöglichen und schließlich wird eine technische Umsetzung all diese Voraussetzungen erstellt und geprüft. ist diese erste Test erfolgreich und ist man sich sicher, dass die zu prüfende Funktionalität auch tatsächlich geprüft wird, dann wird  der Test automatisiert und schlussendlich in die Anlage eingebaut. \\
+Vor  allen  die Prüfung ob die gesuchte Funktionalität tatsächlich überprüft wird ist nicht immer trivial da beispielsweise im Netzwerk Kontext ausgeschlossen werden muss dass gesendete und empfangene Datenpakete über mögliche andere Wege z.B Internet oder Mobilfunkverbindung ihren Weg an das Ziel gefunden haben.\\
+Beispiele für Testfälle sind das korrekte Wiederherstellen einer Mobilfunkverbindung nach dem Neustart des Gerätes, sei es durch Stromausfall, einen soft reboot durch den Benutzer ausgelöst, einen absichtlich produzierten Crash des Geräts, oder das Drücken der Reset-Taste. \\
 \subsection{Bisheriger Stand}
+Im Zuge der Verwendung  neuerer oder anderer Mobilfunk oder Wi-Fi engines müssen diese neuen Hardware Module auch getestet werden und es muss  durch Integrationstests sichergestellt werden sämtliche bereits implementierte Geräte Funktionalität auch auf der neuen Hardware lauffähig und performant ist.   \\
+Da ständig neue Hardware-Versionen geprüft und getestet werden war es sinnvoll und notwendig eine  Dauertestanlage für eben solche Änderungen im Hardware Design  aufzubauen und in Betrieb zu nehmen. \\
+Zufälligerweise gab es während meines Praxis Semesters eben eine solche Hardwareänderung und ich wurde zusammen mit einem Kollegen mit der Planung, der Beschaffung, dem Aufbau und der Inbetriebnahme sowie der Vernetzung mit der bestehenden Infrastruktur betraut. \\
+
 \subsection{Durchführung}
+Nach der Initialbesprechung zum Thema Dauertestanlage  haben wir intern im Team die Aufgaben verteilt und ich habe mich um die Stromversorgung sowie die Möglichkeit die Anlage remote, das heißt ohne örtlichen Zugang, bedienen zu können gekümmert.  für den Aufbau konnten wir eine bereits vorhandene Hutschiene samt Käfig nutzen und es war nur noch nötig  die passenden Stromversorgungen zu besorgen, anzuschließen und im Anschluss zu verkabeln.  \\
+Bei der Verkabelung war es wichtig und notwendig alle Geräte über einen externen ansprechbares Relais schalten zu können für welches ich ebenso die Verkabelung sowie Kaskadierung übernommen habe. Leider  ist eines der verwendeten Relais nicht funktionsfähig geliefert worden wodurch ich einige Zeit mit der Fehler Lokalisierung beschäftigt war. nachdem das kaputte Relais jedoch isoliert war und ein weiteres auf Lager war konnte dies schnell behoben werden und die Arbeiten konnten abgeschlossen werden \\
+Für das Finden des Relais-Fehlers habe ich ein vom Hersteller bereitgestelltes Software Tool, welches die Funktionalität der Relais darstellen sollte, genutzt und konnte damit die seriellen Antwort und Acknowledgement Übertragungen Dahingehend auswerten die Fehler Lokalisierungen einfacher und schneller durchzuführen. Des Weiteren habe ich mich noch intensiv mit der Verwendung des seriellen Übertragungsprotokolls der Relais-Boxen auseinandergesetzt. \\
+Im Anschluss habe ich mich noch um die Ethernet Verbindung der einzelnen Geräte untereinander sowie mit der Verbindung der gesamten Anlage mit der restlichen Infrastruktur und den nötigen Testcomputern beschäftigt.  \\
+
 \subsection{Hardware}
+Welche Hardware wurde hier verbaut und warum?
+\begin{itemize}
+        \item Relayboard: \\
+                Zur Fernsteuerung und im Falle einer Fehlfunktion verfügt die Anlage über die Möglichkeit den Strom zu einzelnen Geräten an und abzuschalten. Für die vorliegende Anlage wurden 3 Relaisboards kaskadiert, sodass nur ein einziger Anschluss an den Steuerungsrechner benötigt wird. \\
+                Der Anschluss an den Steuerungsrechner erfolgt über eine serielle auf RS232 genormte Verbindung mit einem proprietären Protokoll für die Verbindung. Aufgrund von benötigter Fehlerfindungsarbeit war es nötig, dass ich mich genauer mit dem Protokoll beschäftigt habe um einen Übertragungsfehler zu lokalisieren. \\
+                In der Testsoftware ist bereits eine Implementierung der Grundfunktionen des Protokolls implementiert, jedoch nicht genug für Debuggingzwecke.
+        \item Steuercomputer: \\
+                Für die Verwaltung der Anlage wurde ein Windows 10 Personal Computer mit ausreichender Anschlussmöglichkeit für sämtliche Geräte genutzt. \\
+                Das Betriebsystem wurde gewählt, um den Verwaltungs- und Wartungsaufwand möglichst klein zu halten und eine gemeinsame Plattform mit allen anderen Anlagen zu haben. \\
+                Außerdem ist das Testtool in seiner aktuellen Fassung nur auf einem Windows Betriebssystem lauffähig und dieses wird zwinged im Betrieb der Anlage benötigt.
+
+        \item Administrierbare Layer 3 Switches: \\
+                Für die Kommunkikation über Ethernet Verbindungen auf denen unter anderem auch der PROFINET Datenverkehr läuft, war es unabdinglich hier sogenannte \q{managed} Switches zu nutzen. \\
+                Um den Anlagen Aufbau so kundennah und realistisch wie möglich zu halten wurden hierfür Hausprodukte mit ausreichender Portanzahl gewählt. Das besondere an \q{managed} Switches ist, dass sie die Möglichkeit bieten direkt in den Arbeitsprozess des Switches einzugreifen und beispielsweise selbst definierte Virtualle Lan Verbindungen, sogenannte VLAN's zu verwenden und so den Netzwerkverkehr abzugrenzen und zu Steuern. Des weiteren haben die speziell für diesen Anwendungszweck von Siemens hergestellten Switches zahlreiche zusätzliche Eigenschaften, die ihren Einsatz im Industrieumfeld begünstigen. 
+        \item Einplatinenrechner: \\
+                Für die Umsetzung von verschiedenen Testfällen und Anwendungszwecken wurden mehrere Einplatinenenrechner, hier ein Produkt von der Raspberry Pi Foundation. \\
+                Als Beispiel für mögliche Testaufbauten mit den Einplatinenrechner dient die automatisierte Geschwindigkeitsmessung mit einer Performance Testing Suite. 
+        \item Ethernetkabel \\
+                Für die Netzwerkverkabelung wurden CAT6 Ethernet Kabel mit RJ45-Steckern genutzt. Besonders wichtig war hier, da auch die Geschwindigkeit und Qualität der Verbindung mit verschiedenen Endgeräten geprüft werden sollte, dass die Ethernetkabel keinen verschlechternden Einfluss auf die Geschwindigkeitsmessung haben. \\
+        \item SCALANCE MUM 853-1
+                
+        
+        \item SCALANCE S615
+\end{itemize}
 \subsection{Software}
 
