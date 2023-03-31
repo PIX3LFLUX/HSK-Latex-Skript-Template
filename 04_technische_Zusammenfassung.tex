@@ -1,0 +1,9 @@
+\chapter{Technische Zusammenfassung}\index{chp\_Technische_Zusammenfassung}
+\subsection{Signalrecorder}
+Um die redundante Codebasis im Projekt (einmal C, einmal Javascript) zu reduzieren wurde mittels WebAssembly und der Emscripten Toolchain ein Weg gefunden, wie nativ kompilierbarer C/C++-Code im Webbrowser genutzt werden kann. \\
+Die Einrichtung der Toolchain gestaltete sich unkompliziert und die Ergebnisse waren zufriedenstellend. Im Zuge der Entwicklung ergab sich eine Neuentwicklung in C, welche dann nicht mehr für die einzelnen Zielplatformen angepasst werden musste. \\
+Das Ergebniss war ein neu aufgebauter Signalrecorder für die SCALANCE W Geräte, welcher noch mit zusätzlichen Funktionen und für die M Geräte in der Funktionalität angepasst werden muss.
+Für den vorliegenden Fall war die Technologie brauchbar. 
+\subsection{Dauertestanlage}
+Im Zuge der Verwendung  neuerer oder anderer Mobilfunk oder Wi-Fi Engines müssen  neue Hardware Module getestet werden und es muss durch Integrationstests sichergestellt werden sämtliche bereits implementierte Geräte Funktionalität auch auf der neuen Hardware lauffähig und performant ist. \\
+Für diesen Zweck wurde eine neue Dauertestanlage für Mobilfunkgeräte aufgebaut. Die Anlage ist funktional und für den geplanten Anwendungszweck bereit.

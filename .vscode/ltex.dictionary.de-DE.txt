@@ -7,3 +7,6 @@ Engines
 Garbage
 Language
 Kompilierziel
+SCALANCE
+Retries
+noisefloor
