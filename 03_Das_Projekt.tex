@@ -16,7 +16,7 @@ mit JavaScript. Hier werden auch neben der Signalstärke andere Paramter, wie zu
 \subsubsection{WebAssembly - Was ist das?}
 Webassembly ist ein vom W3C festgelegter Standard, der einen Bytecode definiert, der in Webbrowsern aber auch außerhalb ausgeführt werden kann. \\
 Die Version 1.0 wurde im März 2017 veröffentlicht und wird seitdem von allen gängigen Browser Engines unterstützt. \\
-Unterstützt wird Webassembly in Chrome seit Chrome 57, in Firefox seit Firefox 52, in Edge seit Edge 16 und in Safari seit Safari 11. \\
+Unterstützt wird Webassembly in Chrome seit Chrome 57, in Firefox seit Firefox 52, in Edge seit Edge 16 und in Safari seit Safari 11. \cite*{caniusewasm} \\
 \paragraph*{Vorteile}
 \begin{itemize}
     \item   Multi Language Support - Webassembly unterstützt mehrere Sprachen. Es ist möglich WebAssembly als Kompilierziel für verschiedene Sprachen zu haben. \\
@@ -60,15 +60,53 @@ WebAssembly ist wie bereits erwähnt ein neuerer Webstandard, der eine virtuelle
 Der Compiler kann auch dazu verwendet werden, vorhandenen Code aus anderen Sprachen wie Rust, Fortran und anderen zu kompilieren. Die Ausgabe von Emscripten kann in verschiedenen Formaten erfolgen, wie zum Beispiel als reinem WebAssembly-Code oder als Kombination aus WebAssembly- und JavaScript-Code. Letzteres ist nützlich, wenn der Code auf älteren Browsern laufen muss, die noch keine vollständige WebAssembly-Unterstützung bieten. \\
 Emscripten hat viele Anwendungsfälle, einschließlich der Erstellung von performanten Webanwendungen, die auf verschiedenen Geräten und Betriebssystemen laufen können, ohne dass dafür separate Anwendungen für jedes Betriebssystem erstellt werden müssen. Es kann auch für die Portierung von vorhandenem Code auf das Web verwendet werden, ohne dass der Code komplett neu geschrieben werden muss. Diese Eigenschaft wird ebenfalls in diesem Projekt genutzt. \\
 Insgesamt ist Emscripten ein leistungsstarkes Werkzeug, das Entwicklern die Möglichkeit gibt, vorhandenen Code in das Web zu bringen und die Vorteile von WebAssembly zu nutzen, um performante Anwendungen im Browser auszuführen. Mit seiner flexiblen Ausgabeformatierung, seiner umfangreichen Bibliotheksunterstützung und seiner Unterstützung für Assembler-Code ist Emscripten eine wertvolle Ergänzung für jedes Entwicklungsprojekt, das darauf abzielt, performante Anwendungen im Web zu erstellen. \\
-
+\cite*{emscriptenwebsite}
 \subsubsection{Tooling : Bibliothek : SDL}
-\cite*{sdlwebsite}
+SDL (Simple DirectMedia Layer) ist eine plattformübergreifende Entwicklungsbibliothek, die Low-Level-Zugriff auf Audio-, Tastatur-, Maus-, Joystick- und Grafikhardware über OpenGL und Direct3D bietet. Sie wird von Entwicklern verwendet, um Videospiele, Multimedia-Software und andere Anwendungen zu erstellen, die Zugriff auf Multimedia-Hardware benötigen. \\
+In diesem Projekt wurde die SDL Bibliothek genutzt, um zunächst primitive grafische Elemente zu erstellen, aus denen dann wiederum komplexere Anzeigeelemente erstellt wurden. Mit diesen komplexeren Elementen  ist es dann möglich sämtliche benötigten Darstellungen für den Signal Rekorder / System Rekorder in ausreichender Geschwindigkeit sowohl in jedem  unterstützten Webbrowser als auch nativ auf dem Gerät zu rendern. Die STL Bibliothek übersetzt allgemeine Grafikfunktionen je nach Kompilierziel in spezifische, der Hardware angepasste System Calls und fungiert somit als Abstraktionslayer. 
+\cite*{sdlwebsite} \\
 \subsection{Durchführung}
 \subsubsection{Aufbau des Buildsystems}
+Für die Validierung der Idee musste zunächst die Buildtoolchain der Emscripten Umgebung heruntergeladen und konfiguriert werden. 
+
+
 \paragraph*{Buildsystem in Windows}
+Der aktuell einfachste Weg ist, ein Repository von der Emscripten Foundation lokal auf den Rechner zu klonen und dann mit den im Ordner verfügbaren Skripten die Toolchain für die aktuelle Hardware aufzubauen. 
+Im Anschluss muss dann die korrekte Funktionalität der Tool-Chain geprüft werden. Dies geschieht mit einer automatisierten Testsuite, welche diverse C-Skripte enthält, welche von der Tool Chain mit dem Ziel Webbrowser ( Ziel: Webassembly, Javascript Gluecode Und HTML) kompiliert werden und im Anschluss automatisiert getestet.
+in der Testsuite findet man diverse Beispiele anhand derer man sich die Grundfunktionalität von Skripten herleiten kann und für die eigene Arbeit aus den einfachen Funktionsbeispielen komplexere Funktionalitäten aufbauen kann. \cite*{emscriptendownload}\\
 \paragraph*{Buildsystem unter Linux}
+Unter Linux ist der Aufbau des Buildsystems recht ähnlich. Unter Umständen muss man jedoch noch nötige Abhängigkeiten des Buildsystems über den paketmanager der Wahl installieren. \\
+
 \paragraph*{Einbinden in die vorhandene Buildumgebung}
+Dies wurde dann auch im Linux Build-system des Projekts getan und das Kompilieren von Skripten mit einem einfachen Beispielcode innerhalb des normalen Bauzyklus der Firmware geprüft. Dies war nach einigem testen auch erfolgreich.
 \subsection{Gewünschte Funktionen}
+Für den Signalrecorder wurden im Vorhinein folgende Funktionalitäten vereinbart: \\
+\begin{enumerate}
+        \item Die korrekte Anzeige der am Endgerät von der jeweiligen Engine ausgegebenen Signalstärke ()\q{RX-Rate} Punkt diese sollte zusätzlich noch farblich codiert werden und für einen von mehreren wählbaren Zeitabständen auslesbar sein.
+        \item Der sogenannte \q{noisefloor},  gemessen und berechnet von der jeweiligen engine, sollte im selben Graph für jeden Messpunkt als leicht verständlicher Linienverlauf dargestellt werden.
+        \item Für die WLAN-Geräte sollte die Anzahl der \q{Retries}, das heißt der wiederholten Versuche den selben WLAN Frame zusenden, in Prozent von 0 \% bis 100 \% angezeigt werden. Dies kann zur Einschätzung von Störsignalen im Übertragungsmedium dienen.
+        \item Die sogenannte TX-Rate des Endgeräts soll außerdem angezeigt werden,
+        \item Für den bidirektionalen Betrieb sollen eben diese Kenngrößen, welche nach Anfrage vom Access Point mit übertragen werden  ebenso grafisch dargestellt werden.Dies ermöglicht den Vergleich der gesendeten und empfangenen kennzahlen eine Verbindung da die Parameter von Sender und Empfänger jeweils zeitgleich zur Verfügung stehen und damit analysiert werden können.  Dies ist vor allem für Mitarbeiter aus dem Support, für die Inbetriebnahme beim Kunden vor Ort oder auch für kundiges Personal beim Kunden hilfreich.
+        \item Die polling rate, das heißt die Zeitintervalle nach denen jeweils ein neuer Daten bzw Messpunkt aufgezeichnet und dargestellt wird soll in Millisekunden in einem vorgegebenen Intervall frei wählbar sein.
+        \item Die Anzahl der aufgenommenen Daten beziehungsweise Messpunkte soll von 100 bis 20000  definierbar sein. wahlweise soll auch ein zeitlich nicht begrenzter, das heißt endloser Betrieb des Signalrecorders möglich sein.
+        \item Zusätzlich zur visuellen Darstellung der einzelnen Datenpunkte soll im Browser Modus des Signalrecorders der aktuell gemessene Datenpunkt mit allen vorhandenen Informationen, wie zum Beispiel die oben genannten signalparameter als auch beispielsweise der verwendete Channel, der Systemname des Accesspoints  oder die Anzahl der verbundenen WLAN Clients mit diesem Access Point.
+        \item  Für den Wireless-Lan Fall:  bei einem sogenannten Roaming event, das heißt wenn bei sich überlappenden WLAN-Netzwerken der WLAN client in Bewegung ist oder sich die Sendeleistungen der Access Points verändern oder sich die Topographie der Umgebung so verändert dass die Empfangsleistung am Client für die verschiedenen Netzwerke sich über die Zeit ändert, dann  können moderne WLAN Clients, welche dieses Feature unterstützen, im Idealfall nahtlos von Netzwerk B zu Netzwerk B wechseln ohne dass es zu einer merklichen Unterbrechung der Datenübertragung kommt. diese Roaming Events sollten ebenfalls angezeigt werden wobei der  \q{Service Set Identifier}  des Netzwerks zu dem gewechselt wurde ebenfalls in der laufenden Grafik angezeigt wird Punkt so ist es sichtlich welche Datenpunkte zu dem neuen Access Point gehören.
+        \item Des Weiteren sollte es möglich sein die Anzahl der angezeigten Datenpunkte aus einer vorgegebenen Menge an Auswahlmöglichkeiten dynamisch zu wählen.
+        \item In einer Besprechung mit den verschiedenen Stakeholdern des Projekts wurden noch weitere  mögliche Zusatzfunktionen für den Signalrecorder definiert: 
+                \begin{enumerate}
+                        \item  Das Auslesen der gerätespezifischen Temperatursensoren und die  grafische Anzeige und Darstellung dieser Temperaturmessdaten, eventuell auch mit einer grafischen Repräsentation des sicheren Betriebsbereichs des jeweiligen Gerätes.
+                        \item Das Auslesen von gerätespezifischen  Auslastungskennzahlen wie zum Beispiel,  der verfügbare freie Speicher oder die Auslastung der einzelnen Prozessorkerne beziehungsweise des Gesamtsystems.
+                        \item Eine grafische Darstellung des sogenannten Netzwerk throughput. Dies ist eine Kennzahl welche die Rate derDaten Übermittlung in einem Netzwerk beschreibt. 
+                        \item Die Anzeige sollte für verschiedene Nutzergruppen unterschiedlich auslegbar sein.
+                        \item Alarme für diverse Events, eventuell beim Unterschreiten oder Überschreiten eines definierten Grenzwertes.
+                        \item Eine spezielle Anzeige für den Siemens Support, welche weitere Kennzahlen anzeigen kann, zum Beispiel die Anzahl der Chip Resets seit Fertigung.
+                        \item Der aktuelle/aggregierte Energieverbrauch
+                        \item weitere spezifische Werte, unter anderem für Siemens spezifische Features der Geräte - zensiert aus Freigabegründen
+                        \item Eine Möglichkeit den Signalrecorder automatisiert zu starten.
+                        \item Eine graphische Kanalübersicht, sowohl bei WirelessLan Geräten als auch bei Mobilfunkgeräten, hier dann eine Bandübersicht.
+                \end{enumerate}
+        \item 
+\end{enumerate}
 \subsection{Interaktion mit Legacy Code}
 \subsection{Wesentlicher Code}
 %%umbennennes dummer name
@@ -99,7 +137,7 @@ Da ständig neue Hardware-Versionen geprüft und getestet werden war es sinnvoll
 Zufälligerweise gab es während meines Praxis Semesters eben eine solche Hardwareänderung und ich wurde zusammen mit einem Kollegen mit der Planung, der Beschaffung, dem Aufbau und der Inbetriebnahme sowie der Vernetzung mit der bestehenden Infrastruktur betraut. \\
 
 \subsection{Durchführung}
-Nach der Initialbesprechung zum Thema Dauertestanlage  haben wir intern im Team die Aufgaben verteilt und ich habe mich um die Stromversorgung sowie die Möglichkeit die Anlage remote, das heißt ohne örtlichen Zugang, bedienen zu können gekümmert.  für den Aufbau konnten wir eine bereits vorhandene Hutschiene samt Käfig nutzen und es war nur noch nötig  die passenden Stromversorgungen zu besorgen, anzuschließen und im Anschluss zu verkabeln.  \\
+Nach der Initialbesprechung zum Thema Dauertestanlage  haben wir intern im Team die Aufgaben verteilt und ich habe mich um die Stromversorgung sowie die Möglichkeit die Anlage remote, das heißt ohne örtlichen Zugang, bedienen zu können gekümmert.  Für den Aufbau konnten wir eine bereits vorhandene Hutschiene samt Käfig nutzen und es war nur noch nötig  die passenden Stromversorgungen zu besorgen, anzuschließen und im Anschluss zu verkabeln.  \\
 Bei der Verkabelung war es wichtig und notwendig alle Geräte über einen externen ansprechbares Relais schalten zu können für welches ich ebenso die Verkabelung sowie Kaskadierung übernommen habe. Leider  ist eines der verwendeten Relais nicht funktionsfähig geliefert worden wodurch ich einige Zeit mit der Fehler Lokalisierung beschäftigt war. nachdem das kaputte Relais jedoch isoliert war und ein weiteres auf Lager war konnte dies schnell behoben werden und die Arbeiten konnten abgeschlossen werden \\
 Für das Finden des Relais-Fehlers habe ich ein vom Hersteller bereitgestelltes Software Tool, welches die Funktionalität der Relais darstellen sollte, genutzt und konnte damit die seriellen Antwort und Acknowledgement Übertragungen Dahingehend auswerten die Fehler Lokalisierungen einfacher und schneller durchzuführen. Des Weiteren habe ich mich noch intensiv mit der Verwendung des seriellen Übertragungsprotokolls der Relais-Boxen auseinandergesetzt. \\
 Im Anschluss habe ich mich noch um die Ethernet Verbindung der einzelnen Geräte untereinander sowie mit der Verbindung der gesamten Anlage mit der restlichen Infrastruktur und den nötigen Testcomputern beschäftigt.  \\

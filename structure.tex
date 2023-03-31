@@ -56,7 +56,7 @@
 %	BIBLIOGRAPHY AND INDEX
 %----------------------------------------------------------------------------------------
 
-\usepackage[style=numeric,citestyle=numeric,sorting=nyt,sortcites=true,autopunct=true,babel=hyphen,hyperref=true,abbreviate=false,backref=true,backend=biber]{biblatex}
+\usepackage[style=numeric,citestyle=numeric,sorting=nyt,sortcites=true,autopunct=true,babel=hyphen,hyperref=true,abbreviate=false,backref=true,defernumbers=true,backend=biber]{biblatex}
 \addbibresource{bibliography.bib} % BibTeX bibliography file
 \defbibheading{bibempty}{}
 
@@ -446,12 +446,12 @@ innerbottommargin=5pt]{cBox}
 \setlength\fboxsep{0pt}%
 \noindent\protect\colorbox{ThemeColor!40}{\strut\protect\parbox[c][.7cm]{\linewidth}{\Large\sffamily\protect\centering #1\quad\mbox{}}}}{#1}}%
 \@endpart}
-\def\@endpart{\vfil\newpage
+\def\@endpart{%\vfil\newpage
 \if@twoside
 \if@openright
 \null
 \thispagestyle{empty}%
-\newpage
+% \newpage
 \fi
 \fi
 \if@tempswa
@@ -464,7 +464,7 @@ innerbottommargin=5pt]{cBox}
 
 % A switch to conditionally include a picture, implemented by Christian Hupfer
 \newif\ifusechapterimage
-\usechapterimagetrue
+% \usechapterimagetrue
 \newcommand{\thechapterimage}{}%
 \newcommand{\chapterimage}[1]{\ifusechapterimage\renewcommand{\thechapterimage}{#1}\fi}%
 \newcommand{\autodot}{.}
@@ -526,8 +526,10 @@ addtohook={%
 }
 }
 \usepackage{longtable}
-
+%%%% own packages
+\usepackage{pdfpages}
 
 %%%%%%%%%%%%%%%%% Define new macros
+
 
 \newcommand{\q}[1]{``#1''}
