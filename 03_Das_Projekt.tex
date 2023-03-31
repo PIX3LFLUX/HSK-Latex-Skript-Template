@@ -6,7 +6,7 @@ Erarbeitung einer Möglichkeit die Daten nativ auf dem Linux Gerät, als auch im
 Des Weiteren sollte erreicht werden, dass es nur noch eine Codebase gibt. 
 \subsection{Bisheriger Stand}
 In den Geräten der W (für Wireless) und M (für Mobile) aus der SCALANCE Produktlinie gibt es aktuell eine Schnittstelle in der im WBM (engl. für Web Based Management) wichtige Kenndaten zur Signalqualität des Wireless Lan bzw. Mobilfunk(LTE - Long Term Evolution bzw. 4G sowie 5G) Signals grafisch aufbereitet werden. \\
-Dies dient zum einen zur generellen Einschätzung der aktuellen Signalparameter sowie zur vereinfachung von Problemen im Netzwerk beziehungsweise in der Verbindung. Diese generierten Daten 
+Dies dient zum einen zur generellen Einschätzung der aktuellen Signalparameter sowie zur Vereinfachung von Problemen im Netzwerk beziehungsweise in der Verbindung. Diese generierten Daten 
 können einerseits über eine auf dem Gerät generierte PDF beziehungsweise CSV Datei weitergegeben werden als auch direkt im WBM zum aktuellen Zeitpunkt angezeigt werden. Hierzu stellt das Gerät 
 in einem definierten Standard die vom Modem weitergegebenen Daten intern über eine bestimmte URL zum Abruf bereit und die Daten werden kompakt formatiert im JSON Format übertragen. \\
 Diese Daten werden dann auf Client Seite im Webbrowser über JavaScript Funktionen aufbereitet und so formatiert, dass sie angezeigt werden können. Dann erfolgt die Generierung einer graphischen Oberfläche
@@ -56,19 +56,19 @@ Unterstützt wird Webassembly in Chrome seit Chrome 57, in Firefox seit Firefox 
             und die DOM wird dann direkt von JavaScript manipuliert.
     \item   Aktuell maximal 4 Gibibytes Speicher adressierbar, es gibt ein Proposal, welches aktuell in Entwicklung ist, das zu beheben und dem
             Webassembly Module die Möglichkeit zu geben 32-Bit oder 64-Bit Speicher Indizes zu nutzen.
-    \item   Der Anspruch JavaScript abzulösen den das Projekt zu Anfang hatte, wird aktuell definitv nicht erfüllt. Vor allem da beim aktuellen Stand sogenannter "Glue Code" in JavaScript benötigt 
+    \item   Der Anspruch JavaScript abzulösen, den das Projekt zu Anfang hatte, wird aktuell definitiv nicht erfüllt. Vor allem da beim aktuellen Stand sogenannter "Glue Code" in JavaScript benötigt 
             wird um das Webassembly Modul zu laden und vor allem um die Document Object Model (DOM) zu manipulieren.
 \end{itemize}
 \paragraph*{Analyse der Technologie}
 
-\subsubsection{Tooling : Emscripten}
+\subsubsection{Tooling: Emscripten}
 Emscripten ist ein Open-Source-Compiler-Tool, das C- und C++-Code in WebAssembly (WASM) und JavaScript konvertiert. Es wird derzeit von der Mozilla Foundation gepflegt. \\
 WebAssembly ist wie bereits erwähnt ein neuerer Webstandard, der eine virtuelle Maschine für die Ausführung von kompiliertem Code im Webbrowser bereitstellt. Mit Emscripten können Entwickler vorhandenen C- oder C++-Code in WebAssembly-Code umwandeln, wodurch sie in der Lage sind, performante Anwendungen für das Web zu erstellen, die auf einer ähnlichen Geschwindigkeitsebene wie nativ kompilierte Anwendungen laufen können. \\
 Der Compiler kann auch dazu verwendet werden, vorhandenen Code aus anderen Sprachen wie Rust, Fortran und anderen zu kompilieren. Die Ausgabe von Emscripten kann in verschiedenen Formaten erfolgen, wie zum Beispiel als reinem WebAssembly-Code oder als Kombination aus WebAssembly- und JavaScript-Code. Letzteres ist nützlich, wenn der Code auf älteren Browsern laufen muss, die noch keine vollständige WebAssembly-Unterstützung bieten. \\
 Emscripten hat viele Anwendungsfälle, einschließlich der Erstellung von performanten Webanwendungen, die auf verschiedenen Geräten und Betriebssystemen laufen können, ohne dass dafür separate Anwendungen für jedes Betriebssystem erstellt werden müssen. Es kann auch für die Portierung von vorhandenem Code auf das Web verwendet werden, ohne dass der Code komplett neu geschrieben werden muss. Diese Eigenschaft wird ebenfalls in diesem Projekt genutzt. \\
 Zusammengefasst ist Emscripten ein leistungsstarkes Werkzeug, das Entwicklern die Möglichkeit gibt, vorhandenen Code in das Web zu bringen und die Vorteile von WebAssembly zu nutzen, um performante Anwendungen im Browser auszuführen. Mit seiner flexiblen Ausgabeformatierung, seiner umfangreichen Bibliotheksunterstützung und seiner Unterstützung für Assembler-Code ist Emscripten eine wertvolle Ergänzung für jedes Entwicklungsprojekt, das darauf abzielt, performante Anwendungen im Web zu erstellen. \\
 \cite*{emscriptenwebsite}
-\subsubsection{Tooling : Bibliothek : SDL}
+\subsubsection{Tooling: Bibliothek: SDL}
 SDL (Simple DirectMedia Layer) ist eine plattformübergreifende Entwicklungsbibliothek, die Low-Level-Zugriff auf Audio-, Tastatur-, Maus-, Joystick- und Grafikhardware über OpenGL und Direct3D bietet. Sie wird von Entwicklern verwendet, um Videospiele, Multimedia-Software und andere Anwendungen zu erstellen, die Zugriff auf Multimedia-Hardware benötigen. \\
 In diesem Projekt wurde die SDL Bibliothek genutzt, um zunächst primitive grafische Elemente zu erstellen, aus denen dann wiederum komplexere Anzeigeelemente erstellt wurden. Mit diesen komplexeren Elementen  ist es dann möglich sämtliche benötigten Darstellungen für den Signal Rekorder / System Rekorder in ausreichender Geschwindigkeit sowohl in jedem  unterstützten Webbrowser als auch nativ auf dem Gerät zu rendern. Die STL Bibliothek übersetzt allgemeine Grafikfunktionen je nach Kompilierziel in spezifische, der Hardware angepasste System Calls und fungiert somit als Abstraktionslayer. 
 \cite*{sdlwebsite} \\
@@ -91,7 +91,7 @@ Für den Signalrecorder wurden im Vorhinein folgende Funktionalitäten vereinbar
 \begin{enumerate}
         \item Die korrekte Anzeige der am Endgerät von der jeweiligen Engine ausgegebenen Signalstärke ()\q{RX-Rate} Punkt diese sollte zusätzlich noch farblich codiert werden und für einen von mehreren wählbaren Zeitabständen auslesbar sein.
         \item Der sogenannte \q{noisefloor},  gemessen und berechnet von der jeweiligen engine, sollte im selben Graph für jeden Messpunkt als leicht verständlicher Linienverlauf dargestellt werden.
-        \item Für die WLAN-Geräte sollte die Anzahl der \q{Retries}, das heißt der wiederholten Versuche den selben WLAN Frame zusenden, in Prozent von 0 \% bis 100 \% angezeigt werden. Dies kann zur Einschätzung von Störsignalen im Übertragungsmedium dienen.
+        \item Für die WLAN-Geräte sollte die Anzahl der \q{Retries}, das heißt der wiederholten Versuche den selben WLAN Frame zu senden, in Prozent von 0 \% bis 100 \% angezeigt werden. Dies kann zur Einschätzung von Störsignalen im Übertragungsmedium dienen.
         \item Die sogenannte TX-Rate des Endgeräts soll außerdem angezeigt werden,
         \item Für den bidirektionalen Betrieb sollen eben diese Kenngrößen, welche nach Anfrage vom Access Point mit übertragen werden  ebenso grafisch dargestellt werden.Dies ermöglicht den Vergleich der gesendeten und empfangenen kennzahlen eine Verbindung da die Parameter von Sender und Empfänger jeweils zeitgleich zur Verfügung stehen und damit analysiert werden können.  Dies ist vor allem für Mitarbeiter aus dem Support, für die Inbetriebnahme beim Kunden vor Ort oder auch für kundiges Personal beim Kunden hilfreich.
         \item Die polling rate, das heißt die Zeitintervalle nach denen jeweils ein neuer Daten bzw Messpunkt aufgezeichnet und dargestellt wird soll in Millisekunden in einem vorgegebenen Intervall frei wählbar sein.
@@ -110,7 +110,7 @@ Für den Signalrecorder wurden im Vorhinein folgende Funktionalitäten vereinbar
                         \item Der aktuelle/aggregierte Energieverbrauch
                         \item weitere spezifische Werte, unter anderem für Siemens spezifische Features der Geräte - zensiert aus Freigabegründen
                         \item Eine Möglichkeit den Signalrecorder automatisiert zu starten.
-                        \item Eine graphische Kanalübersicht, sowohl bei Wireless-Lan Geräten als auch bei Mobilfunkgeräten, hier dann eine Bandübersicht.
+                        \item Eine graphische Kanalübersicht, sowohl bei Wireless-LAN Geräten als auch bei Mobilfunkgeräten, hier dann eine Bandübersicht.
                 \end{enumerate}
 \end{enumerate}
 \subsection{Interaktion mit Legacy Code}
@@ -123,7 +123,7 @@ Da im Projekt bereits einige Vorarbeit für den Signalrecorder geleistet war, es
         \item Im Anschluss wird das gesamte Gerät wieder in einen Zustand gebracht, so dass neuerliches Aufnehmen von Daten möglich ist  uns sämtliche Einstellungen werden intern zurückgesetzt. \\
 \end{enumerate}
 Um möglichst schnell einen funktionierenden Prototypen zu generieren habe ich zunächst lediglich die Generierung der grafischen Oberfläche ausgelagert und die Datenverarbeitung der vom Gerät kommenden Daten im Großteil vom alten Javascript Code übernommen. Ich musste jedoch einige kleinere Änderungen vornehmen, da das Zusammenspiel zwischen dem reservierten webassembly-speicher und dem gewöhnlichen Speicher auf den der Javascript Code zugreift nicht trivial ist und hier einige Datenstrukturen angepasst werden mussten.  Problematisch war hier hauptsächlich dass Javascript kein typing kennt,  das heißt jede Variable kann jeden beliebigen Datentyp fassen und es ist zur Laufzeit nicht gewährleistet dass der Inhalt einer Variable eine definierte Länge im Speicher hat. 
-Webassembly kann jedoch nur  mit wenigen primären Datentypen Umgehen. die vorhandenen Datentypen sind: \\
+Webassembly kann jedoch nur  mit wenigen primären Datentypen Umgehen. Die vorhandenen Datentypen sind: \\
 \begin{enumerate}
         \item i32 : 32-bit integer
         \item i64 : 64-bit integer

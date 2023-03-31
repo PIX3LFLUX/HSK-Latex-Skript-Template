@@ -10,3 +10,6 @@ Kompilierziel
 SCALANCE
 Retries
 noisefloor
+C-
+WASM
+Buildtoolchain
