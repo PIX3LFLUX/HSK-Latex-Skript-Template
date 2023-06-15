@@ -114,11 +114,11 @@ In this example the color for the faculty EIT is selected.
 
 ## Beamer Presentation
 
-Have you ever tired of making Powerpoint presentation from your Latex report? You have to
+Have you ever tired of making Powerpoint presentation from your Latex report? You have to:
   - rewrite all the equations in your report.
-  - insert image figures, captions, labels, numberring. 
+  - insert image figures, captions, labels, numbers. 
 
-You don't have to suffer anymore with Beamer, making presentation using Latex. The author tested succesfully on [Overleaf](https://www.overleaf.com/), an online editor for papers, theses, technical reports and other documents written in the LaTeX.
+You don't have to suffer anymore with Beamer, which helps you composing presentation inside your Latex environment. The author tested succesfully on [Overleaf](https://www.overleaf.com/), an online editor for papers, theses, technical reports and other documents written in the LaTeX.
 
 Functions needed for a simple presentation could be done by Beamer, unless you are eager to surprise the audiences with effects. 
 
