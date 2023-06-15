@@ -112,6 +112,20 @@ In this example the color for the faculty EIT is selected.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+## Beamer Presentation
+
+Have you ever tired of making Powerpoint presentation from your Latex report? You have to
+  - rewrite all the equations in your report.
+  - insert image figures, captions, labels, numberring. 
+
+You don't have to suffer anymore with Beamer, making presentation using Latex. The author tested succesfully on [Overleaf](https://www.overleaf.com/), an online editor for papers, theses, technical reports and other documents written in the LaTeX.
+
+All the functions needed for a simple presentation could be done by Beamer, unless you are eager to surprise the audiences with effects. 
+
+Open the file `presentation.tex` and get started.
+
+**Demo:**
+
 
 <!-- ROADMAP -->
 ## Roadmap

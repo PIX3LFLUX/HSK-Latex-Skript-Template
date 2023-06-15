@@ -1,0 +1,54 @@
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+
+% Change the presentation layout
+\usetheme{Madrid}
+
+% Change the caption size of figure
+\usepackage[font=small,skip=4pt]{caption}
+\usepackage[symbol]{footmisc}
+
+% Font
+\usepackage{plex-sans}
+
+\usepackage[style=numeric,backend=biber,
+            doi=false,isbn=false,url=false,eprint=false]{biblatex}
+\usepackage{latexsym,xcolor,multicol,booktabs,calligra}
+\usepackage{amssymb,amsfonts,amsmath,amsthm,mathrsfs,mathptmx}
+\usepackage{graphicx,pstricks,listings,stackengine}
+% \usefonttheme[onlymath]{serif}
+
+\usepackage[caption=false]{subfig}
+\usepackage{tabularx}
+\usepackage{booktabs}
+
+\usepackage{color, colortbl}
+
+% Define color for highlighted table
+\definecolor{TableHighLight}{RGB}{190, 250, 196}
+
+\setbeamertemplate{navigation symbols}{}
+% \setbeamertemplate{footline}[frame number]
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+% \setbeamertemplate{footnote}{\insertfootnotetext}
+
+\let\oldfootnotesize\footnotesize
+\renewcommand*{\footnotesize}{\oldfootnotesize\tiny}
+
+\DeclareCiteCommand{\footpartcite}[\mkbibfootnote]
+{\usebibmacro{prenote}}%
+{\usebibmacro{citeindex}%
+    \mkbibbrackets{\usebibmacro{cite}}%
+    \setunit{\addnbspace}
+    \printnames{labelname}%
+    \setunit{\labelnamepunct}
+    \printfield[citetitle]{title}%
+    \newunit
+    \printfield[]{year}}
+{\addsemicolon\space}
+{\usebibmacro{postnote}}
+
+\setbeamertemplate{footnote}{\insertfootnotetext}
+\setbeamertemplate{caption}[numbered]
+
+% \usepackage[style=numeric, sorting=none]{biblatex}
