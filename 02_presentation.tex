@@ -8,7 +8,7 @@
 %------------------------------------------------------------
 %This block of code defines the color theme
 \definecolor{ThemeColor}{RGB}{ 40,135, 50} % Elektro- und Informationstechnik
-%\definecolor{ThemeColor}{RGB}{ 25,130,130} % Architektur- und Bauwesen
+% \definecolor{ThemeColor}{RGB}{ 25,130,130} % Architektur- und Bauwesen
 %\definecolor{ThemeColor}{RGB}{ 40,105,175} % Maschinenbau und Mechatronik
 %\definecolor{ThemeColor}{RGB}{ 30, 70,150} % Wirtschaftswissenschaften
 %\definecolor{ThemeColor}{RGB}{100, 55,140} % Informatik und Wirtschaftsinformatik
@@ -24,7 +24,7 @@
 \subtitle{Sub-title}
 
 \author[Last Name, First name] % (optional)
-{Last name, First Name \\
+{Last name, First Name
 first.lastname@h-ka.de}
 
 \date[April 27th, 2023] % (optional)
@@ -34,181 +34,23 @@ first.lastname@h-ka.de}
 %End of title page configuration block
 %------------------------------------------------------------
 
-
-%------------------------------------------------------------
-%The next block of commands puts the table of contents at the 
-%beginning of each section and highlights the current section:
-
-\AtBeginSubsection[]
-{
-  \begin{frame}
-    \frametitle{Table of Contents}
-    \tableofcontents[currentsection, currentsubsection]
-  \end{frame}
-}
-
-% If you need only the Section displayed at Table of Contents
-% uncomment this and comment the above
-% \AtBeginSubSection[]
-% {
-%   \begin{frame}
-%     \frametitle{Table of Contents}
-%     \tableofcontents[currentsubsection]
-%   \end{frame}
-% }
-%------------------------------------------------------------
-
-
-
 \makeatletter
 \def\@makefnmark{}
 \makeatother
 
-
-\addbibresource{bibliography.bib}
-
-
-
-
-
 \begin{document}
 
 %The next statement creates the title page.
-\frame{\titlepage}
+% \frame{\titlepage}
 
+\EITCoverVI{Wilkommen}{Vorname Nachname}
 
-%---------------------------------------------------------
-%This block of code is for the table of contents after
-%the title page
-\begin{frame}
-\frametitle{Table of Contents}
-\tableofcontents
-\end{frame}
-%---------------------------------------------------------
+\EITTableOfContent
 
+\EITHeadlineFT{Mastertexformat bearbeiten 32pt}{
+    %Contents
+}
 
-\section{Einleitung}
-\begin{frame}
-\frametitle{Einleitung}
-
-\begin{itemize}
-    \item Introduction 1
-    \item Introduction 2
-\end{itemize}
-
-\end{frame}
-
-\section{Section 1}
-\subsection{Sub-section 1.1}
-
-\begin{frame}
-\frametitle{Insert image figure}
-\textbf{Purpose:} 
-\begin{itemize}
-    \item Referencing Figure \ref{fig:placeholder} in-text automatically.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.5]{Pictures/placeholder.jpg}
-    \caption{Figure caption\textsuperscript{*}.}
-    \label{fig:placeholder}
-\end{figure}
-
-\footnotetext{\textsuperscript{*} Footnote text}
-
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Bullet points - pause}
-\begin{itemize} [<+->]
-    \item Use this setting at the itemsize to give a pause between bullet points.
-    \item To cite a reference \cite{book_key}. 
-    \item Or add `pause` command to have a pause by yourself.
-\end{itemize}
-
-\pause
-
-Use minipage environment to have multiple images in the same figure (Fig. \ref{fig:multiple}).
-
-\begin{figure}
-\begin{minipage}{.7\textwidth}
-\centering
-\subfloat[A]{\includegraphics[width=.3\linewidth]{Pictures/placeholder.jpg}}~%
-\subfloat[B]{\includegraphics[width=.3\linewidth]{Pictures/placeholder.jpg}}~
-\subfloat[C]{\includegraphics[width=.3\linewidth]{Pictures/placeholder.jpg}}
-
-\caption{Multiple images.}
-\label{fig:multiple} 
-\end{minipage}%
-
-\end{figure}
-
-\vspace{-1.8em}
-
-\footpartcite{book_key}
-\end{frame}
-
-\subsection{Sub-section 1.2}
-\begin{frame}
-\frametitle{Table}
-
-Create a table (Table \ref{table:highlight})
-
-\begin{table}[!h]
-\small
-\begin{center}
-\begin{tabular}{||c | c c | c c c||} 
- \hline
- \# & A & B & C \textsuperscript{\dag} & D \textsuperscript{\S} & E\textsuperscript{\dag\dag} \\ [0.5ex] 
- \hline\hline
- 1 & A & B & C & D & E \\ 
- \hline
- 2 & A & B & C & D & E \\ 
- \hline
-\rowcolor{TableHighLight}
- 5 & A & B & C  & D & E \\
- \hline
- 	
-\rowcolor{TableHighLight}
- 6 & A & B & C & D & E \\ [0.2ex] 
- \hline
-\end{tabular}
-\caption{\label{table:highlight} Table with highlights }
-\end{center}
-\end{table}
-
-\footnote{\textsuperscript{\dag} The complexity of the method: number of processes, parameters, etc.}
-\footnote{\textsuperscript{\S} How well does the method work under different circumstances}
-\footnote{\textsuperscript{\dag\dag} How much data we need for the method}
-
-\end{frame}
-
-\section{Conclusion}
-\begin{frame}{Conclusion}
-\end{frame}
-
-\section{Q\&A}
-\begin{frame}
-\centering \Huge
-\emph{Q\&A}
-
-\end{frame}
-
-\begin{frame}
-
-\centering \Huge
-\emph{Thank You}
-
-\end{frame}
-
-%---------------------------------------------------------
-
-% \begin{frame}[t,allowframebreaks]{References} %% Aligned top
-% % \input{ms.bbl}
-% % \printbibliography[heading=none]
-% \end{frame}
 
 
 \end{document}

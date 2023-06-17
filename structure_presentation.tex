@@ -2,53 +2,150 @@
 \usepackage{hyperref}
 
 % Change the presentation layout
-\usetheme{Madrid}
+\geometry{papersize={33.867cm,19.05cm}}
 
-% Change the caption size of figure
-\usepackage[font=small,skip=4pt]{caption}
-\usepackage[symbol]{footmisc}
+\usepackage{tikz}
+\usetikzlibrary{external}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
 
-% Font
-\usepackage{plex-sans}
+\usepackage{xsavebox} %save content for repeated use
+\usepackage{atbegshi} %insert material on every page
+\usepackage[absolute,overlay]{textpos}
+\usepackage{anyfontsize}
 
-\usepackage[style=numeric,backend=biber,
-            doi=false,isbn=false,url=false,eprint=false]{biblatex}
-\usepackage{latexsym,xcolor,multicol,booktabs,calligra}
-\usepackage{amssymb,amsfonts,amsmath,amsthm,mathrsfs,mathptmx}
-\usepackage{graphicx,pstricks,listings,stackengine}
-% \usefonttheme[onlymath]{serif}
+% \usepackage{fontspec}
+% \setmainfont{Calibri}
 
-\usepackage[caption=false]{subfig}
-\usepackage{tabularx}
-\usepackage{booktabs}
+% \setsansfont{Carlito}[
+%  Path=./Carlito/,
+%  Extension = .ttf,
+%  UprightFont = *-Regular,
+%  BoldFont = *-Bold,
+%  ItalicFont = *-Italic,
+%  BoldItalicFont = *-BoldItalic]
 
-\usepackage{color, colortbl}
+% ALternative solution if could not use `fontspec`
+\usepackage[sfdefault]{carlito}
 
-% Define color for highlighted table
-\definecolor{TableHighLight}{RGB}{190, 250, 196}
 
-\setbeamertemplate{navigation symbols}{}
-% \setbeamertemplate{footline}[frame number]
-\setbeamertemplate{bibliography item}{\insertbiblabel}
-% \setbeamertemplate{footnote}{\insertfootnotetext}
 
-\let\oldfootnotesize\footnotesize
-\renewcommand*{\footnotesize}{\oldfootnotesize\tiny}
+% \setsansfont{Carlito}[
+%  Path=./Carlito/,
+%  Extension = .ttf,
+%  UprightFont = *-Regular,
+%  BoldFont = *-Bold,
+%  ItalicFont = *-Italic,
+%  BoldItalicFont = *-BoldItalic]
 
-\DeclareCiteCommand{\footpartcite}[\mkbibfootnote]
-{\usebibmacro{prenote}}%
-{\usebibmacro{citeindex}%
-    \mkbibbrackets{\usebibmacro{cite}}%
-    \setunit{\addnbspace}
-    \printnames{labelname}%
-    \setunit{\labelnamepunct}
-    \printfield[citetitle]{title}%
-    \newunit
-    \printfield[]{year}}
-{\addsemicolon\space}
-{\usebibmacro{postnote}}
 
-\setbeamertemplate{footnote}{\insertfootnotetext}
-\setbeamertemplate{caption}[numbered]
+%% Cover page
+\setbeamertemplate{background}
+{
+    \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{Templates/HKA-Normal.pdf}
+}
 
-% \usepackage[style=numeric, sorting=none]{biblatex}
+\usepackage{graphicx,trimclip}
+\newcommand\picdims[4][]{%
+    \setbox0=\hbox{\includegraphics[#1]{#4}}%
+    \clipbox{.5\dimexpr\wd0-#2\relax{} %
+        .5\dimexpr\ht0-#3\relax{} %
+        .5\dimexpr\wd0-#2\relax{} %
+        .5\dimexpr\ht0-#3\relax}{\includegraphics[#1]{#4}}}
+
+
+\newcommand \EITCoverVI[2]{
+    \begin{frame}
+
+    \begin{tikzpicture}[remember picture, overlay]
+        \node[at=(current page.center)]{\includegraphics[width=\paperwidth, height=\paperheight]{Templates/HKA-Opening.pdf}};
+
+        \node[inner sep=0pt, text width=\paperwidth, anchor=south west] at ($(current page.center) + (-16cm, 2.6cm)$)
+        {\fontsize{44}{30}\selectfont\color{ThemeColor} #1};
+    \end{tikzpicture}
+
+
+    % Cover title
+
+
+    % \begin{textblock*}{\textwidth}(0.028\paperwidth,0.327\paperheight)
+    %     \fontsize{44}{30}\selectfont\color{ThemeColor} #1
+    % \end{textblock*}
+
+    % Cover picture
+    \begin{tikzpicture}[remember picture, overlay]
+        \node[inner sep=0pt, anchor=north west] at ($(current page.west) + (0, 2.1cm)$)
+        {
+            \picdims[width=\paperwidth]{\paperwidth}{10.2cm}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+        };
+
+        \node[inner sep=0pt, text width=\paperwidth, anchor=south west] at ($(current page.center) + (-16cm, -9cm)$)
+        {\fontsize{9.1}{5}\selectfont\color{ThemeColor} #2};
+    \end{tikzpicture}
+
+    % Author name
+
+    \begin{tikzpicture}[remember picture, overlay]
+        \node[at=(current page.center)]{\includegraphics[width=\paperwidth,         height=\paperheight]{Templates/HKA_Opening_KA_text.pdf}};
+    \end{tikzpicture}
+    \end{frame}
+}
+
+\setbeamertemplate{frametitle}
+{
+    \begin{tikzpicture}[remember picture, overlay]
+        \node[inner sep=0pt, text width=\paperwidth, anchor=north west] at ($(current page.center) + (-16cm, 8.7cm)$)
+        {\fontsize{32}{5}\selectfont\color{ThemeColor} \insertframetitle};
+    \end{tikzpicture}
+}
+
+% \setbeamertemplate{footline}
+% {
+%     \begin{tikzpicture}[remember picture, overlay]
+%         \node[inner sep=0pt, text width=\paperwidth, anchor=north west] at ($(current page.center) + (-16cm, -7.5cm)$)
+%             {\fontsize{10}{13}\selectfont\color{ThemeColor} 
+%                 Hochschule Karlsruhe \\
+%                 \usvardate\today \\
+%                 \insertframenumber
+%             };
+%     \end{tikzpicture} 
+
+% % \quad\hfill\insertframenumber\strut\quad
+
+% }
+
+\usepackage[]{datetime}
+\newdateformat{usvardate}{%
+    \monthname[\THEMONTH] \THEYEAR}
+
+\newcommand \EITHeadlineFT[2]{
+    \begin{frame}
+        % Cover title
+        \frametitle{#1}
+
+        {#2}
+
+
+        \begin{tikzpicture}[remember picture, overlay]
+            \node[inner sep=0pt, text width=\paperwidth, anchor=north west] at ($(current page.center) + (-16cm, -7.5cm)$)
+            {\fontsize{10}{14}\selectfont\color{ThemeColor}
+                Hochschule Karlsruhe \\
+                \usvardate\today \\
+                \insertframenumber
+            };
+        \end{tikzpicture}
+
+        \begin{tikzpicture}[remember picture, overlay]
+            \node[at=(current page.center)]{\includegraphics[width=\paperwidth, height=\paperheight]{Templates/HKA_Slide_KA_text.pdf}};
+        \end{tikzpicture}
+    \end{frame}
+
+}
+
+\newcommand \EITTableOfContent{
+    \EITHeadlineFT{Table Of Contents}{
+        \tableofcontents
+    }
+}
+
+%%
