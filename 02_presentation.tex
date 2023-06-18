@@ -1,4 +1,4 @@
-\documentclass[t, aspectratio=169, xcolor=table]{beamer}
+\documentclass[17pt, t, aspectratio=169, xcolor=table]{beamer}
 
 % To have print without pause
 % \documentclass[handout, t, aspectratio=169]{beamer}
@@ -38,15 +38,21 @@ first.lastname@h-ka.de}
 \newcommand{\contenttextsize}{18}
 
 \newcommand{\leftmarginpos}{0.9335cm}
+
 \newcommand{\topmargintitle}{-0.825cm}
 
 \newcommand{\topmargincontent}{3.5cm}
 
-\newcommand{\maximumwidth}{32cm}
+\newcommand{\maximumwidth}{31.9cm}
 \newcommand{\maximumheight}{12.6cm}
 
 \newcommand{\columnmaxwidth}{15.45cm}
-\newcommand{\secondcolumnstart}{17.4335cm}
+\newcommand{\secondcolumnstart}{17.38cm}
+
+\newcommand{\captionsize}{large}
+\usepackage[font=\captionsize,skip=4pt]{caption}
+
+\definecolor{TableHighLight}{RGB}{190, 250, 196}
 
 %%%%
 
@@ -60,113 +66,130 @@ first.lastname@h-ka.de}
 
 \begin{document}
 
-%The next statement creates the title page.
-% \frame{\titlepage}
+\EITCoverVI{Wilkommen}{Vorname Nachname}
 
-\EITCoverVI{Cover page title ($\setminus$EITCoverVI)}{Vorname Nachname}
+\EITTableOfContent{Content}{2}
 
-\section{Use $\setminus$EITTableOfContent to create this page}
+\section{Normal Content Slide}
 
-\EITTableOfContent{}{}
-
-\section{This slide automatically take $\setminus$section in your latex}
 \EITHeadlineFT{Normal Content Slide}{
-Command: \\$\setminus$ \textbf{EITHeadlineFT}\\\{Title\}\\\{Your Content\}
-
-Sample text: 
-
-\lipsum[2]
-
-}
-
-\section{and put those in this itemize}
-\EITHeadlineFTTwoColumn{Slide with two seperate columns}{0.4}{0.4}
-{
-    Command: \\$\setminus$ \textbf{EITHeadlineFTTwoColumn}\\
-    \{Title\}\\
-    \{First column ratio\}\\
-    \{Second column ratio\}\\
-    \{First column cotent\}\\
-    \{Second column content\}
-}
-{
     \lipsum[2]
 }
 
-\section{These are hyperlinks to your section slides}
+\section{Slide with Columns}
+\EITHeadlineFT{Slide with two seperate columns}
+{
+    \placetextbox{\leftmarginpos}{-\topmargincontent}{\columnmaxwidth}{
+        \lipsum[1]
+    }
+    \placetextbox{\secondcolumnstart}{-\topmargincontent}{\columnmaxwidth}{
+        \lipsum[2]
+    }
+}
 
+\EITHeadlineFT{Slide with Floating Columns}
+{
+    \placetextbox{\leftmarginpos + 1cm}{-\topmargincontent - 1cm}{\columnmaxwidth}{
+        \lipsum[1]
+    }
+    \placetextbox{\secondcolumnstart}{-\topmargincontent + 0.5cm}{\columnmaxwidth}{
+        \lipsum[2]
+    }
+}
+
+\section{Slide with Table}
 \EITHeadlineFT{Slide with Table}{
     \begin{table}
-        \begin{center}
-            \begin{tabular}{|c|cx{10cm}||}
-                Text 1               & Text 2 \\
-                \hline
-                This is first column & This is the second column with 10cm width \\
-                2                    & B                                         \\
-                3                    & B                                         \\
-                4                    & B                                         \\
-                5                    & B                                         \\
-                6                    & B                                         \\
-                7                    & B                                         \\
-            \end{tabular}
-            \caption{\label{demo-table}This is a table}
-        \end{center}
+    \begin{center}
+    \begin{tabular}{||c | c c | c c c||} 
+     \hline
+     \# & A & B & C \textsuperscript{\dag} & D \textsuperscript{\S} & E\textsuperscript{\dag\dag} \\ [0.5ex] 
+     \hline\hline
+     1 & A & B & C & D & E \\ 
+     \hline
+     2 & A & B & C & D & E \\ 
+     \hline
+    \rowcolor{TableHighLight}
+     5 & A & B & C  & D & E \\
+     \hline
+         
+    \rowcolor{TableHighLight}
+     6 & A & B & C & D & E \\ [0.2ex] 
+     \hline
+    \end{tabular}
+    \caption{\label{table:highlight} Table with highlights }
+    \end{center}
     \end{table}
 }
 
-
-\EITHeadlineFT{Slide with one image}{
-    
-\begin{tikzpicture}[remember picture, overlay]
-    \node[inner sep=0pt, anchor=north west] at ($(current page.north west) + (\leftmarginpos, -3.5cm)$)
-    {
-        \picdims[width=\paperwidth]{\maximumwidth}{\maximumheight}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
-    };            
-\end{tikzpicture}
-
+\EITHeadlineFT{Slide with Floating Table}{
+    \placetextbox{0.2\paperwidth}{0}{\maximumwidth}{
+        \begin{table}
+            \begin{tabular}{||c | c c | c c c||} 
+             \hline
+             \# & A & B & C \textsuperscript{\dag} & D \textsuperscript{\S} & E\textsuperscript{\dag\dag} \\ [0.5ex] 
+             \hline\hline
+             1 & A & B & C & D & E \\ 
+             \hline
+             2 & A & B & C & D & E \\ 
+             \hline
+            \rowcolor{TableHighLight}
+             5 & A & B & C  & D & E \\
+             \hline
+                 
+            \rowcolor{TableHighLight}
+             6 & A & B & C & D & E \\ [0.2ex] 
+             \hline
+            \end{tabular}
+            \caption{\label{table:highlight} Table with highlights }
+            \end{table}    
+    }
 }
 
-\EITHeadlineFT{Slide with two image}{
-    
-\begin{tikzpicture}[remember picture, overlay]
-    \node[inner sep=0pt, anchor=north west] at ($(current page.north west) + (\leftmarginpos, -3.5cm)$)
-    {
-        \picdims[width=\paperwidth]{\columnmaxwidth}{\maximumheight}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
-    };            
-\end{tikzpicture}
-
-\begin{tikzpicture}[remember picture, overlay]
-    \node[inner sep=0pt, anchor=north west] at ($(current page.north west) + (\secondcolumnstart, -3.5cm)$)
-    {
-        \picdims[width=\paperwidth]{\columnmaxwidth}{12.6cm}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
-    };            
-\end{tikzpicture}
-
+\section{Slide with Image}
+\EITHeadlineFT{Slide with one Image}
+{
+    \placetextbox{\leftmarginpos}{-\topmargincontent}{\maximumwidth}{
+        \picdims[width=\maximumwidth]{\maximumwidth}{\maximumheight}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+    }
 }
 
-\EITHeadlineFT{Slide with text and image}{
 
-\begin{textblock*}{\columnmaxwidth}(\leftmarginpos,\topmargincontent)
-    {   \fontsize{\contenttextsize}{32}\selectfont 
-    \lipsum[2]}
-\end{textblock*}
+\EITHeadlineFT{Slide with two Images}{
+\placetextbox{\leftmarginpos}{-\topmargincontent}{\columnmaxwidth}{
+    \picdims[width=\paperwidth]{\columnmaxwidth}{\maximumheight}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+}
 
-\begin{tikzpicture}[remember picture, overlay]
-    \node[inner sep=0pt, anchor=north west] at ($(current page.north west) + (\secondcolumnstart, -3.5cm)$)
-    {
-        \picdims[width=\paperwidth]{\columnmaxwidth}{12.6cm}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
-    };            
-\end{tikzpicture}
+\placetextbox{\secondcolumnstart}{-\topmargincontent}{\columnmaxwidth}{
+    \picdims[width=\paperwidth]{\columnmaxwidth}{\maximumheight}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+}
+}
 
+\EITHeadlineFT{Slide with Floating Image}
+{
+    \placetextbox{\leftmarginpos + 0.2\paperwidth}{-\topmargincontent - 5cm}{\maximumwidth}{
+        \includegraphics[scale=0.5]{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+    }
+}
+
+
+
+\EITHeadlineFT{Slide with Text and Image}{
+
+\placetextbox{\leftmarginpos}{-\topmargincontent}{\columnmaxwidth}{
+    \lipsum[2]
+}
+
+\placetextbox{\secondcolumnstart}{-\topmargincontent}{\columnmaxwidth}{
+    \picdims[width=\paperwidth]{\columnmaxwidth}{\maximumheight}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+}
 }
 
 \EITHeadlineFT{}{
-\begin{tikzpicture}[remember picture, overlay]
-    \node[inner sep=0pt, anchor=north west] at ($(current page.north west)$)
-    {
-        \picdims[width=\paperwidth]{\paperwidth}{16cm}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
-    };            
-\end{tikzpicture}
+
+\placetextbox{0cm}{0cm}{\paperwidth}{
+    \picdims[width=\paperwidth]{\paperwidth}{16cm}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+}
 
 }
 

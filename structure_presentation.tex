@@ -37,6 +37,10 @@
 \usepackage{verbatim}
 \usepackage{ragged2e}
 
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
 % \newcommand{\covertextsize}{44}
 % \newcommand{\titletextsize}{32}
 % \newcommand{\contenttextsize}{18}
@@ -48,7 +52,6 @@
 \setbeamertemplate{enumerate items}[default]
 
 \usepackage{calc}
-
 \usepackage{xparse,siunitx}
 
 \ExplSyntaxOn
@@ -138,10 +141,32 @@
 \newdateformat{usvardate}{%
     \monthname[\THEMONTH] \THEYEAR}
 
-% \setbeamersize{text margin left=0pt,text margin right=1.5cm}
+\setbeamersize{text margin left=0cm,text margin right=0cm}
 
 \settowidth{\leftmargini}{\usebeamertemplate{itemize item}}
 \addtolength{\leftmargini}{1.5\labelsep}
+
+\newcommand{\formatcontent}{\fontsize{\contenttextsize}{32}\selectfont}
+
+\newcommand{\placetextbox}[4]{%
+  % [#1]: box anchor: center | 
+  %                 south west | west | north west (default) | north |
+  %                 north east | east | south east | south | 
+  %                 mid west | mid | mid east |
+  %                 base west | base | base east 
+  % #2: horizontal position
+  % #3: vertical position
+  % #4: maximum width
+  % #5: content
+  %
+    \begin{tikzpicture}[remember picture, overlay]
+    \node[inner sep=0pt, text width=#3, anchor=north west] at ($(current page.north west) + (#1, #2)$)
+    {   
+        #4
+    };            
+    \end{tikzpicture}
+}
+
 
 \newcommand \EITHeadline[2]{
     \begin{frame}
@@ -151,14 +176,23 @@
         {#2}
 
         \begin{tikzpicture}[remember picture, overlay]
-            \node[inner sep=0pt, text width=\paperwidth, anchor=north west] at ($(current page.center) + (-16cm, -7.5cm)$)
-            {\fontsize{10}{14}\selectfont\color{ThemeColor}
-                Hochschule Karlsruhe \\
-                \usvardate\today \\
+            \node[inner sep=0pt,outer sep=0, text width=\paperwidth, anchor=north west](a) at ($(current page.center) + (-16cm, -7.55cm)$)
+            { \fontsize{10}{12}\selectfont\color{ThemeColor}
+                Hochschule Karlsruhe
+            };
+            \node[below left = 0.2cm and 0cm of a, inner sep=0pt,outer sep=0, anchor=north west] (b) 
+            {
+                \fontsize{10}{12}\selectfont\color{ThemeColor}    
+                \usvardate\today
+            };
+            \node[below left = 0.2cm and 0cm of b, inner sep=0pt,outer sep=0, anchor=north west] (c) 
+            {
+                \fontsize{10}{12}\selectfont\color{ThemeColor}    
                 \insertframenumber
             };
+      
         \end{tikzpicture}
-
+        
         \begin{tikzpicture}[remember picture, overlay]
             \node[at=(current page.center)]{\includegraphics[width=\paperwidth, height=\paperheight]{Templates/HKA_Slide_KA_text.pdf}};
         \end{tikzpicture}
@@ -167,29 +201,14 @@
 }
 \newcommand \EITHeadlineFT[2]{
     \EITHeadline{#1}{
-        \begin{textblock*}{\maximumwidth}(\leftmarginpos,\topmargincontent)
-            {   \fontsize{\contenttextsize}{32}\selectfont 
-                #2}
-        \end{textblock*}    
-    }
-}
-
-\newcommand \EITHeadlineFTTwoColumn[5]{
-    \EITHeadline{#1}{
-        \begin{textblock*}{\columnmaxwidth}(\leftmarginpos,\topmargincontent)
-            {   \fontsize{\contenttextsize}{32}\selectfont 
-                #4}
-        \end{textblock*}
-
-        \begin{textblock*}{\columnmaxwidth}(\secondcolumnstart,\topmargincontent)
-            {   \fontsize{\contenttextsize}{32}\selectfont 
-                #5}
-        \end{textblock*}
+        \placetextbox{\leftmarginpos}{-\topmargincontent}{\maximumwidth}{
+            #2
+        }
     }
 }
 
 \setbeamercolor{section in toc}{fg=black}
-\setbeamerfont{section in toc}{size=\huge}
+\setbeamerfont{section in toc}{size=\large}
 
 % \setbeamertemplate{section in toc}{\inserttocsection}
 % \setbeamertemplate{section in toc}[circle]
@@ -200,26 +219,12 @@
 
 \usepackage{setspace}
 
-\newcommand \EITTableOfContent{
-    \EITHeadlineFT{Table Of Contents}{
-        \begin{spacing}{5}
+\newcommand \EITTableOfContent[2]{
+    \EITHeadlineFT{#1}{
+        \begin{spacing}{#2}
             \tableofcontents 
         \end{spacing}
     }
 }
 
 
-\newcommand \EITOnePicture[2]{
-    \EITHeadlineFT{#1}{
-        \begin{tikzpicture}[remember picture, overlay]
-            \node[inner sep=0pt, anchor=north west] at ($(current page.west) + (0, 2.1cm)$)
-            {
-                \picdims[width=\paperwidth]{\paperwidth}{10.2cm}{#2}
-            };            
-        \end{tikzpicture}
-    }
-}
-
-
-
-%%
