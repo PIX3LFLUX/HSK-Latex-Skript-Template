@@ -1,4 +1,4 @@
-\documentclass[t, aspectratio=169]{beamer}
+\documentclass[t, aspectratio=169, xcolor=table]{beamer}
 
 % To have print without pause
 % \documentclass[handout, t, aspectratio=169]{beamer}
@@ -31,26 +31,154 @@ first.lastname@h-ka.de}
 {April 27th, 2023}
 
 
+%%%% Definition of Layout metrics
+
+\newcommand{\covertextsize}{44}
+\newcommand{\titletextsize}{32}
+\newcommand{\contenttextsize}{18}
+
+\newcommand{\leftmarginpos}{0.9335cm}
+\newcommand{\topmargintitle}{-0.825cm}
+
+\newcommand{\topmargincontent}{3.5cm}
+
+\newcommand{\maximumwidth}{32cm}
+\newcommand{\maximumheight}{12.6cm}
+
+\newcommand{\columnmaxwidth}{15.45cm}
+\newcommand{\secondcolumnstart}{17.4335cm}
+
+%%%%
+
+\addbibresource{bibliography.bib}
+
 %End of title page configuration block
 %------------------------------------------------------------
 
 \makeatletter
 \def\@makefnmark{}
-\makeatother
 
 \begin{document}
 
 %The next statement creates the title page.
 % \frame{\titlepage}
 
-\EITCoverVI{Wilkommen}{Vorname Nachname}
+\EITCoverVI{Cover page title ($\setminus$EITCoverVI)}{Vorname Nachname}
 
-\EITTableOfContent
+\section{Use $\setminus$EITTableOfContent to create this page}
 
-\EITHeadlineFT{Mastertexformat bearbeiten 32pt}{
-    %Contents
+\EITTableOfContent{}{}
+
+\section{This slide automatically take $\setminus$section in your latex}
+\EITHeadlineFT{Normal Content Slide}{
+Command: \\$\setminus$ \textbf{EITHeadlineFT}\\\{Title\}\\\{Your Content\}
+
+Sample text: 
+
+\lipsum[2]
+
+}
+
+\section{and put those in this itemize}
+\EITHeadlineFTTwoColumn{Slide with two seperate columns}{0.4}{0.4}
+{
+    Command: \\$\setminus$ \textbf{EITHeadlineFTTwoColumn}\\
+    \{Title\}\\
+    \{First column ratio\}\\
+    \{Second column ratio\}\\
+    \{First column cotent\}\\
+    \{Second column content\}
+}
+{
+    \lipsum[2]
+}
+
+\section{These are hyperlinks to your section slides}
+
+\EITHeadlineFT{Slide with Table}{
+    \begin{table}
+        \begin{center}
+            \begin{tabular}{|c|cx{10cm}||}
+                Text 1               & Text 2 \\
+                \hline
+                This is first column & This is the second column with 10cm width \\
+                2                    & B                                         \\
+                3                    & B                                         \\
+                4                    & B                                         \\
+                5                    & B                                         \\
+                6                    & B                                         \\
+                7                    & B                                         \\
+            \end{tabular}
+            \caption{\label{demo-table}This is a table}
+        \end{center}
+    \end{table}
 }
 
 
+\EITHeadlineFT{Slide with one image}{
+    
+\begin{tikzpicture}[remember picture, overlay]
+    \node[inner sep=0pt, anchor=north west] at ($(current page.north west) + (\leftmarginpos, -3.5cm)$)
+    {
+        \picdims[width=\paperwidth]{\maximumwidth}{\maximumheight}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+    };            
+\end{tikzpicture}
+
+}
+
+\EITHeadlineFT{Slide with two image}{
+    
+\begin{tikzpicture}[remember picture, overlay]
+    \node[inner sep=0pt, anchor=north west] at ($(current page.north west) + (\leftmarginpos, -3.5cm)$)
+    {
+        \picdims[width=\paperwidth]{\columnmaxwidth}{\maximumheight}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+    };            
+\end{tikzpicture}
+
+\begin{tikzpicture}[remember picture, overlay]
+    \node[inner sep=0pt, anchor=north west] at ($(current page.north west) + (\secondcolumnstart, -3.5cm)$)
+    {
+        \picdims[width=\paperwidth]{\columnmaxwidth}{12.6cm}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+    };            
+\end{tikzpicture}
+
+}
+
+\EITHeadlineFT{Slide with text and image}{
+
+\begin{textblock*}{\columnmaxwidth}(\leftmarginpos,\topmargincontent)
+    {   \fontsize{\contenttextsize}{32}\selectfont 
+    \lipsum[2]}
+\end{textblock*}
+
+\begin{tikzpicture}[remember picture, overlay]
+    \node[inner sep=0pt, anchor=north west] at ($(current page.north west) + (\secondcolumnstart, -3.5cm)$)
+    {
+        \picdims[width=\paperwidth]{\columnmaxwidth}{12.6cm}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+    };            
+\end{tikzpicture}
+
+}
+
+\EITHeadlineFT{}{
+\begin{tikzpicture}[remember picture, overlay]
+    \node[inner sep=0pt, anchor=north west] at ($(current page.north west)$)
+    {
+        \picdims[width=\paperwidth]{\paperwidth}{16cm}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+    };            
+\end{tikzpicture}
+
+}
+
+\EITHeadlineFT{References}{
+
+\begin{itemize}
+    \item \fullcite{article_key}
+    \item \fullcite{book_key}
+
+\end{itemize}
+
+
+}
 
 \end{document}
