@@ -27,44 +27,113 @@
 
 % ALternative solution if could not use `fontspec`
 \usepackage[sfdefault]{carlito}
-\newcolumntype{x}[1]{>{\centering\arraybackslash\hspace{0pt}}p{#1}}
-
-
-\usepackage[backend=biber,]{biblatex}
-
-% \usepackage{setspace}
-% \linespread{2} 
+\usepackage[backend=biber, style=ieee]{biblatex}
 \usepackage{verbatim}
 \usepackage{ragged2e}
 
-\pgfdeclarelayer{background}
-\pgfdeclarelayer{foreground}
-\pgfsetlayers{background,main,foreground}
+\usepackage{calc}
+\usepackage{xparse,siunitx}
 
-% \newcommand{\covertextsize}{44}
-% \newcommand{\titletextsize}{32}
-% \newcommand{\contenttextsize}{18}
+\usepackage{color, colortbl}
+\usepackage{lipsum}
+\usepackage{graphicx,trimclip}
+\usepackage{setspace}
 
+\usepackage[ngerman]{babel}
+\usepackage[]{datetime}
+\newdateformat{usvardate}{%
+	\monthname[\THEMONTH] \THEYEAR}
+% \pgfdeclarelayer{background}
+% \pgfdeclarelayer{foreground}
+% \pgfsetlayers{background,main,foreground}
+
+\newcolumntype{x}[1]{>{\centering\arraybackslash\hspace{0pt}}p{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Beamer template
 \setbeamertemplate{itemize items}[circle]
 \setbeamertemplate{itemize subitem}[circle]
 \setbeamertemplate{itemize subsubitem}[circle]
 
 \setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{caption}[numbered]
 
-\usepackage{calc}
-\usepackage{xparse,siunitx}
+\setbeamertemplate{background}
+{
+	\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{Templates/HKA-Normal.pdf}
+}
 
-\ExplSyntaxOn
-\DeclareExpandableDocumentCommand{\convertdim}{O{2}mm}
- {
-  \fp_eval:n { round ( \dim_to_decimal_in_unit:nn { #2 } { 1#3 } , #1 ) }
- }
-\ExplSyntaxOff
 
-\NewDocumentCommand{\getlengthin}{O{2}mm}
- {%
-  \SI[round-mode=places,round-precision=#1]{\convertdim{#2}{#3}}{#3}%
- }
+\setbeamercolor{section in toc}{fg=black}
+\setbeamerfont{section in toc}{size=\large}
+
+% \setbeamertemplate{section in toc}{\inserttocsection}
+% \setbeamertemplate{section in toc}[default]
+% \setbeamertemplate{section in toc}[ball unnumbered]
+% \setbeamertemplate{section in toc}[square]
+% \setbeamertemplate{section in toc}{\inserttocsectionnumber.~\inserttocsection}
+% \setbeamertemplate{section in toc}[ball]
+
+\defbeamertemplate{section in toc}{sectionasitem}{%
+	\leavevmode%
+	\usebeamerfont*{itemize item}%
+	\raise1.25pt\hbox{\small$\bullet$}
+	{\usebeamercolor*[fg]{normal text}\quad\inserttocsection}%
+}
+\setbeamertemplate{section in toc}[sectionasitem]
+
+\setbeamercolor{alerted text}{fg=ThemeColor}
+
+\setbeamertemplate{itemize item}{\raise1.25pt\hbox{\color{black}\small$\bullet$}}
+\setbeamertemplate{itemize subitem}{\color{black}\small$\blacktriangleright$}
+
+\setbeamersize{text margin left=0cm,text margin right=0cm}
+
+\settowidth{\leftmargini}{\usebeamertemplate{itemize item}}
+\addtolength{\leftmargini}{1.2\labelsep}
+
+% Set color in reference
+\DeclareNameWrapperFormat{coloursortname}{\textcolor{black}{#1}}
+\DeclareFieldFormat{colourparens}{\textcolor{black}{\mkbibparens{#1}}}
+\setbeamercolor{bibliography entry author}{fg=black}
+\setbeamercolor{bibliography entry title}{fg=black}
+\setbeamercolor{bibliography entry location}{fg=black}
+\setbeamercolor{bibliography entry note}{fg=black}
+
+% \usepackage{adjustbox}
+
+% \defbeamertemplate*{navigation symbols}{enlarged}
+% {%
+%     \adjustbox{min width=0.4\paperwidth}{%
+%         \hbox{%
+%             \hbox{\insertslidenavigationsymbol}
+%             \hbox{\insertframenavigationsymbol}
+%             \hbox{\insertsubsectionnavigationsymbol}
+%             \hbox{\insertsectionnavigationsymbol}
+%             \hbox{\insertdocnavigationsymbol}
+%             \hbox{\insertbackfindforwardnavigationsymbol}%
+%         }%
+%     }
+% }
+
+
+% List
+% \let\OLDitemize\itemize
+% \renewcommand\itemize{\OLDitemize\addtolength{\itemsep}{20pt}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \ExplSyntaxOn
+% \DeclareExpandableDocumentCommand{\convertdim}{O{2}mm}
+%  {
+%   \fp_eval:n { round ( \dim_to_decimal_in_unit:nn { #2 } { 1#3 } , #1 ) }
+%  }
+% \ExplSyntaxOff
+
+% \NewDocumentCommand{\getlengthin}{O{2}mm}
+%  {%
+%   \SI[round-mode=places,round-precision=#1]{\convertdim{#2}{#3}}{#3}%
+%  }
 
 
 % \setsansfont{Carlito}[
@@ -75,156 +144,117 @@
 %  ItalicFont = *-Italic,
 %  BoldItalicFont = *-BoldItalic]
 
-\usepackage{color, colortbl}
-\usepackage{lipsum}  
-
-
-%% Cover page
-\setbeamertemplate{background}
-{
-    \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{Templates/HKA-Normal.pdf}
-}
-
-\usepackage{graphicx,trimclip}
-\newcommand\picdims[4][]{%
-    \setbox0=\hbox{\includegraphics[#1]{#4}}%
-    \clipbox{.5\dimexpr\wd0-#2\relax{} %
-        .5\dimexpr\ht0-#3\relax{} %
-        .5\dimexpr\wd0-#2\relax{} %
-        .5\dimexpr\ht0-#3\relax}{\includegraphics[#1]{#4}}}
-
-
-\newcommand \EITCoverVI[2]{
-    \begin{frame}
-
-        \begin{tikzpicture}[remember picture, overlay]
-            \node[at=(current page.center)]{\includegraphics[width=\paperwidth, height=\paperheight]{Templates/HKA-Opening.pdf}};
-
-            \node[inner sep=0pt, text width=\paperwidth, anchor=south west] at ($(current page.center) + (-16cm, 2.6cm)$)
-            {\fontsize{\covertextsize}{30}\selectfont\color{ThemeColor} #1};
-        \end{tikzpicture}
-
-        % Cover picture
-        \begin{tikzpicture}[remember picture, overlay]
-            \node[inner sep=0pt, anchor=north west] at ($(current page.west) + (0, 2.1cm)$)
-            {
-                \picdims[width=\paperwidth]{\paperwidth}{10.2cm}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
-            };
-
-            \node[inner sep=0pt, text width=\paperwidth, anchor=south west] at ($(current page.center) + (-16cm, -9cm)$)
-            {\fontsize{9.1}{5}\selectfont\color{ThemeColor} #2};
-        \end{tikzpicture}
-
-        \begin{tikzpicture}[remember picture, overlay]
-            \node[at=(current page.center)]{\includegraphics[width=\paperwidth, height=\paperheight]{Templates/HKA_Opening_KA_text.pdf}};
-        \end{tikzpicture}
-    \end{frame}
-}
-
-% \setbeamertemplate{frametitle}
-% {
-%     \begin{tikzpicture}[remember picture, overlay]
-%         \node[inner sep=0pt, text width=\paperwidth, anchor=north west] at ($(current page.center) + (-16cm, 8.7cm)$)
-%         {\fontsize{\titletextsize}{2}\selectfont\color{ThemeColor} \insertframetitle};
-%     \end{tikzpicture}
-% }
-
-\setbeamertemplate{frametitle}
-{
-    \begin{tikzpicture}[remember picture, overlay]
-        \node[inner sep=0pt, text width=\paperwidth, anchor=north west] at ($(current page.north west) + (\leftmarginpos, \topmargintitle)$)
-        {\fontsize{\titletextsize}{2}\selectfont\color{ThemeColor} \insertframetitle};
-    \end{tikzpicture}
-}
-
-\usepackage[]{datetime}
-\newdateformat{usvardate}{%
-    \monthname[\THEMONTH] \THEYEAR}
-
-\setbeamersize{text margin left=0cm,text margin right=0cm}
-
-\settowidth{\leftmargini}{\usebeamertemplate{itemize item}}
-\addtolength{\leftmargini}{1.5\labelsep}
 
 \newcommand{\formatcontent}{\fontsize{\contenttextsize}{32}\selectfont}
 
 \newcommand{\placetextbox}[4]{%
-  % [#1]: box anchor: center | 
-  %                 south west | west | north west (default) | north |
-  %                 north east | east | south east | south | 
-  %                 mid west | mid | mid east |
-  %                 base west | base | base east 
-  % #2: horizontal position
-  % #3: vertical position
-  % #4: maximum width
-  % #5: content
-  %
-    \begin{tikzpicture}[remember picture, overlay]
-    \node[inner sep=0pt, text width=#3, anchor=north west] at ($(current page.north west) + (#1, #2)$)
-    {   
-        #4
-    };            
-    \end{tikzpicture}
+	% [#1]: box anchor: center | 
+	%                 south west | west | north west (default) | north |
+	%                 north east | east | south east | south | 
+	%                 mid west | mid | mid east |
+	%                 base west | base | base east 
+	% #2: horizontal position
+	% #3: vertical position
+	% #4: maximum width
+	% #5: content
+	%
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[inner sep=0pt, text width=#3, anchor=north west] at ($(current page.north west) + (#1, #2)$)
+		{
+			#4
+		};
+	\end{tikzpicture}
 }
 
+%% Cover page
+\newcommand\picdims[4][]{%
+	\setbox0=\hbox{\includegraphics[#1]{#4}}%
+	\clipbox{.5\dimexpr\wd0-#2\relax{} %
+		.5\dimexpr\ht0-#3\relax{} %
+		.5\dimexpr\wd0-#2\relax{} %
+		.5\dimexpr\ht0-#3\relax}{\includegraphics[#1]{#4}}}
+
+
+\newcommand \EITCoverVI[2]{
+	\begin{frame}
+
+		\begin{tikzpicture}[remember picture, overlay]
+			\node[at=(current page.center)]{\includegraphics[width=\paperwidth, height=\paperheight]{Templates/HKA-Opening.pdf}};
+
+			\node[inner sep=0pt, text width=\paperwidth, anchor=south west] at ($(current page.center) + (-16cm, 2.6cm)$)
+			{\fontsize{\covertextsize}{30}\selectfont\color{ThemeColor} #1};
+		\end{tikzpicture}
+
+		% Cover picture
+		\begin{tikzpicture}[remember picture, overlay]
+			\node[inner sep=0pt, anchor=north west] at ($(current page.west) + (0, 1.907cm)$)
+			{
+				\picdims[width=\paperwidth]{\paperwidth}{10.2cm}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+			};
+
+			\node[inner sep=0pt, text width=\paperwidth, anchor=south west] at ($(current page.center) + (-16cm, -9cm)$)
+			{\fontsize{9.1}{5}\selectfont\color{ThemeColor} #2};
+		\end{tikzpicture}
+
+		\begin{tikzpicture}[remember picture, overlay]
+			\node[at=(current page.center)]{\includegraphics[width=\paperwidth, height=\paperheight]{Templates/HKA_Opening_KA_text.pdf}};
+		\end{tikzpicture}
+	\end{frame}
+}
+
+\setbeamertemplate{frametitle}
+{
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[inner sep=0pt, text width=\paperwidth, anchor=north west] at ($(current page.north west) + (\leftmarginpos, \topmargintitle)$)
+		{\fontsize{\titletextsize}{2}\selectfont\color{ThemeColor} \insertframetitle};
+	\end{tikzpicture}
+}
 
 \newcommand \EITHeadline[2]{
-    \begin{frame}
-        % Cover title
-        \frametitle{#1}
+	\begin{frame}
+		% Cover title
+		\frametitle{#1}
 
-        {#2}
+		{#2}
 
-        \begin{tikzpicture}[remember picture, overlay]
-            \node[inner sep=0pt,outer sep=0, text width=\paperwidth, anchor=north west](a) at ($(current page.center) + (-16cm, -7.55cm)$)
-            { \fontsize{10}{12}\selectfont\color{ThemeColor}
-                Hochschule Karlsruhe
-            };
-            \node[below left = 0.2cm and 0cm of a, inner sep=0pt,outer sep=0, anchor=north west] (b) 
-            {
-                \fontsize{10}{12}\selectfont\color{ThemeColor}    
-                \usvardate\today
-            };
-            \node[below left = 0.2cm and 0cm of b, inner sep=0pt,outer sep=0, anchor=north west] (c) 
-            {
-                \fontsize{10}{12}\selectfont\color{ThemeColor}    
-                \insertframenumber
-            };
-      
-        \end{tikzpicture}
-        
-        \begin{tikzpicture}[remember picture, overlay]
-            \node[at=(current page.center)]{\includegraphics[width=\paperwidth, height=\paperheight]{Templates/HKA_Slide_KA_text.pdf}};
-        \end{tikzpicture}
-    \end{frame}
+		\begin{tikzpicture}[remember picture, overlay]
+			\node[inner sep=0pt,outer sep=0, text width=\paperwidth, anchor=north west](a) at ($(current page.center) + (-16cm, -7.55cm)$)
+			{ \fontsize{10}{12}\selectfont\color{ThemeColor}
+				Hochschule Karlsruhe
+			};
+			\node[below left = 0.2cm and 0cm of a, inner sep=0pt,outer sep=0, anchor=north west] (b)
+			{
+				\fontsize{10}{12}\selectfont\color{ThemeColor}
+				\usvardate\today
+			};
+			\node[below left = 0.2cm and 0cm of b, inner sep=0pt,outer sep=0, anchor=north west] (c)
+			{
+				\fontsize{10}{12}\selectfont\color{ThemeColor}
+				\insertframenumber
+			};
+
+		\end{tikzpicture}
+
+		\begin{tikzpicture}[remember picture, overlay]
+			\node[at=(current page.center)]{\includegraphics[width=\paperwidth, height=\paperheight]{Templates/HKA_Slide_KA_text.pdf}};
+		\end{tikzpicture}
+	\end{frame}
 
 }
 \newcommand \EITHeadlineFT[2]{
-    \EITHeadline{#1}{
-        \placetextbox{\leftmarginpos}{-\topmargincontent}{\maximumwidth}{
-            #2
-        }
-    }
+	\EITHeadline{#1}{
+		\placetextbox{\leftmarginpos}{-\topmargincontent}{\maximumwidth}{
+			#2
+		}
+	}
 }
 
-\setbeamercolor{section in toc}{fg=black}
-\setbeamerfont{section in toc}{size=\large}
-
-% \setbeamertemplate{section in toc}{\inserttocsection}
-% \setbeamertemplate{section in toc}[circle]
-% \setbeamertemplate{section in toc}[ball unnumbered]
-% \setbeamertemplate{section in toc}[square]
-% \setbeamertemplate{section in toc}{\inserttocsectionnumber.~\inserttocsection}
-\setbeamertemplate{section in toc}[ball]
-
-\usepackage{setspace}
-
 \newcommand \EITTableOfContent[2]{
-    \EITHeadlineFT{#1}{
-        \begin{spacing}{#2}
-            \tableofcontents 
-        \end{spacing}
-    }
+	\EITHeadlineFT{#1}{
+		\begin{spacing}{#2}
+			\tableofcontents
+		\end{spacing}
+	}
 }
 
 

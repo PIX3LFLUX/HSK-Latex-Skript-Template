@@ -1,7 +1,7 @@
 \documentclass[17pt, t, aspectratio=169, xcolor=table]{beamer}
 
 % To have print without pause
-% \documentclass[handout, t, aspectratio=169]{beamer}
+% \documentclass[handout, 17pt, t, aspectratio=169, xcolor=table]{beamer}
 
 \input{structure_presentation.tex} % Insert the structure.tex file which contains the majority of the structure behind the template
 
@@ -16,21 +16,6 @@
 \usecolortheme[named=ThemeColor]{structure}
 
 %------------------------------------------------------------
-%This block of code defines the information to appear in the
-%Title page
-\title[Short Title] %optional
-{Presentation Title}
-
-\subtitle{Sub-title}
-
-\author[Last Name, First name] % (optional)
-{Last name, First Name
-first.lastname@h-ka.de}
-
-\date[April 27th, 2023] % (optional)
-{April 27th, 2023}
-
-
 %%%% Definition of Layout metrics
 
 \newcommand{\covertextsize}{44}
@@ -43,18 +28,35 @@ first.lastname@h-ka.de}
 
 \newcommand{\topmargincontent}{3.5cm}
 
-\newcommand{\maximumwidth}{31.9cm}
-\newcommand{\maximumheight}{12.6cm}
+\newcommand{\maximumwidth}{31.912cm}
+\newcommand{\maximumheight}{12.613cm}
 
 \newcommand{\columnmaxwidth}{15.45cm}
-\newcommand{\secondcolumnstart}{17.38cm}
+\newcommand{\secondcolumnstart}{17.395cm}
 
-\newcommand{\captionsize}{large}
+\newcommand{\captionsize}{normalsize}
 \usepackage[font=\captionsize,skip=4pt]{caption}
 
 \definecolor{TableHighLight}{RGB}{190, 250, 196}
 
 %%%%
+
+\newcommand{\germanlipsum}{
+    Lorem ipsum ist ein pseudo-Lateinischer Text für Webdesign, 
+    Typografie, Layout und Printmedien. Er ersetzt Deutsch um Designelemente 
+    gegenüber dem Inhalt hervorzuheben, hat also die Funktion als Platzhalters 
+    in Layouts um dem Betrachter eine vorläufige Vorstellung der endgültigen Fassung 
+    zu vermitteln. Buchstaben, Worte, Wort- und Satzlängen bilden ungefähr das Schriftbild eines 
+    lateinischen Texts wieder. Latein war in früheren Jahrhunderten eine häufig 
+    genutzte Sprache verschiedener Textgattungen, z. B. wissenschaftlicher Werke, 
+    Ratgeber, oder auch der sogenannten Erbauungsliteratur. Um die Aufmerksamkeit des 
+    Lesers ausschließlich auf das Schriftbild zu lenken wird auch ein zufälliger Sinn 
+    durch Wort- oder Satzkombinationen vermieden.
+}
+\newcommand{\germanlipsumshort}{
+    Lorem ipsum ist ein pseudo-Lateinischer Text für Webdesign, 
+    Typografie, Layout und Printmedien.
+}
 
 \addbibresource{bibliography.bib}
 
@@ -68,140 +70,190 @@ first.lastname@h-ka.de}
 
 \EITCoverVI{Wilkommen}{Vorname Nachname}
 
-\EITTableOfContent{Content}{2}
+\EITTableOfContent{Inhaltsverzeichnis}{2}
 
-\section{Normal Content Slide}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% Skip this part
+\section{EIT Präsentation Layout}
 
-\EITHeadlineFT{Normal Content Slide}{
-    \lipsum[2]
+
+\EITHeadline{EIT Präsentation Layout}{
+	\begin{tikzpicture}
+		\draw (0,0) rectangle (1in, 1in);
+	\end{tikzpicture}
+
+}
+%%%%%%%% Skip this part
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{EIT Präsentation}
+
+\EITHeadlineFT{EIT Präsentation}{
+	\germanlipsum
 }
 
-\section{Slide with Columns}
-\EITHeadlineFT{Slide with two seperate columns}
+
+
+
+\EITHeadlineFT{EIT Präsentation mit Liste}{
+	\begin{itemize}
+		\item \germanlipsumshort
+		\item \germanlipsumshort
+		\item \germanlipsumshort
+		\item \germanlipsumshort
+	\end{itemize}
+}
+
+\EITHeadlineFT{EIT Präsentation mit Liste}{
+	\begin{itemize} [<+->]
+		\item \germanlipsumshort
+		\item \germanlipsumshort
+		\item \germanlipsumshort
+		\item \germanlipsumshort
+	\end{itemize}
+}
+
+\EITHeadlineFT{EIT Präsentation mit Liste}{
+	\begin{itemize} [<+- | alert@+>]
+		\item \germanlipsumshort
+		\item \germanlipsumshort
+		\item \germanlipsumshort
+		\item \germanlipsumshort
+	\end{itemize}
+}
+
+
+\section{EIT Präsentation mit Equation}
+\EITHeadlineFT{EIT Präsentation mit Equation}
 {
-    \placetextbox{\leftmarginpos}{-\topmargincontent}{\columnmaxwidth}{
-        \lipsum[1]
-    }
-    \placetextbox{\secondcolumnstart}{-\topmargincontent}{\columnmaxwidth}{
-        \lipsum[2]
-    }
+	Reference to Eq. \ref{eq:first_eq}.
+
+	\begin{equation}
+		f(x)=\left\{\begin{aligned}  & \mathrm{e}^{|x|} &  & \text{si $|x-x^0|\leq 1/2$} \\
+                 & 0                &  & \text{si $|x-x^0|> 1/2$}\end{aligned}\right.
+		\label{eq:first_eq}
+	\end{equation}
 }
 
-\EITHeadlineFT{Slide with Floating Columns}
+\section{EIT Präsentation mit 2 Spalten}
+\EITHeadlineFT{EIT Präsentation mit 2 Spalten}
 {
-    \placetextbox{\leftmarginpos + 1cm}{-\topmargincontent - 1cm}{\columnmaxwidth}{
-        \lipsum[1]
-    }
-    \placetextbox{\secondcolumnstart}{-\topmargincontent + 0.5cm}{\columnmaxwidth}{
-        \lipsum[2]
-    }
+	\placetextbox{\leftmarginpos}{-\topmargincontent}{\columnmaxwidth}{
+		\germanlipsum
+	}
+	\placetextbox{\secondcolumnstart}{-\topmargincontent}{\columnmaxwidth}{
+		\germanlipsum
+	}
 }
 
-\section{Slide with Table}
-\EITHeadlineFT{Slide with Table}{
-    \begin{table}
-    \begin{center}
-    \begin{tabular}{||c | c c | c c c||} 
-     \hline
-     \# & A & B & C \textsuperscript{\dag} & D \textsuperscript{\S} & E\textsuperscript{\dag\dag} \\ [0.5ex] 
-     \hline\hline
-     1 & A & B & C & D & E \\ 
-     \hline
-     2 & A & B & C & D & E \\ 
-     \hline
-    \rowcolor{TableHighLight}
-     5 & A & B & C  & D & E \\
-     \hline
-         
-    \rowcolor{TableHighLight}
-     6 & A & B & C & D & E \\ [0.2ex] 
-     \hline
-    \end{tabular}
-    \caption{\label{table:highlight} Table with highlights }
-    \end{center}
-    \end{table}
-}
-
-\EITHeadlineFT{Slide with Floating Table}{
-    \placetextbox{0.2\paperwidth}{0}{\maximumwidth}{
-        \begin{table}
-            \begin{tabular}{||c | c c | c c c||} 
-             \hline
-             \# & A & B & C \textsuperscript{\dag} & D \textsuperscript{\S} & E\textsuperscript{\dag\dag} \\ [0.5ex] 
-             \hline\hline
-             1 & A & B & C & D & E \\ 
-             \hline
-             2 & A & B & C & D & E \\ 
-             \hline
-            \rowcolor{TableHighLight}
-             5 & A & B & C  & D & E \\
-             \hline
-                 
-            \rowcolor{TableHighLight}
-             6 & A & B & C & D & E \\ [0.2ex] 
-             \hline
-            \end{tabular}
-            \caption{\label{table:highlight} Table with highlights }
-            \end{table}    
-    }
-}
-
-\section{Slide with Image}
-\EITHeadlineFT{Slide with one Image}
+\EITHeadlineFT{EIT Präsentation mit ``Floating'' Text}
 {
-    \placetextbox{\leftmarginpos}{-\topmargincontent}{\maximumwidth}{
-        \picdims[width=\maximumwidth]{\maximumwidth}{\maximumheight}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
-    }
+	\placetextbox{\leftmarginpos + 3cm}{-\topmargincontent - 1cm}{\columnmaxwidth}{
+		\germanlipsum
+	}
 }
 
+\section{EIT Präsentation mit Tabelle}
+\EITHeadlineFT{EIT Präsentation mit Tabelle}{
+	\begin{table}
+		\begin{center}
+			\begin{tabular}{||c | c c | c c c||}
+				\hline
+				\# & A & B & C \textsuperscript{\dag} & D \textsuperscript{\S} & E\textsuperscript{\dag\dag} \\ [0.5ex]
+				\hline\hline
+				1  & A & B & C                        & D                      & E                           \\
+				\hline
+				2  & A & B & C                        & D                      & E                           \\
+				\hline
+				\rowcolor{TableHighLight}
+				5  & A & B & C                        & D                      & E                           \\
+				\hline
 
-\EITHeadlineFT{Slide with two Images}{
-\placetextbox{\leftmarginpos}{-\topmargincontent}{\columnmaxwidth}{
-    \picdims[width=\paperwidth]{\columnmaxwidth}{\maximumheight}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+				\rowcolor{TableHighLight}
+				6  & A & B & C                        & D                      & E                           \\ [0.2ex]
+				\hline
+			\end{tabular}
+			\caption{\label{table:highlight} die Tabelle }
+		\end{center}
+	\end{table}
 }
 
-\placetextbox{\secondcolumnstart}{-\topmargincontent}{\columnmaxwidth}{
-    \picdims[width=\paperwidth]{\columnmaxwidth}{\maximumheight}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
-}
+\EITHeadlineFT{EIT Präsentation mit ``Floating'' Tabelle}{
+	\placetextbox{0.2\paperwidth}{0}{\maximumwidth}{
+		\begin{table}
+			\begin{tabular}{||c | c c | c c c||}
+				\hline
+				\# & A & B & C \textsuperscript{\dag} & D \textsuperscript{\S} & E\textsuperscript{\dag\dag} \\ [0.5ex]
+				\hline\hline
+				1  & A & B & C                        & D                      & E                           \\
+				\hline
+				2  & A & B & C                        & D                      & E                           \\
+				\hline
+				\rowcolor{TableHighLight}
+				5  & A & B & C                        & D                      & E                           \\
+				\hline
+
+				\rowcolor{TableHighLight}
+				6  & A & B & C                        & D                      & E                           \\ [0.2ex]
+				\hline
+			\end{tabular}
+			\caption{\label{table:highlight1} die Tabelle }
+		\end{table}
+	}
 }
 
-\EITHeadlineFT{Slide with Floating Image}
+\section{EIT Präsentation mit Bild}
+\EITHeadlineFT{EIT Präsentation mit Bild}
 {
-    \placetextbox{\leftmarginpos + 0.2\paperwidth}{-\topmargincontent - 5cm}{\maximumwidth}{
-        \includegraphics[scale=0.5]{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
-    }
+	\placetextbox{\leftmarginpos}{-\topmargincontent}{\maximumwidth}{
+		\picdims[width=\maximumwidth]{\maximumwidth}{\maximumheight}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+	}
+}
+
+
+\EITHeadlineFT{EIT Präsentation 2 Bilder}{
+	\placetextbox{\leftmarginpos}{-\topmargincontent}{\columnmaxwidth}{
+		\picdims[width=\paperwidth]{\columnmaxwidth}{\maximumheight}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+	}
+
+	\placetextbox{\secondcolumnstart}{-\topmargincontent}{\columnmaxwidth}{
+		\picdims[width=\paperwidth]{\columnmaxwidth}{\maximumheight}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+	}
+}
+
+\EITHeadlineFT{EIT Präsentation mit ``Floating'' Bilder}
+{
+	\placetextbox{\leftmarginpos + 0.2\paperwidth}{-\topmargincontent - 5cm}{\maximumwidth}{
+		\includegraphics[scale=0.5]{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+	}
 }
 
 
 
-\EITHeadlineFT{Slide with Text and Image}{
+\EITHeadlineFT{EIT Präsentation mit Text und Bilder}{
 
-\placetextbox{\leftmarginpos}{-\topmargincontent}{\columnmaxwidth}{
-    \lipsum[2]
-}
+	\placetextbox{\leftmarginpos}{-\topmargincontent}{\columnmaxwidth}{
+		\lipsum[2]
+	}
 
-\placetextbox{\secondcolumnstart}{-\topmargincontent}{\columnmaxwidth}{
-    \picdims[width=\paperwidth]{\columnmaxwidth}{\maximumheight}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
-}
+	\placetextbox{\secondcolumnstart}{-\topmargincontent}{\columnmaxwidth}{
+		\picdims[width=\paperwidth]{\columnmaxwidth}{\maximumheight}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+	}
 }
 
 \EITHeadlineFT{}{
 
-\placetextbox{0cm}{0cm}{\paperwidth}{
-    \picdims[width=\paperwidth]{\paperwidth}{16cm}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
-}
+	\placetextbox{0cm}{0cm}{\paperwidth}{
+		\picdims[width=\paperwidth]{\paperwidth}{16cm}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+	}
 
 }
 
 \EITHeadlineFT{References}{
-
-\begin{itemize}
-    \item \fullcite{article_key}
-    \item \fullcite{book_key}
-
-\end{itemize}
-
-
+	\begin{itemize}
+		\item \fullcite{article_key}
+		\item \fullcite{book_key}
+	\end{itemize}
 }
 
 \end{document}
