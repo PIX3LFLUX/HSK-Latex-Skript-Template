@@ -118,18 +118,17 @@ Have you ever tired of making Powerpoint presentation from your Latex report? Yo
   - rewrite all the equations in your report.
   - insert image figures, captions, labels, numbers. 
 
-You don't have to suffer anymore with Beamer, which helps you composing presentation inside your Latex environment. The author tested succesfully on [Overleaf](https://www.overleaf.com/), an online editor for papers, theses, technical reports and other documents written in the LaTeX.
+You don't have to suffer anymore. With Beamer, it helps you composing presentation inside your Latex environment. Tested with Overleaf, TeXstudio on Mac, TeXLive on Windows.
 
 Functions needed for a simple presentation could be done by Beamer, unless you are eager to surprise the audiences with effects. 
 
-Open the file `presentation.tex` and get started.
+Open the file `02_presentation.tex` and get started.
 
-**Demo:**
-| | |
-|:-------------------------:|:-------------------------:|
-|<img width="520" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/haotruongnhat/HSK-Latex-Skript-Template/assets/20220723/6831ac69-c13a-4d9c-a60f-fc217e0bf360"> |  <img width="520" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/haotruongnhat/HSK-Latex-Skript-Template/assets/20220723/fa8ffba5-ec66-47c5-842a-13455bafcab9">|
-|<img width="520" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/haotruongnhat/HSK-Latex-Skript-Template/assets/20220723/1566a73a-b112-4f52-b056-f79c6a1180c1">|<img width="520" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://github.com/haotruongnhat/HSK-Latex-Skript-Template/assets/20220723/1b9aa949-e35f-4e7c-9272-fa7fecf9f41e">|
+Demo: [PDF](Demo/02_presentation.pdf)
 
+Cheatsheet: [PDF](Demo/presentation_cheatsheet.pdf)
+
+Author: Hao Truong (haotruongnhat@gmail.com)
 
 <!-- ROADMAP -->
 ## Roadmap
