@@ -26,7 +26,12 @@
 %  BoldItalicFont = *-BoldItalic]
 
 % ALternative solution if could not use `fontspec`
-\usepackage[sfdefault]{carlito}
+\usepackage[sfdefault,lf]{carlito}
+% \usepackage[default]{opensans}
+
+\usepackage[T1]{fontenc}
+\renewcommand*\oldstylenums[1]{\carlitoOsF #1}
+
 \usepackage[backend=biber, style=ieee]{biblatex}
 \usepackage{verbatim}
 \usepackage{ragged2e}
@@ -43,6 +48,15 @@
 \usepackage[]{datetime}
 \newdateformat{usvardate}{%
 	\monthname[\THEMONTH] \THEYEAR}
+
+\usepackage{booktabs,siunitx,array,threeparttable}
+
+\newcommand*\MeasuredFigureLabel[1]{
+	\addtocounter{figure}{-1}
+	\phantomcaption
+	\label{#1}
+}
+
 % \pgfdeclarelayer{background}
 % \pgfdeclarelayer{foreground}
 % \pgfsetlayers{background,main,foreground}
@@ -148,20 +162,37 @@
 \newcommand{\formatcontent}{\fontsize{\contenttextsize}{32}\selectfont}
 
 \newcommand{\placetextbox}[4]{%
-	% [#1]: box anchor: center | 
-	%                 south west | west | north west (default) | north |
-	%                 north east | east | south east | south | 
-	%                 mid west | mid | mid east |
-	%                 base west | base | base east 
-	% #2: horizontal position
-	% #3: vertical position
-	% #4: maximum width
-	% #5: content
+	% #1: horizontal position
+	% #2: vertical position
+	% #3: maximum width
+	% #4: content
 	%
 	\begin{tikzpicture}[remember picture, overlay]
 		\node[inner sep=0pt, text width=#3, anchor=north west] at ($(current page.north west) + (#1, #2)$)
 		{
 			#4
+		};
+	\end{tikzpicture}
+}
+
+\newcommand{\placepictureandtext}[7]{%
+	% #1: horizontal position
+	% #2: vertical position
+	% #3: maximum width
+	% #4: text horizontal position
+	% #5: text vertical position
+	% #6: picture content
+	% #7: text content
+
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[inner sep=0pt, text width=#3, anchor=north west] (picture) at ($(current page.north west) + (#1, #2)$)
+		{
+			#6
+		};
+
+		\node[below left = #5 and #4 of picture, inner sep=0pt,outer sep=0, anchor=north west] (c)
+		{
+			#7
 		};
 	\end{tikzpicture}
 }
@@ -175,7 +206,7 @@
 		.5\dimexpr\ht0-#3\relax}{\includegraphics[#1]{#4}}}
 
 
-\newcommand \EITCoverVI[2]{
+\newcommand \EITCoverVI[3]{
 	\begin{frame}
 
 		\begin{tikzpicture}[remember picture, overlay]
@@ -189,7 +220,7 @@
 		\begin{tikzpicture}[remember picture, overlay]
 			\node[inner sep=0pt, anchor=north west] at ($(current page.west) + (0, 1.907cm)$)
 			{
-				\picdims[width=\paperwidth]{\paperwidth}{10.2cm}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+				\picdims[width=\paperwidth]{\paperwidth}{10.2cm}{#3}
 			};
 
 			\node[inner sep=0pt, text width=\paperwidth, anchor=south west] at ($(current page.center) + (-16cm, -9cm)$)
@@ -239,11 +270,11 @@
 			\node[at=(current page.center)]{\includegraphics[width=\paperwidth, height=\paperheight]{Templates/HKA_Slide_KA_text.pdf}};
 		\end{tikzpicture}
 	\end{frame}
-
 }
+
 \newcommand \EITHeadlineFT[2]{
 	\EITHeadline{#1}{
-		\placetextbox{\leftmarginpos}{-\topmargincontent}{\maximumwidth}{
+		\placetextbox{\leftmarginpos}{\topmargincontent}{\maximumwidth}{
 			#2
 		}
 	}
