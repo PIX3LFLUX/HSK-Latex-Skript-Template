@@ -21,6 +21,8 @@
 %------------------------------------------------------------
 %%%% Definition of Layout metrics
 \newcommand{\covertextsize}{44}
+\newcommand{\coversubtitlesize}{20}
+
 \newcommand{\titletextsize}{32}
 \newcommand{\contenttextsize}{18}
 
@@ -38,6 +40,8 @@
 
 \newcommand{\captionsize}{normalsize}
 \usepackage[font=\captionsize,skip=4pt, width=.75\textwidth]{caption}
+
+% \newcommand{\foottext}{Hochschule Karlsruhe — Fakultät für Elektro- und Informationstechnik — Jan Bauer}
 %%%%
 
 \newcommand{\germanlipsum}{
@@ -70,12 +74,26 @@
 	Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg
 }
 
+
+\EITCoverSubtitleVI{Wilkommen}{Introduction: How to create presentation in Latex}{Vorname Nachname}{				
+	Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg
+}
+
 \EITTableOfContent{Inhaltsverzeichnis}{2}
 
 \section{EIT Präsentation}
 
 \EITHeadlineFT{EIT Präsentation}{
 	\germanlipsum
+}
+
+{
+\newcommand{\foottext}{Hochschule Karlsruhe — Fakultät für Elektro- und Informationstechnik — Vorname Nachname}
+\EITHeadlineFT{EIT Präsentation mit Foot Text}{
+	If there is \textbf{foottext} command defined in the code, the foot text will be replaced, such as this slide for example.
+	
+	Uncomment \textbf{line 44} for global effect.
+}
 }
 
 \EITHeadlineFT{EIT Präsentation mit Liste}{

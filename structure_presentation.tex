@@ -158,6 +158,42 @@
 %  ItalicFont = *-Italic,
 %  BoldItalicFont = *-BoldItalic]
 
+\newcommand{\defaultfoottext}{
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[inner sep=0pt,outer sep=0, text width=\paperwidth, anchor=north west](a) at ($(current page.north west) + (\leftmarginpos, -17.15cm)$)
+		{ \fontsize{9}{12}\selectfont\color{ThemeColor}
+			Hochschule Karlsruhe
+		};
+		\node[below left = 0.2cm and 0cm of a, inner sep=0pt,outer sep=0, anchor=north west] (b)
+		{
+			\fontsize{9}{12}\selectfont\color{ThemeColor}
+			\usvardate\today
+		};
+		\node[below left = 0.2cm and 0cm of b, inner sep=0pt,outer sep=0, anchor=north west] (c)
+		{
+			\fontsize{9}{12}\selectfont\color{ThemeColor}
+			\insertframenumber
+		};
+
+	\end{tikzpicture}
+}
+
+
+\newcommand{\customfoottext}{
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[inner sep=0pt,outer sep=0, text width=\paperwidth, anchor=north west] at ($(current page.center) + (-16cm, -8.45cm)$)
+		{ \fontsize{10}{12}\selectfont\color{ThemeColor}
+			\insertframenumber
+		};
+
+		\node[inner sep=0pt,outer sep=0, text width=\textwidth, anchor=north] at ($(current page.center) + (0, -7.75cm)$)
+		{ 	\begin{center}
+			\fontsize{9}{12}\selectfont\color{ThemeColor}
+			\foottext
+			\end{center}
+		};
+	\end{tikzpicture}
+}
 
 \newcommand{\formatcontent}{\fontsize{\contenttextsize}{32}\selectfont}
 
@@ -197,7 +233,6 @@
 	\end{tikzpicture}
 }
 
-%% Cover page
 \newcommand\picdims[4][]{%
 	\setbox0=\hbox{\includegraphics[#1]{#4}}%
 	\clipbox{.5\dimexpr\wd0-#2\relax{} %
@@ -205,7 +240,7 @@
 		.5\dimexpr\wd0-#2\relax{} %
 		.5\dimexpr\ht0-#3\relax}{\includegraphics[#1]{#4}}}
 
-
+%% Cover page
 \newcommand \EITCoverVI[3]{
 	\begin{frame}
 
@@ -233,6 +268,40 @@
 	\end{frame}
 }
 
+\newcommand \EITCoverSubtitleVI[4]{
+	\begin{frame}
+
+		\begin{tikzpicture}[remember picture, overlay]
+			\node[at=(current page.center)]{\includegraphics[width=\paperwidth, height=\paperheight]{Templates/HKA-Opening.pdf}};
+
+			\node[inner sep=0pt, text width=\paperwidth, anchor=south west](title) at ($(current page.center) + (-16cm, 3.825cm)$)
+			{
+				\fontsize{\covertextsize}{30}\selectfont\color{ThemeColor} #1
+			};
+
+			\node[below left = 0.958cm and 0cm of title, inner sep=0pt,outer sep=0, anchor=north west]
+			{
+				\fontsize{\coversubtitlesize}{30}\selectfont\color{ThemeColor} #2
+			};
+		\end{tikzpicture}
+
+		% Cover picture
+		\begin{tikzpicture}[remember picture, overlay]
+			\node[inner sep=0pt, anchor=north west] at ($(current page.west) + (0, 1.907cm)$)
+			{
+				\picdims[width=\paperwidth]{\paperwidth}{10.2cm}{#4}
+			};
+
+			\node[inner sep=0pt, text width=\paperwidth, anchor=south west] at ($(current page.center) + (-16cm, -9cm)$)
+			{\fontsize{9.1}{5}\selectfont\color{ThemeColor} #3};
+		\end{tikzpicture}
+
+		\begin{tikzpicture}[remember picture, overlay]
+			\node[at=(current page.center)]{\includegraphics[width=\paperwidth, height=\paperheight]{Templates/HKA_Opening_KA_text.pdf}};
+		\end{tikzpicture}
+	\end{frame}
+}
+
 \setbeamertemplate{frametitle}
 {
 	\begin{tikzpicture}[remember picture, overlay]
@@ -248,23 +317,29 @@
 
 		{#2}
 
-		\begin{tikzpicture}[remember picture, overlay]
-			\node[inner sep=0pt,outer sep=0, text width=\paperwidth, anchor=north west](a) at ($(current page.center) + (-16cm, -7.55cm)$)
-			{ \fontsize{10}{12}\selectfont\color{ThemeColor}
-				Hochschule Karlsruhe
-			};
-			\node[below left = 0.2cm and 0cm of a, inner sep=0pt,outer sep=0, anchor=north west] (b)
-			{
-				\fontsize{10}{12}\selectfont\color{ThemeColor}
-				\usvardate\today
-			};
-			\node[below left = 0.2cm and 0cm of b, inner sep=0pt,outer sep=0, anchor=north west] (c)
-			{
-				\fontsize{10}{12}\selectfont\color{ThemeColor}
-				\insertframenumber
-			};
+		% \begin{tikzpicture}[remember picture, overlay]
+		% 	\node[inner sep=0pt,outer sep=0, text width=\paperwidth, anchor=north west](a) at ($(current page.center) + (-16cm, -7.55cm)$)
+		% 	{ \fontsize{10}{12}\selectfont\color{ThemeColor}
+		% 		Hochschule Karlsruhe
+		% 	};
+		% 	\node[below left = 0.2cm and 0cm of a, inner sep=0pt,outer sep=0, anchor=north west] (b)
+		% 	{
+		% 		\fontsize{10}{12}\selectfont\color{ThemeColor}
+		% 		\usvardate\today
+		% 	};
+		% 	\node[below left = 0.2cm and 0cm of b, inner sep=0pt,outer sep=0, anchor=north west] (c)
+		% 	{
+		% 		\fontsize{10}{12}\selectfont\color{ThemeColor}
+		% 		\insertframenumber
+		% 	};
 
-		\end{tikzpicture}
+		% \end{tikzpicture}
+
+		\ifdefined\foottext
+			\customfoottext
+		\else
+			\defaultfoottext
+		\fi
 
 		\begin{tikzpicture}[remember picture, overlay]
 			\node[at=(current page.center)]{\includegraphics[width=\paperwidth, height=\paperheight]{Templates/HKA_Slide_KA_text.pdf}};

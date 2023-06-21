@@ -108,6 +108,8 @@ For object placement, please refer the below list and the images:
   \item \verb!\maximumheight!: Distance value from content top margin to bottom content margin \{(4).y - (2).y\}
   \item \verb!\columnmaxwidth!: Maximum width of content to be split 50:50 (two column presentation).
   \item \verb!\secondcolumnstart!: X value from the origin to second column. Please refer to the slide \emph{EIT Präsentation mit 2 Spalten}.
+
+  \item \verb!\foottext!: Definition of this in the code will change the foot text. Please refer to slide \emph{EIT Präsentation mit Foot Text}
 \end{itemize}
 
 \begin{center}
@@ -122,6 +124,7 @@ Positioning in presentation is done based on \textbf{tikz} and \textbf{beamer} l
 
 \begin{itemize}
   \item \verb!\EITCoverVI{Covert Text}{Author Name}{Picture Path}!: Create Cover Slide.
+  \item \verb!\EITCoverSubtitleVI{Covert Text}{Sub Title}{Author Name}{Picture Path}!: Create Cover Slide with Sub Title.
   \item \verb!\EITTableOfContent{Frame Title}{List Spacing}!: Create Table of Content slide. This slide's content is based on \verb!\section{Section Name}! defined over the document.
   \item \verb!\EITHeadlineFT{Frame Title}{Content}!: Create a normal frame. This slide's content is positioned with margins defined in layout metrics.
   \item \verb!\placetextbox{Horizontal Position}{Vertical Position}{Maximum Width}{Content}!: Override the margins to place the object in defined positions. The object anchor is at north-west (top-left) corner w.r.t the page origin.
