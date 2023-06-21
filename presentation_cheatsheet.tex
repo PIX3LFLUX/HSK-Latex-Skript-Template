@@ -2,15 +2,15 @@
 % writeLaTeX Example: A quick guide to LaTeX
 %
 % Source: Dave Richeson (divisbyzero.com), Dickinson College
-% 
-% A one-size-fits-all LaTeX cheat sheet. Kept to two pages, so it 
+%
+% A one-size-fits-all LaTeX cheat sheet. Kept to two pages, so it
 % can be printed (double-sided) on one piece of paper
-% 
+%
 % Feel free to distribute this example, but please keep the referral
 % to divisbyzero.com
-% 
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% How to use writeLaTeX: 
+% How to use writeLaTeX:
 %
 % You edit the source code here on the left, and the preview on the
 % right shows you the result within a few seconds.
@@ -88,17 +88,17 @@
 
 \subsection{Presentation Layout Metrics}
 
-These parameters define the layout for the presentation.
+These parameters define the layout of the presentation.
 
 For font size:
 
 \begin{itemize}
-    \item \verb!\covertextsize!
-    \item \verb!\titletextsize!
-    \item \verb!\contenttextsize!
+    \item \verb!\covertextsize!: The text size on the cover page.
+    \item \verb!\titletextsize!: The title text size in each slide.
+    \item \verb!\contenttextsize!: The text size in the content in each slide.
 \end{itemize}
 
-For object placement, please refer the below list and the image:
+For object placement, please refer the below list and the images:
 
 \begin{itemize}
   \item \verb!\leftmarginpos!: X value from origin to left text margin \{(0).x $\rightarrow$ (1).x\}
@@ -107,28 +107,28 @@ For object placement, please refer the below list and the image:
   \item \verb!\maximumwidth!: Distance value from left margin to right margin \{(3).x - (1).x\}
   \item \verb!\maximumheight!: Distance value from content top margin to bottom content margin \{(4).y - (2).y\}
   \item \verb!\columnmaxwidth!: Maximum width of content to be split 50:50 (two column presentation).
-  \item \verb!\secondcolumnstart!: X value from the origin to second column. Please refer to the demo. 
+  \item \verb!\secondcolumnstart!: X value from the origin to second column. Please refer to the slide \emph{EIT Präsentation mit 2 Spalten}.
 \end{itemize}
 
 \begin{center}
-  
+
 \includegraphics[scale=0.5]{Pictures/left_top_margin.png}
 \end{center}
 \includegraphics[scale=0.5]{Pictures/page_width_height.png}
 
 \subsection{Helper Functions}
 
-Positioning in beamer is done based on \textbf{tikz} library and some of \textbf{beamer} library. There are some helper functions created to quickly construct a simple presentation, including its argument descriptions.
+Positioning in presentation is done based on \textbf{tikz} and \textbf{beamer} library. There are pre-defined helper functions to quickly construct a simple presentation.
 
 \begin{itemize}
   \item \verb!\EITCoverVI{Covert Text}{Author Name}{Picture Path}!: Create Cover Slide.
   \item \verb!\EITTableOfContent{Frame Title}{List Spacing}!: Create Table of Content slide. This slide's content is based on \verb!\section{Section Name}! defined over the document.
-  \item \verb!\EITHeadlineFT{Frame Title}{Content}!: Create a normal frame. This slide's content is already positioned with margins defined in layout metrics.
-  \item \verb!\placetextbox{Horizontal Position}{Vertical Position}{Maximum Width}{Content}!: Override the margins to place the object in defined positions. The object anchor is placed at north-west (top-left) corner w.r.t the page origin.
-  \item \verb!\placepictureandtext{Horizontal Position}{Vertical Position}{Maximum Width}!\\\verb!{Text Horizontal position}{Text Vertical Position}{Picture Content}{Text Content}!: Similar to \verb!\placetextbox! but 
-  place picture and underlying text (Please refer to slide \emph{EIT Präsentation mit schwebendem Bild und Text}). Should use with \verb!\picdims! function for the image resize.
-  \item \verb!\picdims[width=\paperwidth]{Cropped Width}{Cropped Height}{Picture Path}!: Auto crop and trim the image w.r.t the center following the defined dimension. For the first optional argument, I have no idea. Just put it as shown.
-  \item \verb!MeasuredFigureLabel{Figure Name}!: Replacement of \verb!\label! for figre because of internal bug.
+  \item \verb!\EITHeadlineFT{Frame Title}{Content}!: Create a normal frame. This slide's content is positioned with margins defined in layout metrics.
+  \item \verb!\placetextbox{Horizontal Position}{Vertical Position}{Maximum Width}{Content}!: Override the margins to place the object in defined positions. The object anchor is at north-west (top-left) corner w.r.t the page origin.
+  \item \verb!\placepictureandtext{Horizontal Position}{Vertical Position}{Maximum Width}!\\\verb!{Text Horizontal position}{Text Vertical Position}{Picture Content}{Text Content}!: Similar to \verb!\placetextbox! but
+  placing picture and underlying text in defined positions. Please refer to slide \emph{EIT Präsentation mit schwebendem Bild und Text}. Should use \verb!\picdims! function for the image resize.
+  \item \verb!\picdims[width=\paperwidth]{Cropped Width}{Cropped Height}{Picture Path}!: Automatically crop and trim the image w.r.t the image center following the defined dimensions. For the first optional argument, I have no idea. Just put it as shown.
+  \item \verb!MeasuredFigureLabel{Figure Name}!: Replacement for figure's \verb!\label! function because of internal bug.
 \end{itemize}
 
 
