@@ -114,15 +114,14 @@ In this example the color for the faculty EIT is selected.
 
 ## Beamer Presentation
 
-Have you ever tired of making Powerpoint presentation from your Latex report? You have to:
-  - rewrite all the equations in your report.
-  - insert image figures, captions, labels, numbers. 
+Ever get tired of creating a PowerPoint presentation from your latex report? You need to:
+  - Rewrite all equations in your report.
+  - Insert figures, labels, labels and numbers. 
 
-You don't have to suffer anymore. With Beamer, it helps you composing presentation inside your Latex environment. Tested with Overleaf, TeXstudio on Mac, TeXLive on Windows.
+You don't have to suffer that anymore. With Beamer you can create presentations in your Latex environment. Tested with Overleaf, TeXstudio on Mac, TeXLive on Windows.
+The functions needed for a simple presentation can be done by Beamer, unless you want to surprise your audience with effects. 
 
-Functions needed for a simple presentation could be done by Beamer, unless you are eager to surprise the audiences with effects. 
-
-Open the file `02_presentation.tex` and get started.
+Open the file '99_presentation.tex' and get started.
 
 Demo: [PDF](Demo/02_presentation.pdf)
 
