@@ -1,0 +1,290 @@
+\documentclass[17pt, t, aspectratio=169, xcolor=table]{beamer}
+
+% To have print without pause
+% \documentclass[handout, 17pt, t, aspectratio=169, xcolor=table]{beamer}
+
+\input{structure_presentation.tex} % Insert the structure.tex file which contains the majority of the structure behind the template
+
+%------------------------------------------------------------
+%This block of code defines the color theme
+\definecolor{ThemeColor}{RGB}{ 40,135, 50} % Elektro- und Informationstechnik
+% \definecolor{ThemeColor}{RGB}{ 25,130,130} % Architektur- und Bauwesen
+%\definecolor{ThemeColor}{RGB}{ 40,105,175} % Maschinenbau und Mechatronik
+%\definecolor{ThemeColor}{RGB}{ 30, 70,150} % Wirtschaftswissenschaften
+%\definecolor{ThemeColor}{RGB}{100, 55,140} % Informatik und Wirtschaftsinformatik
+%\definecolor{ThemeColor}{RGB}{140, 45,130} %Informationsmanagement und Medien
+\usecolortheme[named=ThemeColor]{structure}
+
+\definecolor{LegendColor}{RGB}{ 89, 89, 89} % Legend text color
+\definecolor{TableHighLight}{RGB}{190, 250, 196}
+
+%------------------------------------------------------------
+%%%% Definition of Layout metrics
+\newcommand{\covertextsize}{44}
+\newcommand{\coversubtitlesize}{20}
+
+\newcommand{\titletextsize}{32}
+\newcommand{\contenttextsize}{18}
+
+\newcommand{\leftmarginpos}{0.9335cm}
+
+\newcommand{\topmargintitle}{-0.825cm}
+
+\newcommand{\topmargincontent}{-3.5cm}
+
+\newcommand{\maximumwidth}{31.912cm}
+\newcommand{\maximumheight}{12.613cm}
+
+\newcommand{\columnmaxwidth}{15.45cm}
+\newcommand{\secondcolumnstart}{17.395cm}
+
+\newcommand{\captionsize}{normalsize}
+\usepackage[font=\captionsize,skip=4pt, width=.75\textwidth]{caption}
+
+% \newcommand{\foottext}{Hochschule Karlsruhe — Fakultät für Elektro- und Informationstechnik — Jan Bauer}
+%%%%
+
+\newcommand{\germanlipsum}{
+    Lorem ipsum ist ein pseudo-Lateinischer Text für Webdesign,
+    Typografie, Layout und Printmedien. Er ersetzt Deutsch um Designelemente
+    gegenüber dem Inhalt hervorzuheben, hat also die Funktion als Platzhalters
+    in Layouts um dem Betrachter eine vorläufige Vorstellung der endgültigen Fassung
+    zu vermitteln. Buchstaben, Worte, Wort- und Satzlängen bilden ungefähr das Schriftbild eines
+    lateinischen Texts wieder. Latein war in früheren Jahrhunderten eine häufig
+    genutzte Sprache verschiedener Textgattungen, z. B. wissenschaftlicher Werke,
+    Ratgeber, oder auch der sogenannten Erbauungsliteratur. Um die Aufmerksamkeit des
+    Lesers ausschließlich auf das Schriftbild zu lenken wird auch ein zufälliger Sinn
+    durch Wort- oder Satzkombinationen vermieden.
+}
+\newcommand{\germanlipsumshort}{
+    Lorem ipsum ist ein pseudo-Lateinischer Text für Webdesign,
+    Typografie, Layout und Printmedien.
+}
+
+\addbibresource{bibliography.bib}
+
+%End of title page configuration block
+%------------------------------------------------------------
+\makeatletter
+\def\@makefnmark{}
+
+\begin{document}
+
+\EITCoverVI{Wilkommen}{Vorname Nachname}{
+	Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg
+}
+
+
+\EITCoverSubtitleVI{Wilkommen}{Introduction: How to create presentation in Latex}{Vorname Nachname}{				
+	Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg
+}
+
+\EITTableOfContent{Inhaltsverzeichnis}{2}
+
+\section{EIT Präsentation}
+
+\EITHeadlineFT{EIT Präsentation}{
+	\germanlipsum
+}
+
+{
+\newcommand{\foottext}{Hochschule Karlsruhe — Fakultät für Elektro- und Informationstechnik — Vorname Nachname}
+\EITHeadlineFT{EIT Präsentation mit Foot Text}{
+	If there is \textbf{foottext} command defined in the code, the foot text will be replaced, such as this slide for example.
+	
+	Uncomment \textbf{line 44} for global effect.
+}
+}
+
+\EITHeadlineFT{EIT Präsentation mit Liste}{
+	\begin{itemize}
+		\item \germanlipsumshort
+		\item \germanlipsumshort
+		\item \germanlipsumshort
+		\item \germanlipsumshort
+	\end{itemize}
+}
+
+\section{EIT Präsentation mit Equation}
+\EITHeadlineFT{EIT Präsentation mit Equation}
+{
+	Reference to Eq. \ref{eq:first_eq}.
+
+	\begin{equation}
+		f(x)=\left\{\begin{aligned}      & \mathrm{e}^{|x|} &  & \text{si $|x-x^0|\leq 1/2$} \\
+                     & 0                &  & \text{si $|x-x^0|> 1/2$}\end{aligned}\right.
+		\label{eq:first_eq}
+	\end{equation}
+}
+
+\section{EIT Präsentation mit 2 Spalten}
+\EITHeadlineFT{EIT Präsentation mit 2 Spalten}
+{
+	\placetextbox{\leftmarginpos}{\topmargincontent}{\columnmaxwidth}{
+		\germanlipsum
+	}
+	\placetextbox{\secondcolumnstart}{\topmargincontent}{\columnmaxwidth}{
+		\germanlipsum
+	}
+}
+
+\EITHeadlineFT{EIT Präsentation mit schwebendem Text}
+{
+	\placetextbox{\leftmarginpos + 3cm}{\topmargincontent - 1cm}{\columnmaxwidth}{
+		\germanlipsum
+	}
+}
+
+\section{EIT Präsentation mit Tabelle}
+\EITHeadlineFT{EIT Präsentation mit Tabelle}{
+
+	Reference Table \ref{tab:version1}
+
+	\begin{table}[!h]
+		\centering
+		\begin{threeparttable}
+			\begin{tabular}{@{} l S[table-format=6.0] l S[table-format=5.0] cc @{}}
+				\toprule
+				{nº} & {CID Ligando} & {Nombre Ligando} & {Afinidad}                      & \multicolumn{2}{c@{}}{RMSD}          \\
+				\cmidrule(l){5-6}
+				     &               &                  & {(Kcal/mol)\textsuperscript{2}} & {l.b.}                      & {u.b.} \\
+				\midrule
+				1    & 234523        & LoremIpsum       & 234                             & 0                           & 0      \\
+				2    & 2345          & LoremIpsum       & 2365                            & 0                           & 0      \\
+				3    & 3453          & LoremIpsum       & 45634                           & 0                           & 0      \\
+				4    & 83452         & LoremIpsum       & 2456                            & 0                           & 0      \\
+				\addlinespace
+				5    & 210           & LoremIpsum       & 245                             & 0                           & 0      \\
+				6    & 3417          & LoremIpsum       & 45634                           & 0                           & 0      \\
+				7    & 4345          & LoremIpsum       & 3456                            & 0                           & 0      \\
+				8    & 4334          & LoremIpsum       & 3456                            & 0                           & 0      \\
+				\bottomrule
+			\end{tabular}
+			\caption{Valores de afinidad obtenidos para los ocho fármacos en \textit{Autodock Vina}}
+			\label{tab:version1}
+		\end{threeparttable}
+	\end{table}
+}
+
+
+\EITHeadlineFT{EIT Präsentation mit schwebendem Tabelle}{
+	\placetextbox{0.2\paperwidth}{-0.2\paperheight}{\maximumwidth}{
+		\begin{table}[!h]
+			\centering
+			\begin{threeparttable}
+				\begin{tabular}{@{} l S[table-format=6.0] l S[table-format=5.0] cc @{}}
+					\toprule
+					{nº} & {CID Ligando} & {Nombre Ligando} & {Afinidad}                      & \multicolumn{2}{c@{}}{RMSD}          \\
+					\cmidrule(l){5-6}
+					     &               &                  & {(Kcal/mol)\textsuperscript{2}} & {l.b.}                      & {u.b.} \\
+					\midrule
+					1    & 234523        & LoremIpsum       & 234                             & 0                           & 0      \\
+					2    & 2345          & LoremIpsum       & 2365                            & 0                           & 0      \\
+					3    & 3453          & LoremIpsum       & 45634                           & 0                           & 0      \\
+					4    & 83452         & LoremIpsum       & 2456                            & 0                           & 0      \\
+					\addlinespace
+					5    & 210           & LoremIpsum       & 245                             & 0                           & 0      \\
+					6    & 3417          & LoremIpsum       & 45634                           & 0                           & 0      \\
+					7    & 4345          & LoremIpsum       & 3456                            & 0                           & 0      \\
+					8    & 4334          & LoremIpsum       & 3456                            & 0                           & 0      \\
+					\bottomrule
+				\end{tabular}
+				\caption{Valores de afinidad obtenidos para los ocho fármacos en \textit{Autodock Vina}}
+				\label{tab:version2}
+			\end{threeparttable}
+		\end{table}
+	}
+}
+
+\section{EIT Präsentation mit Abbildung}
+\EITHeadlineFT{EIT Präsentation mit Abbildung}{
+	Reference to Fig. \ref{fig:version1}
+
+	\begin{figure}[h]
+		\centering
+		\begin{measuredfigure}
+			\picdims[width=\paperwidth]{\columnmaxwidth}{\maximumheight}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+			\caption{Valores de afinidad obtenidos para los ocho fármacos en \textit{Autodock Vina}}
+		\end{measuredfigure}
+		\MeasuredFigureLabel{fig:version1}
+	\end{figure}
+}
+
+\EITHeadlineFT{EIT Präsentation mit Abbildung}{
+	Reference to Fig. \ref{fig:version2}
+
+	\begin{figure}[h]
+		\centering
+		\begin{measuredfigure}
+			\includegraphics[scale=0.5]{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+			\caption{Valores de afinidad obtenidos para los ocho fármacos en \textit{Autodock Vina}}
+		\end{measuredfigure}
+		\MeasuredFigureLabel{fig:version2}
+	\end{figure}
+}
+
+\section{EIT Präsentation mit Bild}
+\EITHeadlineFT{EIT Präsentation mit Bild}
+{
+	\placetextbox{\leftmarginpos}{\topmargincontent}{\maximumwidth}{
+		\picdims[width=\maximumwidth]{\maximumwidth}{\maximumheight}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+	}
+}
+
+
+\EITHeadlineFT{EIT Präsentation 2 Bilder}{
+	\placetextbox{\leftmarginpos}{\topmargincontent}{\columnmaxwidth}{
+		\picdims[width=\paperwidth]{\columnmaxwidth}{\maximumheight}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+	}
+
+	\placetextbox{\secondcolumnstart}{\topmargincontent}{\columnmaxwidth}{
+		\picdims[width=\paperwidth]{\columnmaxwidth}{\maximumheight}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+	}
+}
+
+\EITHeadlineFT{EIT Präsentation mit schwebendem Bild}
+{
+	\placetextbox{\leftmarginpos + 0.2\paperwidth}{\topmargincontent - 5cm}{\maximumwidth}{
+		\includegraphics[scale=0.5]{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+	}
+}
+
+\EITHeadlineFT{EIT Präsentation mit schwebendem Bild und Text}
+{
+	\placepictureandtext{\leftmarginpos + 0.2\paperwidth}{\topmargincontent - 5cm}{\maximumwidth}{0cm}{0.1cm}
+	{
+		\includegraphics[scale=0.5]{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+	}
+	{
+		\color{LegendColor}\fontsize{7.7pt}{3pt}\selectfont
+		Bildbeschreibung
+	}
+}
+
+\EITHeadlineFT{EIT Präsentation mit Text und Bild}{
+
+	\placetextbox{\leftmarginpos}{\topmargincontent}{\columnmaxwidth}{
+		\lipsum[2]
+	}
+
+	\placetextbox{\secondcolumnstart}{\topmargincontent}{\columnmaxwidth}{
+		\picdims[width=\paperwidth]{\columnmaxwidth}{\maximumheight}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+	}
+}
+
+\EITHeadlineFT{}{
+
+	\placetextbox{0cm}{0cm}{\paperwidth}{
+		\picdims[width=\paperwidth]{\paperwidth}{16cm}{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg}
+	}
+
+}
+
+\EITHeadlineFT{References}{
+	\begin{itemize}
+		\item \fullcite{article_key}
+		\item \fullcite{book_key}
+	\end{itemize}
+}
+
+\end{document}
