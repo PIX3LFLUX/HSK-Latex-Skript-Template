@@ -159,7 +159,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under [CC BY-NC-SA 3.0] (http://creativecommons.org/licenses/by-nc-sa/3.0/). 
+Distributed under [CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/). 
 See `LICENSE` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
