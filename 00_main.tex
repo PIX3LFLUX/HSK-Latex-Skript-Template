@@ -319,6 +319,8 @@ Referencing Figure \ref{fig:placeholder} in-text automatically.
 
 \chapter*{Bibliography}
 \addcontentsline{toc}{chapter}{\textcolor{ThemeColor}{Bibliography}} % Add a Bibliography heading to the table of contents
+\fancyhead[LE,LO]{\sffamily\normalsize\thepage} % Header - Odd-Even Page - Left side - show page numbers 
+\fancyhead[RE,RO]{\textbf \bibname} % Header - Odd-Even Page - Right side - show Bibliography text
 
 %------------------------------------------------
 
@@ -326,6 +328,7 @@ Referencing Figure \ref{fig:placeholder} in-text automatically.
 \addcontentsline{toc}{section}{Articles}
 \printbibliography[heading=bibempty,type=article]
 
+\newpage
 %------------------------------------------------
 
 \section*{Books}
