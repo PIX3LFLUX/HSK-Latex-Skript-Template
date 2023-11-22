@@ -424,11 +424,11 @@ innerbottommargin=5pt]{cBox}
 \begin{tikzpicture}[remember picture,overlay]%
 \node at (current page.north west){\begin{tikzpicture}[remember picture,overlay]%	
 \fill[ThemeColor](0cm,0cm) rectangle (\paperwidth,-\paperheight);
-\node[anchor=north] at (4cm,-3.25cm){\color{white}\fontsize{220}{100}\sffamily\bfseries\thepart}; 
+\node[anchor=north] at (5.5cm,-3.25cm){\color{white}\fontsize{220}{100}\sffamily\bfseries\thepart}; 
 \node[anchor=south east] at (\paperwidth-1cm,-\paperheight+1cm){\parbox[t][][t]{8.5cm}{
 \printcontents{l}{0}{\setcounter{tocdepth}{1}}% The depth to which the Part mini table of contents displays headings; 0 for chapters only, 1 for chapters and sections and 2 for chapters, sections and subsections
 }};
-\node[anchor=north east] at (\paperwidth-1.5cm,-3.25cm){\parbox[t][][t]{15cm}{\strut\raggedleft\color{white}\fontsize{30}{30}\sffamily\bfseries#2}};
+\node[anchor=north east] at (\paperwidth-1.5cm,-3.25cm){\parbox[t][][t]{8cm}{\strut\raggedleft\color{white}\fontsize{30}{30}\sffamily\bfseries#2}};
 \end{tikzpicture}};
 \end{tikzpicture}}%
 \@endpart}
