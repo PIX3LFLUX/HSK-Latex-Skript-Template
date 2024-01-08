@@ -130,12 +130,19 @@
 %	MINI TABLE OF CONTENTS IN PART HEADS
 %----------------------------------------------------------------------------------------
 
+% To override the existing colorred text
+\newcommand{\absolutetextcolor}[2]{%
+    \textcolor{#1}{%
+        \renewcommand\textcolor[2][]{}%
+    #2}%
+}
+
 % Chapter text styling
 \titlecontents{lchapter}
 	[0em] % Left indentation
 	{\addvspace{15pt}\large\sffamily\bfseries} % Spacing and font options for chapters
 	{\color{white}\contentslabel[\Large\thecontentslabel]{1.25cm}\color{white}} % Chapter number
-	{}  
+	{\absolutetextcolor{white}}
 	{\color{white}\normalsize\sffamily\bfseries\;\titlerule*[.5pc]{.}\;\thecontentspage} % Page number
 
 % Section text styling
