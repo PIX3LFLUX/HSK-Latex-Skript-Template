@@ -118,7 +118,8 @@ Ever get tired of creating a PowerPoint presentation from your latex report? You
   - Rewrite all equations in your report.
   - Insert figures, labels, labels and numbers. 
 
-You don't have to suffer that anymore. With Beamer you can create presentations in your Latex environment. Tested with Overleaf, TeXstudio on Mac, TeXLive on Windows.
+You don't have to suffer that anymore. With Beamer you can create presentations in your Latex environment. Just copy & paste the content from other Latex documents. 
+Tested with Overleaf, TeXstudio on Mac, TeXLive on Windows.
 The functions needed for a simple presentation can be done by Beamer, unless you want to surprise your audience with effects. 
 
 Open the file '99_presentation.tex' and get started.

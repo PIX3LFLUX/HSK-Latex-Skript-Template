@@ -33,6 +33,8 @@
 	%showframe, % Uncomment to show how the type block is set on the page
 }
 
+\setlength{\parindent}{0pt} % Kein Einzug für die erste Zeile jedes Absatzes
+
 %----------------------------------------------------------------------------------------
 %	FONTS
 %----------------------------------------------------------------------------------------
@@ -56,7 +58,7 @@
 %	BIBLIOGRAPHY AND INDEX
 %----------------------------------------------------------------------------------------
 
-\usepackage[style=numeric,citestyle=numeric,sorting=nyt,sortcites=true,autopunct=true,babel=hyphen,hyperref=true,abbreviate=false,backref=true,backend=biber]{biblatex}
+\usepackage[style=numeric,citestyle=numeric,sorting=nyt,sortcites=true,autopunct=true,hyperref=true,abbreviate=false,backref=true,backend=biber]{biblatex}
 \addbibresource{bibliography.bib} % BibTeX bibliography file
 \defbibheading{bibempty}{}
 
@@ -496,7 +498,7 @@ innerbottommargin=5pt]{cBox}
 					\draw[anchor=east] (\Gm@lmargin-0cm,-9cm) node [minimum width=1cm, minimum height=2cm, line width=0pt,rounded corners=0pt,draw=ThemeColor,fill=ThemeColor,fill opacity=1] {};
 			\end{tikzpicture}};
 		\end{tikzpicture}
-		\fi\fi\par\vspace*{270\p@}}}
+		\fi\fi\par\vspace*{250\p@}}}
 
 %-------------------------------------------
 
@@ -509,7 +511,7 @@ innerbottommargin=5pt]{cBox}
 				\draw[anchor=east] (\Gm@lmargin-0cm,-9cm) node [minimum width=1cm, minimum height=2cm, line width=0pt,rounded corners=0pt,draw=ThemeColor,fill=ThemeColor,fill opacity=1] {};
 		\end{tikzpicture}};
 	\end{tikzpicture}
-	\par\vspace*{270\p@}}
+	\par\vspace*{250\p@}}
 \makeatother
 
 %----------------------------------------------------------------------------------------
@@ -517,7 +519,7 @@ innerbottommargin=5pt]{cBox}
 %----------------------------------------------------------------------------------------
 
 \usepackage{hyperref}
-\hypersetup{hidelinks,backref=true,pagebackref=true,hyperindex=true,colorlinks=false,breaklinks=true,urlcolor=ThemeColor,bookmarks=true,bookmarksopen=false}
+\hypersetup{hidelinks, colorlinks=false,breaklinks=true,urlcolor=ThemeColor,bookmarksopen=false}
 
 \usepackage{bookmark}
 \bookmarksetup{

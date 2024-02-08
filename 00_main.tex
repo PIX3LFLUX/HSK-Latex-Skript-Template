@@ -45,7 +45,7 @@
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
-\createTikZTitlePage{Elektro- und \\ Informationstechnik}   {{\huge\textbf{Fach}}{\\Skript, Stand \today)}}   {NAME}
+\createTikZTitlePage{Elektro- und \\ Informationstechnik}   {{\huge\textbf{Fach\\}}{Skript, Stand \today)}}   {NAME}
 
 %----------------------------------------------------------------------------------------
 %	COPYRIGHT PAGE
@@ -55,16 +55,17 @@
 ~\vfill
 \thispagestyle{empty}
 
-\noindent Copyright \copyright\ 2021 NAME \\ % Copyright notice
+\noindent Copyright \copyright\ 2021 NAME % Copyright notice
 
-\noindent \textsc{Published by NAME}\\ % Publisher
+\noindent {Published by NAME} % Publisher
 
-\noindent \textsc{book-website.com}\\ % URL
+\noindent {book-website.com} % URL
 
 \noindent
 Dieses Skript wird als Lehrmaterial für die Vorlesung XYZ an der Hochschule Karlsruhe verwendet.
-Das Skript wird unter der folgenden Lizenz veröffentlicht: CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/). \\
-Das originale Template (the Legrand Orange Book Template) kann hier heruntergeladen werden: http://www.latextemplates.com/template/the-legrand-orange-book 
+Das Skript wird unter der folgenden Lizenz veröffentlicht: CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/).
+
+\noindent Das originale Template (the Legrand Orange Book Template) kann hier heruntergeladen werden: http://www.latextemplates.com/template/the-legrand-orange-book 
 
 \noindent \textit{First printing, Feb 2021} % Printing/edition date
 
@@ -322,18 +323,7 @@ Referencing Figure \ref{fig:placeholder} in-text automatically.
 \fancyhead[LE,LO]{\sffamily\normalsize\thepage} % Header - Odd-Even Page - Left side - show page numbers 
 \fancyhead[RE,RO]{\textbf \bibname} % Header - Odd-Even Page - Right side - show Bibliography text
 
-%------------------------------------------------
-
-\section*{Articles}
-\addcontentsline{toc}{section}{Articles}
-\printbibliography[heading=bibempty,type=article]
-
-\newpage
-%------------------------------------------------
-
-\section*{Books}
-\addcontentsline{toc}{section}{Books}
-\printbibliography[heading=bibempty,type=book]
+\printbibliography[heading=bibempty]
 
 %----------------------------------------------------------------------------------------
 %	INDEX

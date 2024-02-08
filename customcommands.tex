@@ -9,18 +9,18 @@
 
 \usepackage{tikz} % Required for drawing custom shapes
 
-\usepackage[german]{babel} % german language/hyphenation
-
 \usepackage{enumitem} % Customize lists
 \setlist{nolistsep} % Reduce spacing between bullet points and numbered lists
 
 \usepackage{booktabs} % Required for nicer horizontal rules in tables
 
 \usepackage{xcolor} % Required for specifying colors by name
-%\definecolor{ThemeColor}{RGB}{ThemeColor} % is done in main, as it depends on faculty
 
-%TODO wollen wir das so haben? Finde ich persönlich besser - Marcel
 \usepackage[section]{placeins} % Graphics and tables are forced to be set before the beginning of a new section. Althoug this does not work with subsections. But you can use \FloatBarrier before a subsection to prevent this.
+
+\usepackage[ngerman]{babel} % if you want to write in german
+%\usepackage[english,ngerman]{babel} % for a multi-language file
+\usepackage{csquotes} % korrekte Darstellung von Anführungszeichen
 
 %----------------------------------------------------------------------------------------
 % User created custom commands
@@ -37,18 +37,11 @@
 	\end{figure}
 }
 
-
-
-
 % 'PlaceholderFIGure' erzeugt Figure mit dem Platzhalterbild darin. 
 % Nutzung: \pfig{string caption}
 \newcommand{\pfig}[1]{
 	\ofig{#1}{placeholder}{\linewidth}
 }
-
-
-
-
 
 % 'Create TikZ Titlepage' creates the Title Page and changes the colour scheme corresponding to the faculty
 % Nutzung: \createTikZTitlePage{Text: Faculty}{Text: Title}{Text: Authors}
