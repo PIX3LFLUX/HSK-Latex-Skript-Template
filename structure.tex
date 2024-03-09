@@ -480,38 +480,77 @@ innerbottommargin=5pt]{cBox}
 \def\@makechapterhead#1{%
 	{\parindent \z@ \raggedright \normalfont
 		\ifnum \c@secnumdepth >\m@ne
-		\if@mainmatter
-		\begin{tikzpicture}[remember picture,overlay]
+
+		\if@mainmatter %checks, if chapter is part of mainmatter (no appendix/other)
+        \begin{tikzpicture}[remember picture,overlay]
 			\node at (current page.north west)
 			{\begin{tikzpicture}[remember picture,overlay]
 					\node[anchor=north west,inner sep=0pt] at (0,0) {\ifusechapterimage\includegraphics[width=\paperwidth]{\thechapterimage}\fi};
+
+                    %conditionally set position of title
+                    \ifusechapterimage
 					\draw[anchor=west] (\Gm@lmargin-0cm,-9cm) node [minimum height=2cm, line width=0pt,rounded corners=0pt,draw=white,fill=white,fill opacity=1,inner sep=10pt] {\huge\bfseries\color{ThemeColor}\thechapter\autodot ~#1 \strut};
 					\draw[anchor=east] (\Gm@lmargin-0cm,-9cm) node [minimum width=1cm, minimum height=2cm, line width=0pt,rounded corners=0pt, draw=ThemeColor,fill=ThemeColor,fill opacity=1] {};
+
+                    \else
+                    \draw[anchor=west] (\Gm@lmargin-0cm,-3cm) node [minimum height=2cm, line width=0pt,rounded corners=0pt,draw=white,fill=white,fill opacity=1,inner sep=10pt] {\huge\bfseries\color{ThemeColor}\thechapter\autodot ~#1 \strut};
+					\draw[anchor=east] (\Gm@lmargin-0cm,-3cm) node [minimum width=1cm, minimum height=2cm, line width=0pt,rounded corners=0pt, draw=ThemeColor,fill=ThemeColor,fill opacity=1] {};
+                    \fi
+
 			\end{tikzpicture}};
 		\end{tikzpicture}
-		\else
+
+		\else  %draw title for unnumbered chapters --> not @mainmatter
 		\begin{tikzpicture}[remember picture,overlay]
 			\node at (current page.north west)
 			{\begin{tikzpicture}[remember picture,overlay]
 					\node[anchor=north west,inner sep=0pt] at (0,0) {\ifusechapterimage\includegraphics[width=\paperwidth]{\thechapterimage}\fi};
-					\draw[anchor=west] (\Gm@lmargin-0cm,-9cm) node [minimum height=2cm, line width=0pt,rounded corners=0pt,draw=white,fill=white,fill opacity=1,inner sep=10pt] {\huge\bfseries\color{ThemeColor} #1 \strut};
+     
+					\ifusechapterimage
+                    \draw[anchor=west] (\Gm@lmargin-0cm,-9cm) node [minimum height=2cm, line width=0pt,rounded corners=0pt,draw=white,fill=white,fill opacity=1,inner sep=10pt] {\huge\bfseries\color{ThemeColor} #1 \strut};
 					\draw[anchor=east] (\Gm@lmargin-0cm,-9cm) node [minimum width=1cm, minimum height=2cm, line width=0pt,rounded corners=0pt,draw=ThemeColor,fill=ThemeColor,fill opacity=1] {};
+     
+                    \else
+                    \draw[anchor=west] (\Gm@lmargin-0cm,-3cm) node [minimum height=2cm, line width=0pt,rounded corners=0pt,draw=white,fill=white,fill opacity=1,inner sep=10pt] {\huge\bfseries\color{ThemeColor} #1 \strut};
+					\draw[anchor=east] (\Gm@lmargin-0cm,-3cm) node [minimum width=1cm, minimum height=2cm, line width=0pt,rounded corners=0pt,draw=ThemeColor,fill=ThemeColor,fill opacity=1] {};
+                    \fi
+     
 			\end{tikzpicture}};
 		\end{tikzpicture}
-		\fi\fi\par\vspace*{250\p@}}}
+  
+		\fi\fi\par
 
-%-------------------------------------------
+        \ifusechapterimage
+        \vspace*{250\p@}
+        \else
+        \vspace*{50\p@}
+        \fi   
+    }}
 
-\def\@makeschapterhead#1{%
+\def\@makeschapterhead#1{ %make chapterheads for appendix 
 	\begin{tikzpicture}[remember picture,overlay]
 		\node at (current page.north west)
 		{\begin{tikzpicture}[remember picture,overlay]
 				\node[anchor=north west,inner sep=0pt] at (0,0) {\ifusechapterimage\includegraphics[width=\paperwidth]{\thechapterimage}\fi};
+
+                \ifusechapterimage
 				\draw[anchor=west] (\Gm@lmargin-0cm,-9cm) node [minimum height=2cm, line width=0pt,rounded corners=0pt,draw=white,fill=white,fill opacity=1,inner sep=10pt] {\huge\bfseries\color{ThemeColor} #1 \strut};
 				\draw[anchor=east] (\Gm@lmargin-0cm,-9cm) node [minimum width=1cm, minimum height=2cm, line width=0pt,rounded corners=0pt,draw=ThemeColor,fill=ThemeColor,fill opacity=1] {};
+                
+                \else
+                \draw[anchor=west] (\Gm@lmargin-0cm,-3cm) node [minimum height=2cm, line width=0pt,rounded corners=0pt,draw=white,fill=white,fill opacity=1,inner sep=10pt] {\huge\bfseries\color{ThemeColor} #1 \strut};
+				\draw[anchor=east] (\Gm@lmargin-0cm,-3cm) node [minimum width=1cm, minimum height=2cm, line width=0pt,rounded corners=0pt,draw=ThemeColor,fill=ThemeColor,fill opacity=1] {};
+                \fi
+    
 		\end{tikzpicture}};
 	\end{tikzpicture}
-	\par\vspace*{250\p@}}
+
+    \ifusechapterimage
+	\par\vspace*{250\p@}
+    \else
+    \par\vspace*{50\p@}
+    \fi
+ }
 \makeatother
 
 %----------------------------------------------------------------------------------------
