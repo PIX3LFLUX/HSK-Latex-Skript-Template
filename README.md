@@ -96,6 +96,8 @@ The Latex code is commented for an easy usage of the / self explanatory document
 If you struggle with a code-snipped, try solving it yourself first via web-search.
 * If you solved it, create a CR with an updated comment in the code to help others.
 * If you cannot solve it contact me.
+  
+* The idea is to **always** use chapter images, not using chapter images changes the whole appearance of the intended design. Use generative AI to generate some images :-)
 
 <br><br>
 For example your can choose the color for each faculty be uncommenting the matching line:
