@@ -38,8 +38,10 @@
 %----------------------------------------------------------------------------------------
 %	FONTS
 %----------------------------------------------------------------------------------------
-\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
-\usepackage[utf8]{inputenc} % Required for including letters with accents
+\usepackage[T1]{fontenc} % Ensures proper hyphenation of special characters
+\usepackage[utf8]{inputenc} % Allows use of accented characters
+\usepackage[ngerman]{babel} % German language support
+\usepackage{csquotes} % Correct quotation marks in the respective language
 
 \usepackage{avant} % Use the Avantgarde font for headings
 \newcommand*{\avantstyle}{\fontfamily{pag}\selectfont}
@@ -51,8 +53,6 @@
 %\usepackage{mathptmx} % Use the Adobe Times Roman as the default text font together with math symbols from the Sym­bol, Chancery and Com­puter Modern fonts
 
 \usepackage{microtype} % Slightly tweak font spacing for aesthetics
-
-
 
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY AND INDEX

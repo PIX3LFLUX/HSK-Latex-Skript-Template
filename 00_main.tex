@@ -23,7 +23,14 @@
 
 \input{customcommands.tex} % Insert the customcommands.tex file which contains the custom made commands, functions, etc.
 
-\hypersetup{pdftitle={Titel},pdfauthor={Name}} % Fill out to include PDF metadata for the author and title of the book
+% PDF Metadata
+\hypersetup{
+	pdftitle={Titel des Skripts},
+	pdfauthor={Autorenname},
+	pdfsubject={Thema des Skripts},
+	pdfkeywords={Keyword1, Keyword2, Keyword3}
+}
+
 \date{\today}
 
 		
@@ -55,7 +62,7 @@
 ~\vfill
 \thispagestyle{empty}
 
-\noindent Copyright \copyright\ 2021 NAME % Copyright notice
+\noindent Copyright \copyright\ 2024 Autorenname % Copyright notice
 
 \noindent {Published by NAME} % Publisher
 
@@ -65,9 +72,7 @@
 Dieses Skript wird als Lehrmaterial für die Vorlesung XYZ an der Hochschule Karlsruhe verwendet.
 Das Skript wird unter der folgenden Lizenz veröffentlicht: CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/).
 
-\noindent Das originale Template (the Legrand Orange Book Template) kann hier heruntergeladen werden: http://www.latextemplates.com/template/the-legrand-orange-book 
-
-\noindent \textit{First printing, Feb 2021} % Printing/edition date
+\noindent \textit{Erste Ausgabe, Stand: Oktober 2024} % Printing/edition date
 
 %----------------------------------------------------------------------------------------
 %	TABLE OF CONTENTS
@@ -84,7 +89,6 @@ Das Skript wird unter der folgenden Lizenz veröffentlicht: CC BY-NC-SA 3.0 (htt
 \cleardoublepage % Forces the first chapter to start on an odd page so it's on the right side of the book
 
 \pagestyle{fancy} % Enable headers and footers again
-
 
 %----------------------------------------------------------------------------------------
 %  Teil 1
@@ -322,7 +326,6 @@ Referencing Figure \ref{fig:placeholder} in-text automatically.
 \addcontentsline{toc}{chapter}{\textcolor{ThemeColor}{Bibliography}} % Add a Bibliography heading to the table of contents
 \fancyhead[LE,LO]{\sffamily\normalsize\thepage} % Header - Odd-Even Page - Left side - show page numbers 
 \fancyhead[RE,RO]{\textbf \bibname} % Header - Odd-Even Page - Right side - show Bibliography text
-
 \printbibliography[heading=bibempty]
 
 %----------------------------------------------------------------------------------------
