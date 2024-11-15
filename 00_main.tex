@@ -13,6 +13,22 @@
 % CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+%----------------------------------------------------------------------------------------
+%	CETNTRAL VARIABLES
+%----------------------------------------------------------------------------------------
+
+\newcommand{\scriptTitle}{Titel des Skripts}
+\newcommand{\scriptAuthor}{Autorenname}
+\newcommand{\scriptSubject}{Thema des Skripts}
+\newcommand{\scriptKeywords}{Keyword1, Keyword2, Keyword3}
+\newcommand{\scriptFaculty}{Elektro- und \\ Informationstechnik}
+\newcommand{\scriptCourse}{Vorlesung XYZ}
+\newcommand{\scriptPublisher}{NAME}
+\newcommand{\scriptWebsite}{book-website.com}
+\newcommand{\scriptLicense}{CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)}
+\newcommand{\scriptEdition}{Erste Ausgabe, Stand: Oktober 2024}
+
 %----------------------------------------------------------------------------------------
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
@@ -25,10 +41,10 @@
 
 % PDF Metadata
 \hypersetup{
-	pdftitle={Titel des Skripts},
-	pdfauthor={Autorenname},
-	pdfsubject={Thema des Skripts},
-	pdfkeywords={Keyword1, Keyword2, Keyword3}
+	pdftitle={\scriptTitle},
+	pdfauthor={\scriptAuthor},
+	pdfsubject={\scriptSubject},
+	pdfkeywords={\scriptKeywords}
 }
 
 \date{\today}
@@ -52,7 +68,10 @@
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
-\createTikZTitlePage{Elektro- und \\ Informationstechnik}   {{\huge\textbf{Fach\\}}{Skript, Stand \today)}}   {NAME}
+% Titel Seite
+\createTikZTitlePage{\scriptFaculty}   
+{{\huge\textbf{Fach\\}}{\scriptTitle, Stand \today}}   
+{\scriptAuthor}
 
 %----------------------------------------------------------------------------------------
 %	COPYRIGHT PAGE
@@ -62,17 +81,17 @@
 ~\vfill
 \thispagestyle{empty}
 
-\noindent Copyright \copyright\ 2024 Autorenname % Copyright notice
+\noindent Copyright \copyright\ 2024 \scriptAuthor % Copyright notice
 
-\noindent {Published by NAME} % Publisher
+\noindent {Published by \scriptPublisher} % Publisher
 
-\noindent {book-website.com} % URL
+\noindent {\scriptWebsite} % URL
 
 \noindent
-Dieses Skript wird als Lehrmaterial für die Vorlesung XYZ an der Hochschule Karlsruhe verwendet.
-Das Skript wird unter der folgenden Lizenz veröffentlicht: CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/).
+Dieses Skript wird als Lehrmaterial für die Vorlesung \scriptCourse\ an der Hochschule Karlsruhe verwendet.
+Das Skript wird unter der folgenden Lizenz veröffentlicht: \scriptLicense.
 
-\noindent \textit{Erste Ausgabe, Stand: Oktober 2024} % Printing/edition date
+\noindent \textit{\scriptEdition} % Printing/edition date
 
 %----------------------------------------------------------------------------------------
 %	TABLE OF CONTENTS
