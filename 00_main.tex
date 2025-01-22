@@ -49,6 +49,8 @@
 
 \date{\today}
 
+
+\input{acronyms.tex} % Insert acronyms.tex file which contains definitions and acronyms
 		
 %----------------------------------------------------------------------------------------
 %	Color Style (depending on Faculty)
@@ -99,7 +101,7 @@ Das Skript wird unter der folgenden Lizenz veröffentlicht: \scriptLicense.
 
 %\usechapterimagefalse % If you don't want to include a chapter image, use this to toggle images off - it can be enabled later with \usechapterimagetrue
 
-\chapterimage{Pictures/csm_HKA_FK-EIT_2017-9363_a9e6e1d039.jpg} % Table of contents heading image
+\chapterimage{Pictures/chapter_image_1.jpg} % Table of contents heading image
 
 \pagestyle{empty} % Disable headers and footers for the following pages
 
@@ -121,7 +123,7 @@ Das Skript wird unter der folgenden Lizenz veröffentlicht: \scriptLicense.
 \part{TEIL 2}
 %----------------------------------------------------------------------------------------
 
-\chapterimage{Pictures/csm_HKA_FK-MMT_Imagefoto_9847_0f123dde52.jpg} % Chapter heading image
+\chapterimage{Pictures/chapter_image_2.jpg} % Chapter heading image
 
 \chapter{Formatierungen und Templates}
 
@@ -337,15 +339,40 @@ Definition of word.
 
 Referencing Figure \ref{fig:placeholder} in-text automatically.
 
+
+%------------------------------------------------
+
+\section{Glossary and Acronyms}
+
+%Examples on using the glossaries package
+
+The \Gls{latexg} typesetting markup language is specially suitable 
+for documents that include \gls{mathsg}. 
+
+
+Given a set of numbers, there are elementary methods to compute 
+its \acrlong{gcd}, which is abbreviated \acrshort{gcd}. This 
+process is similar to that used for the \acrfull{lcm}.
+
 %----------------------------------------------------------------------------------------
-%	BIBLIOGRAPHY
+%	BIBLIOGRAPHY - LITERATURVERZEICHNIS
 %----------------------------------------------------------------------------------------
 
-\chapter*{Bibliography}
-\addcontentsline{toc}{chapter}{\textcolor{ThemeColor}{Bibliography}} % Add a Bibliography heading to the table of contents
+\addcontentsline{toc}{chapter}{\textcolor{ThemeColor}{Literaturverzeichnis}} % Add a Bibliography heading to the table of contents
 \fancyhead[LE,LO]{\sffamily\normalsize\thepage} % Header - Odd-Even Page - Left side - show page numbers 
 \fancyhead[RE,RO]{\textbf \bibname} % Header - Odd-Even Page - Right side - show Bibliography text
-\printbibliography[heading=bibempty]
+\printbibliography[title=Literaturverzeichnis]
+
+%----------------------------------------------------------------------------------------
+%	GLOSSARY AND ACRONYMS / GLOSSAR UND ABKÜRZUNGSVERZEICHNIS
+%----------------------------------------------------------------------------------------
+
+\addcontentsline{toc}{chapter}{\textcolor{ThemeColor}{Abkürzungsverzeichnis}}
+\printglossary[type=\acronymtype,title={Abkürzungsverzeichnis}]
+
+
+\addcontentsline{toc}{chapter}{\textcolor{ThemeColor}{Glossar}} 
+\printglossary
 
 %----------------------------------------------------------------------------------------
 %	INDEX
