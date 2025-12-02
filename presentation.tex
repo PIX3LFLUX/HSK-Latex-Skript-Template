@@ -1,0 +1,69 @@
+\documentclass[17pt, t, aspectratio=169, xcolor=table]{beamer}
+
+% To have print without pause
+% \documentclass[handout, 17pt, t, aspectratio=169, xcolor=table]{beamer}
+
+\input{structure_presentation.tex} % Insert the structure.tex file which contains the majority of the structure behind the template
+
+%------------------------------------------------------------
+%This block of code defines the color theme
+\definecolor{ThemeColor}{RGB}{ 40,135, 50} % Elektro- und Informationstechnik
+% \definecolor{ThemeColor}{RGB}{ 25,130,130} % Architektur- und Bauwesen
+%\definecolor{ThemeColor}{RGB}{ 40,105,175} % Maschinenbau und Mechatronik
+%\definecolor{ThemeColor}{RGB}{ 30, 70,150} % Wirtschaftswissenschaften
+%\definecolor{ThemeColor}{RGB}{100, 55,140} % Informatik und Wirtschaftsinformatik
+%\definecolor{ThemeColor}{RGB}{140, 45,130} %Informationsmanagement und Medien
+\usecolortheme[named=ThemeColor]{structure}
+
+\definecolor{LegendColor}{RGB}{ 89, 89, 89} % Legend text color
+\definecolor{TableHighLight}{RGB}{190, 250, 196}
+
+%------------------------------------------------------------
+%%%% Definition of Layout metrics
+\newcommand{\covertextsize}{44}
+\newcommand{\coversubtitlesize}{20}
+
+\newcommand{\titletextsize}{32}
+\newcommand{\contenttextsize}{18}
+
+\newcommand{\leftmarginpos}{0.9335cm}
+
+\newcommand{\topmargintitle}{-0.825cm}
+
+\newcommand{\topmargincontent}{-3.5cm}
+
+\newcommand{\maximumwidth}{31.912cm}
+\newcommand{\maximumheight}{12.613cm}
+
+\newcommand{\columnmaxwidth}{15.45cm}
+\newcommand{\secondcolumnstart}{17.395cm}
+
+\newcommand{\captionsize}{normalsize}
+\usepackage[font=\captionsize,skip=4pt, width=.75\textwidth]{caption}
+
+% \newcommand{\foottext}{Hochschule Karlsruhe — Fakultät für Elektro- und Informationstechnik — Jan Bauer}
+%%%%
+
+\addbibresource{bibliography.bib}
+
+%End of title page configuration block
+%------------------------------------------------------------
+\makeatletter
+\def\@makefnmark{}
+
+\begin{document}
+
+\EITCoverVI{Wilkommen}{Vorname Nachname}{
+	Pictures/chapter_image_1.jpg
+}
+
+
+\EITCoverSubtitleVI{Wilkommen}{Introduction: How to create presentation in Latex}{Vorname Nachname}{				
+	Pictures/chapter_image_1.jpg
+}
+
+\EITTableOfContent{Inhaltsverzeichnis}{2}
+
+\input{Presentation/99_example.tex}
+
+\end{document}
