@@ -1,0 +1,161 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Important note:
+% Chapter heading images should have a 2:1 width:height ratio,
+% e.g. 920px width and 460px height.
+%
+% The original template (the Legrand Orange Book Template) can be found here --> http://www.latextemplates.com/template/the-legrand-orange-book
+%
+% Original author of the Legrand Orange Book Template:
+% Mathias Legrand (legrand.mathias@gmail.com) with modifications by: Vel (vel@latextemplates.com)
+%
+% Original License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%----------------------------------------------------------------------------------------
+%	CETNTRAL VARIABLES
+%----------------------------------------------------------------------------------------
+
+\newcommand{\scriptTitle}{Titel des Skripts}
+\newcommand{\scriptAuthor}{Autorenname}
+\newcommand{\scriptSubject}{Thema des Skripts}
+\newcommand{\scriptKeywords}{Keyword1, Keyword2, Keyword3}
+\newcommand{\scriptFaculty}{Elektro- und \\ Informationstechnik}
+\newcommand{\scriptCourse}{Vorlesung XYZ}
+\newcommand{\scriptPublisher}{NAME}
+\newcommand{\scriptWebsite}{book-website.com}
+\newcommand{\scriptLicense}{CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)}
+\newcommand{\scriptEdition}{Erste Ausgabe, Stand: Oktober 2024}
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt,fleqn]{book} % Default font size and left-justified equations
+
+\input{structure_dokument.tex} % Insert the structure.tex file which contains the majority of the structure behind the template
+
+\input{customcommands.tex} % Insert the customcommands.tex file which contains the custom made commands, functions, etc.
+
+% PDF Metadata
+\hypersetup{
+	pdftitle={\scriptTitle},
+	pdfauthor={\scriptAuthor},
+	pdfsubject={\scriptSubject},
+	pdfkeywords={\scriptKeywords}
+}
+
+\date{\today}
+
+
+\input{acronyms.tex} % Insert acronyms.tex file which contains definitions and acronyms
+		
+%----------------------------------------------------------------------------------------
+%	Color Style (depending on Faculty)
+%----------------------------------------------------------------------------------------
+% please uncomment the desired color:
+
+\definecolor{ThemeColor}{RGB}{ 40,135, 50} % Elektro- und Informationstechnik
+%\definecolor{ThemeColor}{RGB}{ 25,130,130} % Architektur- und Bauwesen
+%\definecolor{ThemeColor}{RGB}{ 40,105,175} % Maschinenbau und Mechatronik
+%\definecolor{ThemeColor}{RGB}{ 30, 70,150} % Wirtschaftswissenschaften
+%\definecolor{ThemeColor}{RGB}{100, 55,140} % Informatik und Wirtschaftsinformatik
+%\definecolor{ThemeColor}{RGB}{140, 45,130} %Informationsmanagement und Medien
+
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+% Titel Seite
+\createTikZTitlePage{\scriptFaculty}   
+{{\huge\textbf{\scriptTitle\\}}{Stand \today}}   
+{\scriptAuthor}
+
+%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+%----------------------------------------------------------------------------------------
+
+\newpage
+~\vfill
+\thispagestyle{empty}
+
+\noindent Copyright \copyright\ 2024 \scriptAuthor % Copyright notice
+
+\noindent {Published by \scriptPublisher} % Publisher
+
+\noindent {\url{\scriptWebsite}} % URL
+
+\noindent
+Dieses Skript wird als Lehrmaterial für die Vorlesung \scriptCourse\ an der Hochschule Karlsruhe verwendet.
+Das Skript wird unter der folgenden Lizenz veröffentlicht: \scriptLicense.
+
+\noindent \textit{\scriptEdition} % Printing/edition date
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\usechapterimagefalse % If you don't want to include a chapter image, use this to toggle images off - it can be enabled later with \usechapterimagetrue
+
+\chapterimage{Pictures/chapter_image_1.jpg} % Table of contents heading image
+
+\pagestyle{empty} % Disable headers and footers for the following pages
+
+\tableofcontents % Print the table of contents itself
+
+\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right side of the book
+
+\pagestyle{fancy} % Enable headers and footers again
+
+%----------------------------------------------------------------------------------------
+%  Teil 1
+\part{TEIL 1}
+%----------------------------------------------------------------------------------------
+
+\input{Document/01_einleitung.tex} 
+
+%----------------------------------------------------------------------------------------
+%	Part 2: Format Examples (to be deleted in final/release version)
+\part{TEIL 2}
+%----------------------------------------------------------------------------------------
+
+\input{Document/99_example.tex}
+
+\chapterimage{Pictures/chapter_image_2.jpg} % Chapter heading image
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY - LITERATURVERZEICHNIS
+%----------------------------------------------------------------------------------------
+
+\addcontentsline{toc}{chapter}{\textcolor{ThemeColor}{Literaturverzeichnis}} % Add a Bibliography heading to the table of contents
+\fancyhead[LE,LO]{\sffamily\normalsize\thepage} % Header - Odd-Even Page - Left side - show page numbers 
+\fancyhead[RE,RO]{\textbf \bibname} % Header - Odd-Even Page - Right side - show Bibliography text
+\printbibliography[title=Literaturverzeichnis]
+
+%----------------------------------------------------------------------------------------
+%	GLOSSARY AND ACRONYMS / GLOSSAR UND ABKÜRZUNGSVERZEICHNIS
+%----------------------------------------------------------------------------------------
+
+\addcontentsline{toc}{chapter}{\textcolor{ThemeColor}{Abkürzungsverzeichnis}}
+\printglossary[type=\acronymtype,title={Abkürzungsverzeichnis}]
+
+
+\addcontentsline{toc}{chapter}{\textcolor{ThemeColor}{Glossar}} 
+\printglossary
+
+%----------------------------------------------------------------------------------------
+%	INDEX
+%----------------------------------------------------------------------------------------
+
+\cleardoublepage % Make sure the index starts on an odd (right side) page
+\phantomsection
+\setlength{\columnsep}{0.75cm} % Space between the 2 columns of the index
+\addcontentsline{toc}{chapter}{\textcolor{ThemeColor}{Index}} % Add an Index heading to the table of contents
+\printindex % Output the index
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
