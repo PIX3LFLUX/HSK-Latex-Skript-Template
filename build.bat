@@ -1,3 +1,0 @@
-pdflatex 02_presentation.tex
-biber 02_presentation
-pdflatex 02_presentation.tex
