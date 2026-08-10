@@ -536,13 +536,6 @@ make presentation
 make clean
 ```
 
-> [!WARNING]
-> Der mitgelieferte Makefile stammt aus der Zeit vor der Ordnertrennung und
-> erwartet `document.tex` und `presentation.tex` noch im Wurzelverzeichnis;
-> außerdem ruft er `biber` statt `bibtex` auf. Bis das korrigiert ist, ist der
-> direkte `latexmk`-Aufruf aus dem jeweiligen Ordner der verlässliche Weg.
-> Siehe [Issues](https://github.com/PIX3LFLUX/HSK-Latex-Skript-Template/issues).
-
 </details>
 
 <details>
