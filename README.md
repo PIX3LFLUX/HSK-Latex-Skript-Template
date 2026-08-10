@@ -40,7 +40,7 @@ latexmk -pdf presentation.tex
 
 > [!IMPORTANT]
 > **Immer aus dem jeweiligen Ordner heraus kompilieren.** Die Vorlage arbeitet
-> mit relativen Pfaden (`../Pictures/`, `../bibliography.bib`). Ein Aufruf aus
+> mit relativen Pfaden (`../Resources/Pictures/`, `../bibliography.bib`). Ein Aufruf aus
 > dem Repo-Wurzelverzeichnis findet die Bilder und die Literaturdatei nicht.
 > In TeXstudio, VS Code & Co. heißt das: das jeweilige `document.tex` bzw.
 > `presentation.tex` als **Hauptdokument / Root-Dokument** setzen.
@@ -99,7 +99,8 @@ HSK-Latex-Skript-Template/
 │   ├── Templates/               ← die vier Hintergrund-PDFs des HKA-CD  (Pflicht!)
 │   └── Demo/                    ← fertiges Beispiel-PDF + Beamer-Cheatsheet
 │
-├── Pictures/                    ← GETEILT: alle Bilder für Skript UND Folien
+├── Resources/                   ← GETEILT: alle Ressourcen für Skript UND Folien
+│   └── Pictures/                ← GETEILT: alle Bilder für Skript UND Folien
 ├── bibliography.bib             ← GETEILT: eine Literaturdatenbank für beides
 │
 ├── Makefile                     ← Komfort-Build für beide Dokumente
@@ -115,16 +116,16 @@ Das ist die zentrale Designentscheidung dieser Vorlage:
   zwei Layout-Dateien, keine gegenseitigen Abhängigkeiten. Beide Dokumente lassen
   sich unabhängig voneinander bearbeiten und kompilieren, ohne dass sich Pakete
   oder Definitionen in die Quere kommen.
-* **`Pictures/` und `bibliography.bib` liegen bewusst eine Ebene höher** und
-  werden von *beiden* Seiten genutzt (`\graphicspath{{../Pictures/}}`,
-  `\addbibresource{../bibliography.bib}`). Eine Abbildung, die im Skript steht,
+* **`Resources/` und `bibliography.bib` liegen bewusst eine Ebene höher** und
+  werden von *beiden* Seiten genutzt (`\addbibresource{../bibliography.bib}`,
+  `\graphicspath{{../Resources/Pictures/}}`). Eine Ressource, die im Skript verwendet wird,
   landet mit demselben Dateinamen auf der Folie. Eine Quelle, die einmal in
   JabRef gepflegt wurde, ist an beiden Stellen zitierbar. **Keine Doppelarbeit,
   keine auseinanderlaufenden Versionen.**
 * **Wer keine Präsentation braucht, löscht schlicht den Ordner `Presentation/`.**
   Das Skript kompiliert danach unverändert weiter — es gibt keinen einzigen
   Verweis darauf. Umgekehrt funktioniert es genauso: Nur Folien gewünscht?
-  `Document/` löschen, `Pictures/` und `bibliography.bib` behalten.
+  `Document/` löschen, `Resources/` und `bibliography.bib` behalten.
 
 ---
 
@@ -232,7 +233,7 @@ Kapitelbilder sind kein Deko-Extra, sondern der prägende Bestandteil des Layout
 Pro Kapitel, jeweils am Anfang der Kapiteldatei:
 
 ```latex
-\chapterimage{chapter_image_1.jpg}   % ohne "Pictures/", ohne Pfad
+\chapterimage{chapter_image_1.jpg}   % ohne "Resources/Pictures/", ohne Pfad
 \chapter{Einleitung}
 ```
 
@@ -271,7 +272,7 @@ Für Inhaltsverzeichnis und die hinteren Verzeichnisse in `document.tex`:
 ```
 
 Verweis darauf mit `\cref{fig:dateiname}` bzw. `\cref{fig:eigenesLabel}`.
-Dateiname **ohne** Endung und **ohne** `Pictures/`.
+Dateiname **ohne** Endung und **ohne** `Resources/Pictures/`.
 
 > [!CAUTION]
 > Ohne optionales Label wird der Dateiname als Label benutzt. Sobald der
@@ -625,7 +626,7 @@ diese Vorlage. Ansonsten:
 - [ ] Kapitelbilder für alle Kapitel vorhanden
 - [ ] PDF-Metadaten geprüft (Dateieigenschaften: Titel und Autor korrekt?)
 - [ ] Bibliografie durchgesehen — keine leeren Felder, keine Dubletten (JabRef hilft)
-- [ ] Bildrechte geklärt für alles, was in `Pictures/` liegt
+- [ ] Rechte geklärt für alles, was in `Resources/` liegt
 - [ ] `latexmk -C` und einmal komplett neu gebaut — läuft der Build von null durch?
 
 ---
