@@ -8,10 +8,6 @@
 %
 %  Kompilieren:  latexmk -pdf presentation.tex
 %
-%  Voraussetzung: Der Ordner Templates/ enthaelt die vier Hintergrund-PDFs des
-%  HKA-Corporate-Designs (HKA-Opening, HKA-Normal, HKA_Opening_KA_text,
-%  HKA_Slide_KA_text). Ohne sie bricht der Lauf ab.
-%
 %  Bilder liegen eine Ebene hoeher in ../Resources/Pictures/ und werden ohne diesen
 %  Pfad angegeben -- \graphicspath erledigt das.
 %
@@ -43,6 +39,7 @@
 
 \colorlet{ThemeColor}{HKA@eit}          % <<<<< HIER Fakultaet waehlen
 
+\colorlet{SymbolColor}{ThemeColor} % HKA-Symbole am Rand
 \definecolor{LegendColor}{RGB}{ 89, 89, 89}   % Bildbeschriftungen
 \definecolor{TableHighLight}{RGB}{190,250,196} % Hervorhebung in Tabellen
 
