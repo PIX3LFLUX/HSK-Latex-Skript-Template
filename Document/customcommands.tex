@@ -84,6 +84,8 @@
 %  3. TITELSEITE
 %==============================================================================
 
+\input{../Resources/TikZ/hka_symbols.tex}  % zentrale HKA-Symbolgeometrie
+
 %------------------------------------------------------------------------------
 %  Stellschrauben der Titelseite
 %------------------------------------------------------------------------------
@@ -153,23 +155,9 @@
 		\node[text width = 10cm, white, right] at (Authors) {{\large #3}};
 
 	%--- Logo "+|KA" --------------------------------------------------------
-	% Als TikZ-Pfade gezeichnet, damit das Logo scharf und in ThemeColor
-	% bleibt. "+(x,y)" ist relativ zum zuletzt gesetzten Ankerpunkt, ohne
-	% diesen zu verschieben.
-		\path (H) [fill=ThemeColor, scale = 0.45, rounded corners = 1]
-			+(0,-2.95) -- +(3,-2.95) -- +(3,0) -- +(4.2,0) -- +(4.2,-2.95)
-			-- +(7.2,-2.95) -- +(7.2,-3.95) -- +(4.2,-3.95) -- +(4.2,-6.9)
-			-- +(3,-6.9) -- +(3,-3.95) -- +(0,-3.95) -- cycle;
-		\path (H) [fill=ThemeColor, scale = 0.45, rounded corners = 1]
-			+(7.8,0) -- +(9,0) -- +(9,-6.9) -- +(7.8,-6.9) -- cycle;
-		\path (K) [fill=ThemeColor, scale = 0.45, rounded corners = 1]
-			+(3,0) -- +(4.2,0) -- +(4.2,-2.8) -- +(9,0) -- +(9,-1.3)
-			-- +(5.2,-3.45) -- +(9,-5.6) -- +(9,-6.9) -- +(4.2,-4.1)
-			-- +(4.2,-6.9) -- +(3,-6.9) -- cycle;
-		\path (A) [fill=ThemeColor, scale = 0.45, rounded corners = 1]
-			+(6,0) -- +(6.65,0) -- +(10.05,-6.9) -- +(8.75,-6.9) -- +(6,-1.3)
-			-- +(4.8,-3.7) -- +(7.52,-3.7) -- +(8.85,-4.8) -- +(4.3,-4.8)
-			-- +(3.25,-6.9) -- +(1.95,-6.9) -- +(5.35,0) -- cycle;
+	% Die Pfade selbst stehen zentral in hka_symbols.tex. Diese Titelseite
+	% legt nur Ankerpunkte, Farbe und Groesse fest.
+		\HKASymbolFull[ThemeColor]{H}{K}{A}[0.45]
 
 	\end{tikzpicture}%
 	\vfill

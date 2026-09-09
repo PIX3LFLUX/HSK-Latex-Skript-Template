@@ -9,17 +9,17 @@
 %
 %  Die Farbe ThemeColor muss VOR dem Einbinden dieser Datei definiert sein.
 %
-%  Die vier Hintergrund-PDFs des HKA-Corporate-Designs liegen im Ordner, den
-%  \hkaTemplatePath angibt (Vorgabe: Templates/).
+%  Die HKA-Symbole werden als TikZ-Vektorpfade aus hka_symbols.tex gezeichnet.
+%  Dadurch kann ihre Farbe ueber SymbolColor frei gewaehlt werden.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %==============================================================================
-%  PFAD ZU DEN HINTERGRUND-PDFS
+%  HKA-SYMBOLE
 %==============================================================================
-% Frueher stand "Templates/" an vier Stellen fest verdrahtet. Ueber diesen
-% Befehl laesst sich der Ordner an einer Stelle umhaengen.
-\newcommand{\hkaTemplatePath}{Templates/}
+% SymbolColor wird normalerweise in presentation.tex definiert.
+% Falls nicht, verwendet hka_symbols.tex die Fabe der Fakultät EIT als Fallback.
+\input{../Resources/TikZ/hka_symbols.tex}
 
 %==============================================================================
 %  SEITENFORMAT UND SCHRIFT
@@ -108,6 +108,57 @@
 
 \newcolumntype{x}[1]{>{\centering\arraybackslash\hspace{0pt}}p{#1}}
 
+%------------------------------------------------------------------------------
+% HKA-Symbol-Layout fuer die Praesentation
+%------------------------------------------------------------------------------
+% Die Konturen selbst stehen nur in hka_symbols.tex. Hier werden lediglich
+% Position, Groesse und Farbe fuer die verschiedenen Folientypen festgelegt.
+
+\newcommand{\HKANormalBackground}{%
+	\begin{tikzpicture}[remember picture,overlay]
+		\coordinate (hkaNormalH) at
+			($ (current page.north west) + (31.13cm,-0.84cm) $);
+		\HKASymbolH[SymbolColor]{hkaNormalH}[0.1785]
+	\end{tikzpicture}%
+}
+
+\newcommand{\HKAOpeningBackground}{%
+	\begin{tikzpicture}[remember picture,overlay]
+		% Wortmarke links oben
+		\node[anchor=north west, inner sep=0pt, align=left, text=SymbolColor]
+			at ($ (current page.north west) + (0.99cm,-0.86cm) $)
+			{\fontsize{10.5}{10.7}\selectfont
+			 \textbf{Hochschule Karlsruhe}\\
+			 University of\\
+			 Applied Sciences};
+
+		% Grosses +I rechts oben
+		\coordinate (hkaOpeningH) at
+			($ (current page.north west) + (29.52cm,-0.83cm) $);
+		\HKASymbolH[SymbolColor]{hkaOpeningH}[0.3635]
+	\end{tikzpicture}%
+}
+
+\newcommand{\HKAOpeningKABackground}{%
+	\begin{tikzpicture}[remember picture,overlay]
+		\coordinate (hkaOpeningK) at
+			($ (current page.north west) + (29.52cm,-6.35cm) $);
+		\coordinate (hkaOpeningA) at
+			($ (current page.north west) + (29.52cm,-9.38cm) $);
+		\HKASymbolKA[SymbolColor]{hkaOpeningK}{hkaOpeningA}[0.3635]
+	\end{tikzpicture}%
+}
+
+\newcommand{\HKASlideKABackground}{%
+	\begin{tikzpicture}[remember picture,overlay]
+		\coordinate (hkaSlideK) at
+			($ (current page.north west) + (31.13cm,-15.45cm) $);
+		\coordinate (hkaSlideA) at
+			($ (current page.north west) + (31.13cm,-16.94cm) $);
+		\HKASymbolKA[SymbolColor]{hkaSlideK}{hkaSlideA}[0.1785]
+	\end{tikzpicture}%
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% Beamer template
 \setbeamertemplate{itemize items}[circle]
@@ -117,10 +168,7 @@
 \setbeamertemplate{enumerate items}[default]
 \setbeamertemplate{caption}[numbered]
 
-\setbeamertemplate{background}
-{
-	\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{\hkaTemplatePath HKA-Normal.pdf}
-}
+\setbeamertemplate{background}{\HKANormalBackground}
 
 
 \setbeamercolor{section in toc}{fg=black}
@@ -287,11 +335,13 @@
 
 %% Cover page
 \newcommand \EITCoverVI[3]{
+	\begingroup
+	\setbeamertemplate{background}{}
 	\begin{frame}
 
-		\begin{tikzpicture}[remember picture, overlay]
-			\node[at=(current page.center)]{\includegraphics[width=\paperwidth, height=\paperheight]{\hkaTemplatePath HKA-Opening.pdf}};
+		\HKAOpeningBackground
 
+		\begin{tikzpicture}[remember picture, overlay]
 			\node[inner sep=0pt, text width=\paperwidth, anchor=south west] at ($(current page.center) + (-16cm, 2.6cm)$)
 			{\fontsize{\covertextsize}{30}\selectfont\color{ThemeColor} #1};
 		\end{tikzpicture}
@@ -307,18 +357,19 @@
 			{\fontsize{9.1}{5}\selectfont\color{ThemeColor} #2};
 		\end{tikzpicture}
 
-		\begin{tikzpicture}[remember picture, overlay]
-			\node[at=(current page.center)]{\includegraphics[width=\paperwidth, height=\paperheight]{\hkaTemplatePath HKA_Opening_KA_text.pdf}};
-		\end{tikzpicture}
+		\HKAOpeningKABackground
 	\end{frame}
+	\endgroup
 }
 
 \newcommand \EITCoverSubtitleVI[4]{
+	\begingroup
+	\setbeamertemplate{background}{}
 	\begin{frame}
 
-		\begin{tikzpicture}[remember picture, overlay]
-			\node[at=(current page.center)]{\includegraphics[width=\paperwidth, height=\paperheight]{\hkaTemplatePath HKA-Opening.pdf}};
+		\HKAOpeningBackground
 
+		\begin{tikzpicture}[remember picture, overlay]
 			\node[inner sep=0pt, text width=\paperwidth, anchor=south west](title) at ($(current page.center) + (-16cm, 3.825cm)$)
 			{
 				\fontsize{\covertextsize}{30}\selectfont\color{ThemeColor} #1
@@ -341,10 +392,9 @@
 			{\fontsize{9.1}{5}\selectfont\color{ThemeColor} #3};
 		\end{tikzpicture}
 
-		\begin{tikzpicture}[remember picture, overlay]
-			\node[at=(current page.center)]{\includegraphics[width=\paperwidth, height=\paperheight]{\hkaTemplatePath HKA_Opening_KA_text.pdf}};
-		\end{tikzpicture}
+		\HKAOpeningKABackground
 	\end{frame}
+	\endgroup
 }
 
 \setbeamertemplate{frametitle}
@@ -386,9 +436,7 @@
 			\defaultfoottext
 		\fi
 
-		\begin{tikzpicture}[remember picture, overlay]
-			\node[at=(current page.center)]{\includegraphics[width=\paperwidth, height=\paperheight]{\hkaTemplatePath HKA_Slide_KA_text.pdf}};
-		\end{tikzpicture}
+		\HKASlideKABackground
 	\end{frame}
 }
 
